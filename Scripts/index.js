@@ -1,4 +1,6 @@
-fetch('./results.json')
+const jsonUrl = './results.json?v=' + new Date().getTime();
+
+fetch(jsonUrl)
   .then(response => response.json())
   .then(results => {
     console.log(results);

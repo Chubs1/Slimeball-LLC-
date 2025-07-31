@@ -2,7 +2,7 @@ console.log('Starting DailyFinder');
 
 const fs = require('fs');
 const { exec } = require("child_process");
-
+const path = require('path');
 
 
 let existing = [];
@@ -312,18 +312,24 @@ fetch("https://api.americanwagering.com/regions/us/locations/mi/brands/hrs/igami
         try {
             fs.writeFileSync('../results.json', JSON.stringify(existing, null, 2), 'utf8');
 
+const repoDir = path.resolve(__dirname, '..'); // Adjust if needed
 
-            exec(`
-  git add ${'../results.json'} &&
-  git commit -m "Update data JSON" &&
-  git push origin master
-`, (err, stdout) => {
-  if (err) {
-    console.error("❌ Git commit failed:", err);
-    return;
+exec(
+  'git add results.json && git commit -m "Update results.json" && git push origin master',
+  { cwd: repoDir },
+  (err, stdout, stderr) => {
+    if (err) {
+      console.error('Git commit/push error:', err);
+      console.error('stderr:', stderr);
+      return;
+    }
+    console.log('✅ Git commit and push success:');
+    console.log(stdout);
+    if (stderr) console.log(stderr);
   }
-  console.log("✅ Git commit and push success:\n", stdout);
-});
+);
+
+
 
         } catch (err) {
             console.error('❌ Failed to write results.json:', err);
