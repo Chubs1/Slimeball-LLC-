@@ -197,7 +197,7 @@ const Blackjack = (TARGET, WAGER_REQUIREMENT, BET_SIZE, MIN_BET_SIZE, SIMULATION
         statsNoFirstLoss
     };
 }
-
+//tk fix link casino and fetch to not be hard coded
 const LINK = 'https://horseshoeonlinecasino.com/us/mi/mypromos';
 const CASINO = 'Horseshoe';
 

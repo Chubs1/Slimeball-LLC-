@@ -29,11 +29,18 @@
 
 
 <div class="chip-container">
-    <div class="chip filter-chip">
-  <span class="filter-title">Filters: </span>
-  <label>Risk: <input type="checkbox" value="risk" checked></label>
-  
-  <label>No Risk: <input type="checkbox" value="norisk" checked></label>
+    <div class="chip strategy-chip">
+        <div class="chip-top">
+            <label for="strategySelect">Choose a strategy:</label>
+            <select id="strategySelect">
+               <option value="normal">Flat Bets</option>
+               <option value="half2x">Half Bankroll (2x)</option>
+               <option value="half3x">Half Bankroll (3x)</option>
+            </select>
+
+        </div>
+        <div class="chip-text">Select a strategy to view results</div>
+    
 </div>
 
     <button id="quickOpenBtn" class="chip-button quick-open-button">Quick Open</button>
