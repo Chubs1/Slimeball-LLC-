@@ -233,7 +233,7 @@ fetch("https://api.americanwagering.com/regions/us/locations/mi/brands/hrs/igami
         const WAGER_REQUIREMENT = parseInt(data.termsAndConditions.match(/\d+/g)[0], 10) * BALANCE;
         const BET_SIZE = 5;
         const MIN_BET_SIZE = 1; // if balance is less than this, bet everything
-        const SIMULATIONS = 100_000;
+        const SIMULATIONS = 10_000_000;
   
 
         let blackjackResults1Target, blackjackResults2Target, blackjackResults3Target;
