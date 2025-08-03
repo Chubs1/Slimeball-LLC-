@@ -7,25 +7,25 @@
     "bonus": 25,
     "strategy": {
       "normal": {
-        "mean": "24.76",
-        "riskOfRuin": "3.44%",
-        "stdDev": "40.60",
-        "meanExcludingFirstLoss": "24.76",
-        "stdDevExcludingFirstLoss": "40.60"
+        "mean": "24.66",
+        "riskOfRuin": "3.48%",
+        "stdDev": "40.58",
+        "meanExcludingFirstLoss": "24.66",
+        "stdDevExcludingFirstLoss": "40.58"
       },
       "half2x": {
-        "mean": "139.93",
-        "riskOfRuin": "51.19%",
-        "stdDev": "128.04",
-        "meanExcludingFirstLoss": "212.55",
-        "stdDevExcludingFirstLoss": "56.92"
+        "mean": "139.65",
+        "riskOfRuin": "51.39%",
+        "stdDev": "127.78",
+        "meanExcludingFirstLoss": "212.28",
+        "stdDevExcludingFirstLoss": "56.49"
       },
       "half3x": {
-        "mean": "122.45",
-        "riskOfRuin": "53.75%",
-        "stdDev": "202.17",
-        "meanExcludingFirstLoss": "360.01",
-        "stdDevExcludingFirstLoss": "66.25"
+        "mean": "122.06",
+        "riskOfRuin": "54.13%",
+        "stdDev": "202.41",
+        "meanExcludingFirstLoss": "360.19",
+        "stdDevExcludingFirstLoss": "66.22"
       }
     }
   }
