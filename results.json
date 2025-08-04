@@ -7,67 +7,37 @@
     "bonus": 30,
     "strategy": {
       "normal": {
-        "mean": "28.48",
+        "mean": "28.45",
         "riskOfRuin": "0.00%",
-        "stdDev": "50.80",
-        "meanExcludingFirstLoss": "28.48",
-        "stdDevExcludingFirstLoss": "50.80"
+        "stdDev": "50.81",
+        "meanExcludingFirstLoss": "28.45",
+        "stdDevExcludingFirstLoss": "50.81"
       },
       "half2x": {
-        "mean": "27.78",
+        "mean": "27.75",
         "riskOfRuin": "20.86%",
-        "stdDev": "228.78",
-        "meanExcludingFirstLoss": "328.09",
-        "stdDevExcludingFirstLoss": "73.55"
+        "stdDev": "228.79",
+        "meanExcludingFirstLoss": "328.10",
+        "stdDevExcludingFirstLoss": "73.57"
       },
       "half3x": {
-        "mean": "27.45",
-        "riskOfRuin": "20.87%",
-        "stdDev": "268.67",
-        "meanExcludingFirstLoss": "503.54",
-        "stdDevExcludingFirstLoss": "27.58"
-      }
-    }
-  },
-  {
-    "casino": "Horseshoe",
-    "date": "08/04",
-    "link": "https://horseshoeonlinecasino.com/us/mi/mypromos",
-    "deposit": 200,
-    "bonus": 30,
-    "strategy": {
-      "normal": {
-        "mean": "28.48",
-        "riskOfRuin": "0.00%",
-        "stdDev": "50.79",
-        "meanExcludingFirstLoss": "28.48",
-        "stdDevExcludingFirstLoss": "50.79"
-      },
-      "half2x": {
-        "mean": "27.76",
-        "riskOfRuin": "20.85%",
-        "stdDev": "228.77",
-        "meanExcludingFirstLoss": "328.03",
-        "stdDevExcludingFirstLoss": "73.52"
-      },
-      "half3x": {
-        "mean": "27.52",
-        "riskOfRuin": "20.84%",
-        "stdDev": "268.79",
-        "meanExcludingFirstLoss": "503.37",
-        "stdDevExcludingFirstLoss": "27.73"
+        "mean": "27.58",
+        "riskOfRuin": "20.86%",
+        "stdDev": "268.86",
+        "meanExcludingFirstLoss": "503.48",
+        "stdDevExcludingFirstLoss": "28.10"
       },
       "full2x": {
-        "mean": "28.59",
-        "riskOfRuin": "46.53%",
-        "stdDev": "275.27",
-        "meanExcludingFirstLoss": "305.93",
-        "stdDevExcludingFirstLoss": "96.06"
+        "mean": "28.67",
+        "riskOfRuin": "46.51%",
+        "stdDev": "275.30",
+        "meanExcludingFirstLoss": "305.99",
+        "stdDevExcludingFirstLoss": "96.11"
       },
       "full4x": {
-        "mean": "28.14",
-        "riskOfRuin": "46.50%",
-        "stdDev": "441.92",
+        "mean": "28.12",
+        "riskOfRuin": "46.49%",
+        "stdDev": "441.90",
         "meanExcludingFirstLoss": "NaN",
         "stdDevExcludingFirstLoss": "NaN"
       }
