@@ -28,5 +28,49 @@
         "stdDevExcludingFirstLoss": "27.58"
       }
     }
+  },
+  {
+    "casino": "Horseshoe",
+    "date": "08/04",
+    "link": "https://horseshoeonlinecasino.com/us/mi/mypromos",
+    "deposit": 200,
+    "bonus": 30,
+    "strategy": {
+      "normal": {
+        "mean": "28.48",
+        "riskOfRuin": "0.00%",
+        "stdDev": "50.79",
+        "meanExcludingFirstLoss": "28.48",
+        "stdDevExcludingFirstLoss": "50.79"
+      },
+      "half2x": {
+        "mean": "27.76",
+        "riskOfRuin": "20.85%",
+        "stdDev": "228.77",
+        "meanExcludingFirstLoss": "328.03",
+        "stdDevExcludingFirstLoss": "73.52"
+      },
+      "half3x": {
+        "mean": "27.52",
+        "riskOfRuin": "20.84%",
+        "stdDev": "268.79",
+        "meanExcludingFirstLoss": "503.37",
+        "stdDevExcludingFirstLoss": "27.73"
+      },
+      "full2x": {
+        "mean": "28.59",
+        "riskOfRuin": "46.53%",
+        "stdDev": "275.27",
+        "meanExcludingFirstLoss": "305.93",
+        "stdDevExcludingFirstLoss": "96.06"
+      },
+      "full4x": {
+        "mean": "28.14",
+        "riskOfRuin": "46.50%",
+        "stdDev": "441.92",
+        "meanExcludingFirstLoss": "NaN",
+        "stdDevExcludingFirstLoss": "NaN"
+      }
+    }
   }
 ]
