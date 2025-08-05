@@ -1,45 +1,45 @@
 [
   {
     "casino": "Horseshoe",
-    "date": "08/04",
+    "date": "08/05",
     "link": "https://horseshoeonlinecasino.com/us/mi/mypromos",
-    "deposit": 200,
-    "bonus": 30,
+    "deposit": 40,
+    "bonus": 15,
     "strategy": {
       "normal": {
-        "mean": "28.45",
-        "riskOfRuin": "0.00%",
-        "stdDev": "50.81",
-        "meanExcludingFirstLoss": "28.45",
-        "stdDevExcludingFirstLoss": "50.81"
+        "mean": "14.13",
+        "riskOfRuin": "15.73%",
+        "stdDev": "38.15",
+        "meanExcludingFirstLoss": "14.13",
+        "stdDevExcludingFirstLoss": "38.15"
       },
       "half2x": {
-        "mean": "27.75",
-        "riskOfRuin": "20.86%",
-        "stdDev": "228.79",
-        "meanExcludingFirstLoss": "328.10",
-        "stdDevExcludingFirstLoss": "73.57"
+        "mean": "14.10",
+        "riskOfRuin": "51.47%",
+        "stdDev": "68.87",
+        "meanExcludingFirstLoss": "99.01",
+        "stdDevExcludingFirstLoss": "36.49"
       },
       "half3x": {
-        "mean": "27.58",
-        "riskOfRuin": "20.86%",
-        "stdDev": "268.86",
-        "meanExcludingFirstLoss": "503.48",
-        "stdDevExcludingFirstLoss": "28.10"
+        "mean": "13.98",
+        "riskOfRuin": "54.26%",
+        "stdDev": "83.97",
+        "meanExcludingFirstLoss": "168.19",
+        "stdDevExcludingFirstLoss": "39.65"
       },
       "full2x": {
-        "mean": "28.67",
-        "riskOfRuin": "46.51%",
-        "stdDev": "275.30",
-        "meanExcludingFirstLoss": "305.99",
-        "stdDevExcludingFirstLoss": "96.11"
+        "mean": "14.44",
+        "riskOfRuin": "52.55%",
+        "stdDev": "70.04",
+        "meanExcludingFirstLoss": "80.64",
+        "stdDevExcludingFirstLoss": "40.68"
       },
       "full4x": {
-        "mean": "28.12",
-        "riskOfRuin": "46.49%",
-        "stdDev": "441.90",
-        "meanExcludingFirstLoss": "NaN",
-        "stdDevExcludingFirstLoss": "NaN"
+        "mean": "14.45",
+        "riskOfRuin": "74.13%",
+        "stdDev": "114.42",
+        "meanExcludingFirstLoss": "216.79",
+        "stdDevExcludingFirstLoss": "56.36"
       }
     }
   }
