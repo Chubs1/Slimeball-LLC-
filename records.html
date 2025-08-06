@@ -2,9 +2,9 @@
     <head>
         <title>Slimeball LLC</title>
         <link rel="icon" type="image/x-icon" href="./Images/favicon.ico">
-       	<link rel="stylesheet" href="./Styles/style.css">
-        <script src="./Scripts/index.js"></script>
-
+    	<link rel="stylesheet" href="./Styles/style.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="./Scripts/records.js"></script>
     </head>
     
     <body>
@@ -31,19 +31,10 @@
 
 
 <div class="chip-container">
-    <div class="chip strategy-chip">
-        <div class="chip-left">
-            <label for="strategySelect">Choose a strategy:</label>
-            <select id="strategySelect">
-               <option value="normal">Flat Bets</option>
-               <option value="half2x">Half Bankroll (2x Target)</option>
-               <option value="half3x">Half Bankroll (3x Target)</option>
-               <option value="full2x">Full Bankroll (2x Target)</option>
-               <option value="full4x">Full Bankroll (4x Target)</option>
-            </select>
-            
+    
+    <canvas id="recordChart" width="600" height="400" style="display:none; margin-top:20px;"></canvas>
+
         </div>
-        <div class="chip-text">Select a strategy to view results</div>
     
 </div>
 
@@ -56,4 +47,5 @@
 
 
     </body>
+
 </html>

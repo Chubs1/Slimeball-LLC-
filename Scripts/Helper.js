@@ -268,7 +268,50 @@ fetch(`https://api.americanwagering.com/regions/us/locations/mi/brands/hrs/igami
     })
     .then(res => res.json())
     .then(data => {
-      console.log('✅ Data fetched successfully');
+    INSIDE_FETCH_CALL_FUNCTION(data, LINK, CASINO);
+    })
+    .catch(err => {
+        console.error("❌ Error fetching data trying other site", err);
+        fetch(`https://api.americanwagering.com/regions/us/locations/mi/brands/hrs/igaming/bonus-engine/api/v2/promotions/bonusConfiguration/dep-get-${month}${day}`, {
+        method: "GET",
+        headers: {
+            "accept": "application/json",
+            "accept-language": "en-US,en;q=0.9",
+            "content-type": "application/json",
+            "origin": "https://horseshoeonlinecasino.com",
+            "priority": "u=1, i",
+            "referer": "https://horseshoeonlinecasino.com/",
+            "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+            "x-app-version": "5.19.0",
+            "x-appbranding": "Horseshoe",
+            "x-aws-waf-token": "5e8ec9dc-1b2b-477a-9366-b03daca25eaa:EgoAgY2a/IITAwAA:tVIO9EzaqHchThRUHzjaU1WxzM1Z/CoHcHYr4xKKbStTLPlSspsIqe0JE1PjNIhHrph4ZUmaveZpbKns5HemxQee7/Usb11E+WGjzM/ejcbdyyDlV4ZAzgZgMX63htyegu2zUq+DTjr3loaSUM3C8ItTHdq4cbRZ8R2w4d6YPIoHqHliWh6ZAFgQm8N8lvihxAW00hUd8kaGyNCy714RtLh25EPfrdLUg0X/7+5JHiN9tIO6OtJTzBCwHPm3sCLZeJc=",
+            "x-platform": "casino-horseshoe-desktop",
+            "x-unique-device-id": "a77f55a8-84a3-4e15-9ec6-0e21b9613fcd"
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        INSIDE_FETCH_CALL_FUNCTION(data, LINK, CASINO);
+    })
+    .catch(err => {
+        console.error("❌ Error fetching data trying other site", err);
+    });
+
+    });
+}
+
+Horseshoe();
+
+
+const INSIDE_FETCH_CALL_FUNCTION = (data, LINK, CASINO) => {
+      console.log('✅ Data fetched successfully');  
+      
       let DEPOSIT, BONUS;
         if(data.title.includes("%")){
         DEPOSIT = parseInt(data.title.match(/\d+/g)[3], 10);
@@ -282,7 +325,7 @@ fetch(`https://api.americanwagering.com/regions/us/locations/mi/brands/hrs/igami
         const BALANCE = DEPOSIT + BONUS;
         const WAGER_REQUIREMENT = parseInt(data.termsAndConditions.match(/\d+/g)[0], 10) * BALANCE;
         const BET_SIZE = 5;
-        const SIMULATIONS = 10_000_000;
+        const SIMULATIONS = 10_000;
 
         let blackjackResults1Target, blackjackResults2Target, blackjackResults3Target, blackjackResults2TargetFull, blackjackResults4TargetFull;
 
@@ -348,8 +391,10 @@ fetch(`https://api.americanwagering.com/regions/us/locations/mi/brands/hrs/igami
         console.log("Mean Excluding First Loss:", blackjackResults4TargetFull?.statsNoFirstLoss.getMean().toFixed(2));
         console.log("Standard Deviation Excluding First Loss:", blackjackResults4TargetFull?.statsNoFirstLoss.getStdDev().toFixed(2));
         console.log("Min Excluding First Loss:", blackjackResults4TargetFull?.statsNoFirstLoss.getMin().toFixed(2));    
-
+const now = new Date();
+const timestamp = now.toISOString().slice(0, 19).replace('T', ' ');
         const results = {
+            id: timestamp,
             casino: CASINO,
             date: month + '/' + day,
             link: LINK,
@@ -421,12 +466,5 @@ exec(
         } catch (err) {
             console.error('❌ Failed to write results.json:', err);
         }
-    })
-    .catch(err => {
-        console.error("❌ Error fetching data:", err);
-    });
+    
 }
-
-Horseshoe();
-
-
