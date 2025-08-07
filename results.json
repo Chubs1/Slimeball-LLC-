@@ -49,6 +49,52 @@
     ],
     "bet10": [],
     "bet15": [],
-    "bet20": []
+    "bet20": [
+      {
+        "id": "2025-08-07 04:44:29",
+        "casino": "Caesars",
+        "date": "08/07",
+        "link": "https://caesarspalaceonline.com/us/mi/mypromos",
+        "deposit": 35,
+        "bonus": 10,
+        "strategy": {
+          "normal": {
+            "mean": "7.89",
+            "riskOfRuin": "75.52%",
+            "stdDev": "103.71",
+            "meanExcludingFirstLoss": "7.89",
+            "stdDevExcludingFirstLoss": "103.71"
+          },
+          "half2x": {
+            "mean": "9.88",
+            "riskOfRuin": "76.99%",
+            "stdDev": "99.95",
+            "meanExcludingFirstLoss": "79.83",
+            "stdDevExcludingFirstLoss": "131.36"
+          },
+          "half3x": {
+            "mean": "7.02",
+            "riskOfRuin": "79.85%",
+            "stdDev": "98.89",
+            "meanExcludingFirstLoss": "129.00",
+            "stdDevExcludingFirstLoss": "132.80"
+          },
+          "full2x": {
+            "mean": "6.79",
+            "riskOfRuin": "78.96%",
+            "stdDev": "100.04",
+            "meanExcludingFirstLoss": "57.69",
+            "stdDevExcludingFirstLoss": "126.21"
+          },
+          "full4x": {
+            "mean": "9.37",
+            "riskOfRuin": "81.81%",
+            "stdDev": "114.66",
+            "meanExcludingFirstLoss": "173.13",
+            "stdDevExcludingFirstLoss": "147.60"
+          }
+        }
+      }
+    ]
   }
 ]
