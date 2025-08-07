@@ -49,6 +49,8 @@ body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease, transform 0.2s ease;
     cursor: pointer;
+  display: flex;
+  flex-direction: row;
 }
 
 .chip:hover {
@@ -63,6 +65,10 @@ body {
   gap: 16px;
   align-items: flex-start;
   margin-bottom: 12px;
+}
+
+.chip-right {
+    margin-left: auto;
 }
 
 .chip-title {
@@ -190,6 +196,7 @@ body {
 }
 
 .strategy-chip {
+  display: inline;
   width: 95%;
   background-color: #f2f2f2;
   border-radius: 4px;
@@ -211,7 +218,8 @@ body {
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
+  left: -25%;
 }
 
 .profit-bubble input {
@@ -233,4 +241,35 @@ body {
 
 .profit-bubble button:hover {
   background-color: #125ea8;
+}
+
+.checkmark {
+  width: 100px;
+  height: 100px;
+}
+.checkmark path {
+  stroke: #48a73d;
+  stroke-width: 7;
+  fill: none;
+  stroke-linecap: square;
+  stroke-linejoin: unset;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: drawCheck 1s cubic-bezier(.57,.06,.17,1) forwards;
+}
+
+@keyframes drawCheck {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.dropdown-button {
+  
+  color: #9b9b9b;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
 }

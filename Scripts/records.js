@@ -19,15 +19,9 @@ request.onerror = function (event) {
     console.error('Database error:', event.target.errorCode);
 };
 
-
-
-
-
-
-
 function renderChart(data) {
+    console.log(data)
     if (!data.length) {
-        alert('No transactions to display');
         return;
     }
 

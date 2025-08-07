@@ -10,6 +10,13 @@ const day = String(now.getDate()).padStart(2, '0');
 
 const RESULTS_FILE = 'C:\\Users\\Chubs\\Desktop\\SlimeballLLCWebsite\\results.json';
 
+let BET_SIZE = [5,10,15,20]
+const SIMULATIONS = 1_000_000
+
+Horseshoe(BET_SIZE, SIMULATIONS)
+Caesars(BET_SIZE, SIMULATIONS)
+
+
 let existing = [];
 try {
     const raw = fs.readFileSync(RESULTS_FILE, 'utf8');
@@ -128,7 +135,7 @@ const halfBankrollBlackjackOutcomes = [
 ];
 
 
-const getRandomOutcome = (outcome, max) => {
+function getRandomOutcome (outcome, max){
     const r = Math.random() * max;
     for (let i = 0; i < outcome.length; i++) {
         if (r <= outcome[i].prob) {
@@ -140,7 +147,7 @@ const getRandomOutcome = (outcome, max) => {
     }
 }
 
-const Blackjack = (TARGET, WAGER_REQUIREMENT, BET_SIZE, SIMULATIONS, BALANCE, DEPOSIT, FIRST_BET_FULL) => {
+function Blackjack(TARGET, WAGER_REQUIREMENT, BET_SIZE, SIMULATIONS, BALANCE, DEPOSIT, FIRST_BET_FULL){
     const stats = new OnlineStats();
     const statsNoFirstLoss = new OnlineStats();
     let timesNotBusted = SIMULATIONS;
@@ -167,6 +174,7 @@ const Blackjack = (TARGET, WAGER_REQUIREMENT, BET_SIZE, SIMULATIONS, BALANCE, DE
             if (!on2nd) {
                 if(FIRST_BET_FULL) {
                     bet = balance;
+                    if(bet > wagerRequirement) bet = wagerRequirement
                     wagerRequirement -= bet;
                     const stuff = getRandomOutcome(blackjackOutcomes, 1000000000);
                     if(stuff.wager > 1){
@@ -185,6 +193,7 @@ const Blackjack = (TARGET, WAGER_REQUIREMENT, BET_SIZE, SIMULATIONS, BALANCE, DE
 
                 } else {
                 bet = Math.floor(balance / 2);
+                if(bet > wagerRequirement) bet = wagerRequirement
                 if(bet <= 5){
                     bet = Math.floor(balance);
                     if(bet == 0) bet = 1;
@@ -197,10 +206,11 @@ const Blackjack = (TARGET, WAGER_REQUIREMENT, BET_SIZE, SIMULATIONS, BALANCE, DE
             }
             } else {
                 const stuff = getRandomOutcome(blackjackOutcomes, 1000000000);
-
+                let bet = BET_SIZE
+                if(bet > wagerRequirement) bet = wagerRequirement
                 if(stuff.wager > 1) {
-                const totalBet = stuff.wager * BET_SIZE;
-                const totalOutcome = stuff.outcome * BET_SIZE;
+                const totalBet = stuff.wager * bet;
+                const totalOutcome = stuff.outcome * bet;
                 const fromBalance = Math.min(balance, totalBet);
                 wagerRequirement -= fromBalance;
 
@@ -216,8 +226,8 @@ const Blackjack = (TARGET, WAGER_REQUIREMENT, BET_SIZE, SIMULATIONS, BALANCE, DE
 }
 
                 } else {
-                    balance += stuff.outcome * BET_SIZE;
-                    wagerRequirement -= BET_SIZE;
+                    balance += stuff.outcome * bet;
+                    wagerRequirement -= bet;
                 }
             }
 
@@ -235,11 +245,7 @@ const Blackjack = (TARGET, WAGER_REQUIREMENT, BET_SIZE, SIMULATIONS, BALANCE, DE
 
 }
 
-
-
-
-
-const Horseshoe = () => {
+function Horseshoe(BET_SIZE,SIMULATIONS){
 const LINK = 'https://horseshoeonlinecasino.com/us/mi/mypromos';
 const CASINO = 'Horseshoe';
 
@@ -268,7 +274,7 @@ fetch(`https://api.americanwagering.com/regions/us/locations/mi/brands/hrs/igami
     })
     .then(res => res.json())
     .then(data => {
-    INSIDE_FETCH_CALL_FUNCTION(data, LINK, CASINO);
+    INSIDE_FETCH_CALL_FUNCTION(data, LINK, CASINO, BET_SIZE, SIMULATIONS);
     })
     .catch(err => {
         console.error("❌ Error fetching data trying other site", err);
@@ -297,7 +303,7 @@ fetch(`https://api.americanwagering.com/regions/us/locations/mi/brands/hrs/igami
     })
     .then(res => res.json())
     .then(data => {
-        INSIDE_FETCH_CALL_FUNCTION(data, LINK, CASINO);
+        INSIDE_FETCH_CALL_FUNCTION(data, LINK, CASINO, BET_SIZE, SIMULATIONS);
     })
     .catch(err => {
         console.error("❌ Error fetching data trying other site", err);
@@ -306,10 +312,82 @@ fetch(`https://api.americanwagering.com/regions/us/locations/mi/brands/hrs/igami
     });
 }
 
-Horseshoe();
+function Caesars(BET_SIZE,SIMULATIONS){
+const LINK = 'https://caesarspalaceonline.com/us/mi/mypromos';
+const CASINO = 'Caesars';
 
 
-const INSIDE_FETCH_CALL_FUNCTION = (data, LINK, CASINO) => {
+
+fetch(`https://api.americanwagering.com/regions/us/locations/mi/brands/czr/igaming/bonus-engine/api/v2/promotions/bonusConfiguration/deposit-get-${month}${day}`, {
+  "headers": {
+    "accept": "application/json",
+    "accept-language": "en-US,en;q=0.9",
+    "content-type": "application/json",
+    "priority": "u=1, i",
+    "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "cross-site",
+    "x-app-version": "5.20.0",
+    "x-appbranding": "Caesars Palace Online",
+    "x-aws-waf-token": "f1084d83-e6ae-41e2-afe4-4da68494dd19:EgoAkWwaS2rqAAAA:WvwMXxK40KN1DC83UxuZ39vHJgR0c7GstoWegSkomgZlm3I+WT6XcXFwwLwT0hJVQYv4qO3dMTlEZgPwFzrTlNl3nEysNkePfJZ3YV78syeRkWX7yNs9AFuWeMRxSaGybKQops7OWIZXL2ff+/tCCjYzuwPocS1Zezzs/mcE/Xvm4ruWGBj6jJ4FEGgyCw4d6cVQqpD7/rxztXFrRneENzOFE5b5fvwrrh/ceLgAKwW34qBS5fSerUng6OF655rI",
+    "x-platform": "casino-palace-desktop",
+    "x-unique-device-id": "68e989f5-c966-4266-be85-d3f6df5f44f9"
+  },
+  "referrer": "https://caesarspalaceonline.com/",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET",
+  "mode": "cors",
+  "credentials": "omit"
+}).then(res => res.json())
+    .then(data => {
+    INSIDE_FETCH_CALL_FUNCTION(data, LINK, CASINO, BET_SIZE, SIMULATIONS);
+    })
+    .catch(err => {
+        console.error("❌ Error fetching data trying other site", err);
+        fetch(`https://api.americanwagering.com/regions/us/locations/mi/brands/czr/igaming/bonus-engine/api/v2/promotions/bonusConfiguration/dep-get-${month}${day}`, {
+  "headers": {
+    "accept": "application/json",
+    "accept-language": "en-US,en;q=0.9",
+    "content-type": "application/json",
+    "priority": "u=1, i",
+    "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "cross-site",
+    "x-app-version": "5.20.0",
+    "x-appbranding": "Caesars Palace Online",
+    "x-aws-waf-token": "f1084d83-e6ae-41e2-afe4-4da68494dd19:EgoAkWwaS2rqAAAA:WvwMXxK40KN1DC83UxuZ39vHJgR0c7GstoWegSkomgZlm3I+WT6XcXFwwLwT0hJVQYv4qO3dMTlEZgPwFzrTlNl3nEysNkePfJZ3YV78syeRkWX7yNs9AFuWeMRxSaGybKQops7OWIZXL2ff+/tCCjYzuwPocS1Zezzs/mcE/Xvm4ruWGBj6jJ4FEGgyCw4d6cVQqpD7/rxztXFrRneENzOFE5b5fvwrrh/ceLgAKwW34qBS5fSerUng6OF655rI",
+    "x-platform": "casino-palace-desktop",
+    "x-unique-device-id": "68e989f5-c966-4266-be85-d3f6df5f44f9"
+  },
+  "referrer": "https://caesarspalaceonline.com/",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET",
+  "mode": "cors",
+  "credentials": "omit"
+})
+    .then(res => res.json())
+    .then(data => {
+        INSIDE_FETCH_CALL_FUNCTION(data, LINK, CASINO, BET_SIZE, SIMULATIONS, );
+    })
+    .catch(err => {
+        console.error("❌ Error fetching data trying other site", err);
+    });
+
+    });
+}
+
+
+
+
+function INSIDE_FETCH_CALL_FUNCTION (data, LINK, CASINO, BET_SIZE, SIMULATIONS) {
       console.log('✅ Data fetched successfully');  
       
       let DEPOSIT, BONUS;
@@ -323,13 +401,15 @@ const INSIDE_FETCH_CALL_FUNCTION = (data, LINK, CASINO) => {
         }
 
         const BALANCE = DEPOSIT + BONUS;
-        const WAGER_REQUIREMENT = parseInt(data.termsAndConditions.match(/\d+/g)[0], 10) * BALANCE;
-        const BET_SIZE = 5;
-        const SIMULATIONS = 10_000;
+        
+        const WAGER_REQUIREMENT = parseInt(data.termsAndConditions.match(/\d+/g)[0], 10) * BALANCE * (CASINO == "Caesars" ? 5 : 1);
 
         let blackjackResults1Target, blackjackResults2Target, blackjackResults3Target, blackjackResults2TargetFull, blackjackResults4TargetFull;
 
-        blackjackResults1Target = Blackjack(BALANCE, WAGER_REQUIREMENT, BET_SIZE, SIMULATIONS, BALANCE, DEPOSIT, false);
+        let betSizeResults = []
+        BET_SIZE.forEach(BET_SIZE => {
+
+            blackjackResults1Target = Blackjack(BALANCE, WAGER_REQUIREMENT, BET_SIZE, SIMULATIONS, BALANCE, DEPOSIT, false);
         blackjackResults2Target = Blackjack(2 * BALANCE, WAGER_REQUIREMENT, BET_SIZE, SIMULATIONS, BALANCE, DEPOSIT, false);
         blackjackResults3Target = Blackjack(3 * BALANCE, WAGER_REQUIREMENT, BET_SIZE, SIMULATIONS, BALANCE, DEPOSIT, false);
 
@@ -390,17 +470,9 @@ const INSIDE_FETCH_CALL_FUNCTION = (data, LINK, CASINO) => {
         console.log("Min:", blackjackResults4TargetFull?.stats.getMin().toFixed(2));
         console.log("Mean Excluding First Loss:", blackjackResults4TargetFull?.statsNoFirstLoss.getMean().toFixed(2));
         console.log("Standard Deviation Excluding First Loss:", blackjackResults4TargetFull?.statsNoFirstLoss.getStdDev().toFixed(2));
-        console.log("Min Excluding First Loss:", blackjackResults4TargetFull?.statsNoFirstLoss.getMin().toFixed(2));    
-const now = new Date();
-const timestamp = now.toISOString().slice(0, 19).replace('T', ' ');
-        const results = {
-            id: timestamp,
-            casino: CASINO,
-            date: month + '/' + day,
-            link: LINK,
-            deposit: DEPOSIT,
-            bonus: BONUS,
-            strategy: {
+        console.log("Min Excluding First Loss:", blackjackResults4TargetFull?.statsNoFirstLoss.getMin().toFixed(2)); 
+
+        betSizeResults.push({
                 normal: {
                     mean: blackjackResults1Target?.stats.getMean().toFixed(2),
                     riskOfRuin: (100 - (blackjackResults1Target?.timesNotBusted / SIMULATIONS * 100)).toFixed(2) + "%",
@@ -437,6 +509,27 @@ const timestamp = now.toISOString().slice(0, 19).replace('T', ' ');
                     stdDevExcludingFirstLoss: blackjackResults4TargetFull?.statsNoFirstLoss.getStdDev().toFixed(2)
                 }
             }
+            )
+
+        
+        });
+
+         
+const now = new Date();
+const timestamp = now.toISOString().slice(0, 19).replace('T', ' ');
+        const results = {
+            id: timestamp,
+            casino: CASINO,
+            date: month + '/' + day,
+            link: LINK,
+            deposit: DEPOSIT,
+            bonus: BONUS,
+            strategy: {
+                5: betSizeResults[0],
+                10: betSizeResults[1],
+                15: betSizeResults[2],
+                20: betSizeResults[3],
+            }
 
         };
 
@@ -468,3 +561,5 @@ exec(
         }
     
 }
+
+
