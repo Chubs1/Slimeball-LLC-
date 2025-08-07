@@ -2,7 +2,11 @@
     <head>
         <title>Slimeball LLC</title>
         <link rel="icon" type="image/x-icon" href="./Images/favicon.ico">
-    	<link rel="stylesheet" href="./Styles/style.css">
+      <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+      <meta http-equiv="Pragma" content="no-cache" />
+      <meta http-equiv="Expires" content="0" />
+
+
     </head>
     
     <body>
@@ -44,7 +48,20 @@
 </div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="./Scripts/records.js"></script>
+        <script>
+  const timestamp = Date.now();
+
+  const css = document.createElement('link');
+  css.rel = 'stylesheet';
+  css.href = './Styles/style.css?v=' + timestamp;
+  document.head.appendChild(css);
+
+  const js = document.createElement('script');
+  js.src = './Scripts/records.js?v=' + timestamp;
+  document.head.appendChild(js);
+</script>
+
+
     </body>
 
 </html>
