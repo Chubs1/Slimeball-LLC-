@@ -137,6 +137,51 @@
             "stdDevExcludingFirstLoss": "53.76"
           }
         }
+      },
+      {
+        "id": "2025-08-07 04:44:30",
+        "casino": "Caesars",
+        "date": "08/07",
+        "link": "https://caesarspalaceonline.com/us/mi/mypromos",
+        "deposit": 35,
+        "bonus": 10,
+        "strategy": {
+          "normal": {
+            "mean": "8.78",
+            "riskOfRuin": "68.51%",
+            "stdDev": "79.51",
+            "meanExcludingFirstLoss": "8.78",
+            "stdDevExcludingFirstLoss": "79.51"
+          },
+          "half2x": {
+            "mean": "9.29",
+            "riskOfRuin": "71.37%",
+            "stdDev": "84.36",
+            "meanExcludingFirstLoss": "77.16",
+            "stdDevExcludingFirstLoss": "101.00"
+          },
+          "half3x": {
+            "mean": "7.54",
+            "riskOfRuin": "76.93%",
+            "stdDev": "89.80",
+            "meanExcludingFirstLoss": "134.59",
+            "stdDevExcludingFirstLoss": "100.77"
+          },
+          "full2x": {
+            "mean": "7.73",
+            "riskOfRuin": "72.08%",
+            "stdDev": "84.94",
+            "meanExcludingFirstLoss": "60.21",
+            "stdDevExcludingFirstLoss": "98.84"
+          },
+          "full4x": {
+            "mean": "9.33",
+            "riskOfRuin": "78.93%",
+            "stdDev": "105.48",
+            "meanExcludingFirstLoss": "173.24",
+            "stdDevExcludingFirstLoss": "111.05"
+          }
+        }
       }
     ],
     "bet15": [
@@ -274,6 +319,51 @@
             "stdDev": "114.66",
             "meanExcludingFirstLoss": "173.13",
             "stdDevExcludingFirstLoss": "147.60"
+          }
+        }
+      },
+      {
+        "id": "2025-08-07 04:44:30",
+        "casino": "Horseshoe",
+        "date": "08/07",
+        "link": "https://horseshoeonlinecasino.com/us/mi/mypromos",
+        "deposit": 35,
+        "bonus": 10,
+        "strategy": {
+          "normal": {
+            "mean": "8.70",
+            "riskOfRuin": "45.44%",
+            "stdDev": "64.52",
+            "meanExcludingFirstLoss": "8.70",
+            "stdDevExcludingFirstLoss": "64.52"
+          },
+          "half2x": {
+            "mean": "8.78",
+            "riskOfRuin": "52.97%",
+            "stdDev": "62.66",
+            "meanExcludingFirstLoss": "78.44",
+            "stdDevExcludingFirstLoss": "56.84"
+          },
+          "half3x": {
+            "mean": "8.69",
+            "riskOfRuin": "55.12%",
+            "stdDev": "70.11",
+            "meanExcludingFirstLoss": "133.31",
+            "stdDevExcludingFirstLoss": "51.41"
+          },
+          "full2x": {
+            "mean": "9.61",
+            "riskOfRuin": "57.03%",
+            "stdDev": "68.94",
+            "meanExcludingFirstLoss": "63.10",
+            "stdDevExcludingFirstLoss": "64.58"
+          },
+          "full4x": {
+            "mean": "9.61",
+            "riskOfRuin": "74.15%",
+            "stdDev": "95.79",
+            "meanExcludingFirstLoss": "176.36",
+            "stdDevExcludingFirstLoss": "62.20"
           }
         }
       }
