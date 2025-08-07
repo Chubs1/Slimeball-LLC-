@@ -45,10 +45,101 @@
             "stdDevExcludingFirstLoss": "83.04"
           }
         }
+      },
+      {
+        "id": "2025-08-07 04:44:29",
+        "casino": "Horseshoe",
+        "date": "08/07",
+        "link": "https://horseshoeonlinecasino.com/us/mi/mypromos",
+        "deposit": 35,
+        "bonus": 10,
+        "strategy": {
+          "normal": {
+            "mean": "9.72",
+            "riskOfRuin": "19.28%",
+            "stdDev": "34.28",
+            "meanExcludingFirstLoss": "9.72",
+            "stdDevExcludingFirstLoss": "34.28"
+          },
+          "half2x": {
+            "mean": "9.35",
+            "riskOfRuin": "51.67%",
+            "stdDev": "56.62",
+            "meanExcludingFirstLoss": "77.46",
+            "stdDevExcludingFirstLoss": "31.90"
+          },
+          "half3x": {
+            "mean": "9.22",
+            "riskOfRuin": "54.30%",
+            "stdDev": "68.85",
+            "meanExcludingFirstLoss": "134.79",
+            "stdDevExcludingFirstLoss": "33.76"
+          },
+          "full2x": {
+            "mean": "8.76",
+            "riskOfRuin": "52.96%",
+            "stdDev": "57.78",
+            "meanExcludingFirstLoss": "63.00",
+            "stdDevExcludingFirstLoss": "35.96"
+          },
+          "full4x": {
+            "mean": "10.37",
+            "riskOfRuin": "73.78%",
+            "stdDev": "94.04",
+            "meanExcludingFirstLoss": "174.63",
+            "stdDevExcludingFirstLoss": "46.07"
+          }
+        }
       }
     ],
     "bet10": [],
-    "bet15": [],
+    "bet15": [
+      {
+        "id": "2025-08-07 04:44:30",
+        "casino": "Horseshoe",
+        "date": "08/07",
+        "link": "https://horseshoeonlinecasino.com/us/mi/mypromos",
+        "deposit": 35,
+        "bonus": 10,
+        "strategy": {
+          "normal": {
+            "mean": "8.90",
+            "riskOfRuin": "45.36%",
+            "stdDev": "53.71",
+            "meanExcludingFirstLoss": "8.90",
+            "stdDevExcludingFirstLoss": "53.71"
+          },
+          "half2x": {
+            "mean": "8.46",
+            "riskOfRuin": "52.66%",
+            "stdDev": "60.52",
+            "meanExcludingFirstLoss": "77.33",
+            "stdDevExcludingFirstLoss": "50.19"
+          },
+          "half3x": {
+            "mean": "8.34",
+            "riskOfRuin": "54.48%",
+            "stdDev": "69.23",
+            "meanExcludingFirstLoss": "133.36",
+            "stdDevExcludingFirstLoss": "46.08"
+          },
+          "full2x": {
+            "mean": "9.64",
+            "riskOfRuin": "55.56%",
+            "stdDev": "65.69",
+            "meanExcludingFirstLoss": "63.61",
+            "stdDevExcludingFirstLoss": "56.48"
+          },
+          "full4x": {
+            "mean": "10.60",
+            "riskOfRuin": "73.65%",
+            "stdDev": "95.89",
+            "meanExcludingFirstLoss": "174.95",
+            "stdDevExcludingFirstLoss": "57.67"
+          }
+        }
+      }
+    ],
     "bet20": [
       {
         "id": "2025-08-07 04:44:29",
