@@ -1,92 +1,54 @@
 [
   {
-    "id": "2025-08-07 04:05:42",
-    "casino": "Caesars",
-    "date": "08/07",
-    "link": "https://caesarspalaceonline.com/us/mi/mypromos",
-    "deposit": 35,
-    "bonus": 10,
-    "strategy": {
-      "normal": {
-        "mean": "7.65",
-        "riskOfRuin": "58.12%",
-        "stdDev": "61.98",
-        "meanExcludingFirstLoss": "7.65",
-        "stdDevExcludingFirstLoss": "61.98"
-      },
-      "half2x": {
-        "mean": "8.09",
-        "riskOfRuin": "66.25%",
-        "stdDev": "71.73",
-        "meanExcludingFirstLoss": "75.51",
-        "stdDevExcludingFirstLoss": "74.70"
-      },
-      "half3x": {
-        "mean": "8.26",
-        "riskOfRuin": "74.69%",
-        "stdDev": "83.67",
-        "meanExcludingFirstLoss": "134.11",
-        "stdDevExcludingFirstLoss": "75.58"
-      },
-      "full2x": {
-        "mean": "8.29",
-        "riskOfRuin": "64.11%",
-        "stdDev": "72.86",
-        "meanExcludingFirstLoss": "61.11",
-        "stdDevExcludingFirstLoss": "75.19"
-      },
-      "full4x": {
-        "mean": "8.92",
-        "riskOfRuin": "77.75%",
-        "stdDev": "99.04",
-        "meanExcludingFirstLoss": "172.65",
-        "stdDevExcludingFirstLoss": "84.74"
+    "bet5": [
+      {
+        "id": "2025-08-07 04:44:29",
+        "casino": "Caesars",
+        "date": "08/07",
+        "link": "https://caesarspalaceonline.com/us/mi/mypromos",
+        "deposit": 35,
+        "bonus": 10,
+        "strategy": {
+          "normal": {
+            "mean": "7.44",
+            "riskOfRuin": "58.11%",
+            "stdDev": "61.93",
+            "meanExcludingFirstLoss": "7.44",
+            "stdDevExcludingFirstLoss": "61.93"
+          },
+          "half2x": {
+            "mean": "8.10",
+            "riskOfRuin": "66.05%",
+            "stdDev": "71.19",
+            "meanExcludingFirstLoss": "76.08",
+            "stdDevExcludingFirstLoss": "73.12"
+          },
+          "half3x": {
+            "mean": "8.49",
+            "riskOfRuin": "74.46%",
+            "stdDev": "83.28",
+            "meanExcludingFirstLoss": "132.94",
+            "stdDevExcludingFirstLoss": "74.38"
+          },
+          "full2x": {
+            "mean": "8.08",
+            "riskOfRuin": "64.00%",
+            "stdDev": "71.98",
+            "meanExcludingFirstLoss": "59.55",
+            "stdDevExcludingFirstLoss": "74.45"
+          },
+          "full4x": {
+            "mean": "7.19",
+            "riskOfRuin": "78.37%",
+            "stdDev": "97.89",
+            "meanExcludingFirstLoss": "172.69",
+            "stdDevExcludingFirstLoss": "83.04"
+          }
+        }
       }
-    }
-  },
-  {
-    "id": "2025-08-07 04:06:40",
-    "casino": "Horseshoe",
-    "date": "08/07",
-    "link": "https://horseshoeonlinecasino.com/us/mi/mypromos",
-    "deposit": 35,
-    "bonus": 10,
-    "strategy": {
-      "normal": {
-        "mean": "9.31",
-        "riskOfRuin": "19.90%",
-        "stdDev": "34.12",
-        "meanExcludingFirstLoss": "9.31",
-        "stdDevExcludingFirstLoss": "34.12"
-      },
-      "half2x": {
-        "mean": "9.22",
-        "riskOfRuin": "51.57%",
-        "stdDev": "56.57",
-        "meanExcludingFirstLoss": "77.98",
-        "stdDevExcludingFirstLoss": "31.92"
-      },
-      "half3x": {
-        "mean": "9.20",
-        "riskOfRuin": "54.39%",
-        "stdDev": "68.73",
-        "meanExcludingFirstLoss": "134.64",
-        "stdDevExcludingFirstLoss": "33.37"
-      },
-      "full2x": {
-        "mean": "9.50",
-        "riskOfRuin": "52.66%",
-        "stdDev": "58.04",
-        "meanExcludingFirstLoss": "63.70",
-        "stdDevExcludingFirstLoss": "35.87"
-      },
-      "full4x": {
-        "mean": "9.55",
-        "riskOfRuin": "74.11%",
-        "stdDev": "93.71",
-        "meanExcludingFirstLoss": "175.07",
-        "stdDevExcludingFirstLoss": "47.04"
-      }
-    }
+    ],
+    "bet10": [],
+    "bet15": [],
+    "bet20": []
   }
 ]
