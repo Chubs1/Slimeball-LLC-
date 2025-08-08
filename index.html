@@ -36,11 +36,21 @@
         <div class="chip-left">
             <label for="strategySelect">Choose a strategy:</label>
             <select id="strategySelect">
+              <optgroup label="Blackjack">
                <option value="normal">Flat Bets</option>
                <option value="half2x">Half Bankroll (2x Target)</option>
                <option value="half3x">Half Bankroll (3x Target)</option>
                <option value="full2x">Full Bankroll (2x Target)</option>
                <option value="full4x">Full Bankroll (4x Target)</option>
+              </optgroup>
+              <optgroup label="Rock Paper Scissors">
+               <option value="rpsFlat">Flat Bets</option>
+               <option value="rpsHalf2x">Half Bankroll (2x Target)</option>
+               <option value="rpsHalf3x">Half Bankroll (3x Target)</option>
+               <option value="rpsFull2x">Full Bankroll (2x Target)</option>
+               <option value="rpsFull4x">Full Bankroll (4x Target)</option>
+              </optgroup>
+
             </select>
 
           <label for="betSizeSelect">Choose a bet size:</label>
