@@ -126,6 +126,8 @@ function createChip(result, chosenStrategy, loggedDealsMap, betSize) {
       <div class="chip-text riskOfRuin"> Risk of Ruin: ${result.strategy[betSize][chosenStrategy].riskOfRuin}</div>
       <div class="chip-text meanExcludingFirstLoss"> Average Excluding First Loss: $${result.strategy[betSize][chosenStrategy].meanExcludingFirstLoss}</div>
       <div class="chip-text stdDevExcludingFirstLoss">Standard Deviation Excluding First Loss: &plusmn;$${result.strategy[betSize][chosenStrategy].stdDevExcludingFirstLoss}</div>
+      <div class="chip-text chanceToProfit">Chance To Profit: ${result.strategy[betSize][chosenStrategy].chanceToProfit}</div>
+
     </div>
     <div class="chip-right" style="position: relative;">
       <button class="dropdown-button"> Mark as done ^</button>
@@ -227,6 +229,7 @@ function updateChipStrategy(chips, chosenStrategy) {
       <div class="chip-text riskOfRuin"> Risk of Ruin: ${result.strategy[betSize][chosenStrategy].riskOfRuin}</div>
       <div class="chip-text meanExcludingFirstLoss"> Average Excluding First Loss: $${result.strategy[betSize][chosenStrategy].meanExcludingFirstLoss}</div>
       <div class="chip-text stdDevExcludingFirstLoss">Standard Deviation Excluding First Loss: &plusmn;$${result.strategy[betSize][chosenStrategy].stdDevExcludingFirstLoss}</div>
+      <div class="chip-text chanceToProfit">Chance To Profit: ${result.strategy[betSize][chosenStrategy].chanceToProfit}</div>
   `;
   });
 }
