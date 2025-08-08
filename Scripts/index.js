@@ -50,12 +50,42 @@ document.getElementById('quickOpenBtn').addEventListener('click', () => {
 
 });
 
-  const select = document.getElementById("strategySelect");
-  select.addEventListener("change", () => {
-    const chosenStrategy = select.value;
+const blackjackBetSizes = [
+    { value: 5, label: "$5" },
+    { value: 10, label: "$10" },
+    { value: 15, label: "$15" },
+    { value: 20, label: "$20" }
+];
+
+const rpsBetSizes = [
+    { value: 5, label: "$1" },
+    { value: 10, label: "$2" },
+    { value: 15, label: "$3" },
+    { value: 20, label: "$4" }
+];
+
+function updateBetSizeLabels(isRps) {
+    const sizes = isRps ? rpsBetSizes : blackjackBetSizes;
+    // Update the label text only, keep the values intact
+    Array.from(betSizeSelect.options).forEach((option, index) => {
+        if (sizes[index]) {
+            option.textContent = sizes[index].label;
+        }
+    });
+}
+
+const strategySelect = document.getElementById("strategySelect");
+const betSizeSelect = document.getElementById("betSizeSelect");
+
+strategySelect.addEventListener("change", () => {
+    const chosenStrategy = strategySelect.value;
     console.log("Chosen strategy:", chosenStrategy);
+
+    const isRps = chosenStrategy.startsWith("rps");
+    updateBetSizeLabels(isRps);
+
     updateChipStrategy(document.querySelectorAll('.casino-chip'), chosenStrategy);
-  });
+});
 
 }
 
