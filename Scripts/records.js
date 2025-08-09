@@ -1,5 +1,7 @@
 let db;
 const request = indexedDB.open('CasinoDB', 1);
+
+
 request.onupgradeneeded = function (event) {
     db = event.target.result;
 
@@ -48,7 +50,7 @@ function renderChart(data) {
 
     if (window.recordChartInstance) {
         window.recordChartInstance.data.labels = labels;
-        window.recordChartInstance.data.datasets[0].data = realProfit;
+        window.recordChartInstance.data.datasets[0].data = summedProfit;
         window.recordChartInstance.data.datasets[1].data = summedMean;
         window.recordChartInstance.data.datasets[2].data = meanPlusSD;
         window.recordChartInstance.data.datasets[3].data = meanMinusSD;
@@ -182,24 +184,71 @@ function renderChart(data) {
             }
         });
     }
+
+canvas.addEventListener('click', function (event) {
+  const chart = window.recordChartInstance;
+  const points = chart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, false);
+
+  if (points.length) {
+    const firstPoint = points[0];
+    const index = firstPoint.index; // The column index (shared by all datasets)
+    const label = chart.data.labels[index];
+
+    // Collect values from ALL datasets for that column
+    const values = chart.data.datasets.map((dataset, datasetIndex) => ({
+      datasetIndex,
+      label: dataset.label, // "Real Profit", "Expected", "SD"
+      value: dataset.data[index]
+    }));
+    console.log(values)
+
+    // Open menu with all values
+        event.stopPropagation();
+
+    showContextMenu(event.clientX, event.clientY, {
+      columnLabel: label,
+      columnIndex: index,
+      values
+    });
+  }
+});
+
+
+
+
+
 }
 
 
+
+let chartDataRaw = []; // global array to keep records with keys
 
 function showChart() {
-    const tx = db.transaction('transactions', 'readonly');
-    const store = tx.objectStore('transactions');
-    const request = store.getAll();
-
-    request.onsuccess = function () {
-        console.log('All transactions:', request.result);
-        renderChart(request.result);  // <-- render the chart here
-    };
-
-    request.onerror = function () {
-        console.error('Failed to retrieve transactions');
-    };
+  const tx = db.transaction('transactions', 'readonly');
+  const store = tx.objectStore('transactions');
+  
+  const getAllRequest = store.getAll();
+  const getKeysRequest = store.getAllKeys();
+  
+  getAllRequest.onsuccess = function () {
+    getKeysRequest.onsuccess = function () {
+      const values = getAllRequest.result;
+      const keys = getKeysRequest.result;
+      
+      // Combine values and keys into one array
+      chartDataRaw = values.map((value, i) => {
+        return { ...value, _id: keys[i] };
+      });
+      
+      renderChart(chartDataRaw);
+    }
+  }
+  
+  getAllRequest.onerror = function () {
+    console.error('Failed to retrieve transactions');
+  }
 }
+
 
 function runningSum(arr) {
   const result = [];
@@ -220,3 +269,143 @@ function runningSD(arr) {
   }
   return result;
 }
+
+function showContextMenu(x, y, pointInfo) {
+    
+  const menu = document.getElementById('chartMenu');
+
+  menu.style.left = x + 'px';
+  menu.style.top = y + 'px';
+  menu.style.display = 'block';
+
+  menu.dataset.datasetIndex = pointInfo.datasetIndex;
+  menu.dataset.index = pointInfo.columnIndex;
+  menu.dataset.label = pointInfo.columnLabel;
+  menu.dataset.value = pointInfo.value;
+}
+
+// Hide if clicking outside
+document.addEventListener('click', function (event) {
+  if (!event.target.closest('#chartMenu')) {
+    document.getElementById('chartMenu').style.display = 'none';
+  }
+});
+
+
+document.getElementById('deletePoint').addEventListener('click', function () {
+  const menu = document.getElementById('chartMenu');
+  const index = parseInt(menu.dataset.index);
+
+  const record = chartDataRaw[index];
+  if (!record) {
+    console.error("Record not found for index", index);
+    return;
+  }
+
+  const tx = db.transaction('transactions', 'readwrite');
+  const store = tx.objectStore('transactions');
+
+  store.delete(record._id);
+
+  tx.oncomplete = () => {
+    // Remove from local data array immediately
+    chartDataRaw.splice(index, 1);
+
+    // Re-render chart with updated data
+    renderChart(chartDataRaw);
+
+    // Hide the menu
+    menu.style.display = 'none';
+  };
+});
+
+
+
+const editForm = document.getElementById('editForm');
+const inputProfit = document.getElementById('editProfit');
+const inputMean = document.getElementById('editMean');
+const inputSD = document.getElementById('editSD');
+
+document.getElementById('editPoint').addEventListener('click', function () {
+  const menu = document.getElementById('chartMenu');
+  const index = parseInt(menu.dataset.index);
+
+  const record = chartDataRaw[index];
+  if (!record) {
+    console.error("Record not found for index", index);
+    return;
+  }
+
+  // Position the edit form near the menu
+  editForm.style.left = menu.style.left;
+  editForm.style.top = (parseInt(menu.style.top) + menu.offsetHeight) + 'px';
+  editForm.style.display = 'block';
+
+  // Hide the menu
+  menu.style.display = 'none';
+
+  // Fill inputs with current data
+  inputProfit.value = record.profit || 0;
+  inputMean.value = record.mean || 0;
+  inputSD.value = record.sd || 0;
+
+  // Store index in edit form dataset for save reference
+  editForm.dataset.index = index;
+});
+
+// Save changes handler
+document.getElementById('saveEdit').addEventListener('click', function () {
+  const index = parseInt(editForm.dataset.index);
+  const record = chartDataRaw[index];
+  if (!record) {
+    console.error("Record not found for index", index);
+    return;
+  }
+
+  // Read inputs as strings
+  const profitInput = inputProfit.value.trim();
+  const meanInput = inputMean.value.trim();
+  const sdInput = inputSD.value.trim();
+
+  // Parse only if not empty, else keep original
+  const newProfit = profitInput === "" ? record.profit : parseFloat(profitInput);
+  const newMean = meanInput === "" ? record.mean : parseFloat(meanInput);
+  const newSD = sdInput === "" ? record.sd : parseFloat(sdInput);
+
+  // Validate sd is non-negative
+  if (newSD < 0) {
+    alert("Standard deviation (SD) cannot be negative.");
+    return;
+  }
+
+  // Validate all numbers
+  if (isNaN(newProfit) || isNaN(newMean) || isNaN(newSD)) {
+    alert("Please enter valid numbers.");
+    return;
+  }
+
+  // Update record locally
+  record.profit = newProfit;
+  record.mean = newMean;
+  record.sd = newSD;
+
+  // Save to IndexedDB
+  const tx = db.transaction('transactions', 'readwrite');
+  const store = tx.objectStore('transactions');
+  store.put(record, record._id);
+
+  tx.oncomplete = () => {
+    renderChart(chartDataRaw);
+    editForm.style.display = 'none';
+  };
+
+  tx.onerror = (event) => {
+    console.error("Error saving edits:", event.target.error);
+  };
+});
+
+
+// Cancel button hides form without saving
+document.getElementById('cancelEdit').addEventListener('click', function () {
+  editForm.style.display = 'none';
+});

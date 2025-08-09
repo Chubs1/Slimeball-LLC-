@@ -36,13 +36,28 @@
     
     <canvas id="recordChart" width="600" height="400" style="display:none; margin-top:20px;"></canvas>
 
+<div id="chartMenu">
+  <div id="editPoint" class="chart-points">Edit</div>
+  <div id="deletePoint" class="chart-points">Delete</div>
+</div>
+<div id="editForm" style="display:none; position:absolute; background:#fff; border:1px solid #ccc; padding:10px; z-index:1000;">
+  <label>
+    Profit: <input type="number" step="0.01" id="editProfit" />
+  </label><br/>
+  <label>
+    Expected Value: <input type="number" step="0.01" id="editMean" />
+  </label><br/>
+  <label>
+    SD: <input type="number" step="0.01" id="editSD" />
+  </label><br/>
+  <button id="saveEdit">Save</button>
+  <button id="cancelEdit">Cancel</button>
+</div>
+
+    
         </div>
     
 </div>
-
-    <button id="quickOpenBtn" class="chip-button quick-open-button">Quick Open</button>
-    <!--  Dynamic stuff here  -->
-
 </div>
 
 </div>
