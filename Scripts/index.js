@@ -10,6 +10,19 @@ fetch(jsonUrl)
   })
   .catch(error => console.error('Error loading JSON:', error));
 
+const blackjackBetSizes = [
+    { value: 5, label: "$5" },
+    { value: 10, label: "$10" },
+    { value: 15, label: "$15" },
+    { value: 20, label: "$20" }
+];
+
+const rpsBetSizes = [
+    { value: 5, label: "$1" },
+    { value: 10, label: "$2" },
+    { value: 15, label: "$3" },
+    { value: 20, label: "$4" }
+];
 
 
 
@@ -50,52 +63,49 @@ document.getElementById('quickOpenBtn').addEventListener('click', () => {
 
 });
 
-const blackjackBetSizes = [
-    { value: 5, label: "$5" },
-    { value: 10, label: "$10" },
-    { value: 15, label: "$15" },
-    { value: 20, label: "$20" }
-];
 
-const rpsBetSizes = [
-    { value: 5, label: "$1" },
-    { value: 10, label: "$2" },
-    { value: 15, label: "$3" },
-    { value: 20, label: "$4" }
-];
 
-function updateBetSizeLabels(isRps) {
-    const sizes = isRps ? rpsBetSizes : blackjackBetSizes;
-    // Update the label text only, keep the values intact
-    Array.from(betSizeSelect.options).forEach((option, index) => {
-        if (sizes[index]) {
-            option.textContent = sizes[index].label;
-        }
-    });
-}
+
 
 const strategySelect = document.getElementById("strategySelect");
-const betSizeSelect = document.getElementById("betSizeSelect");
 
 strategySelect.addEventListener("change", () => {
     const chosenStrategy = strategySelect.value;
     console.log("Chosen strategy:", chosenStrategy);
 
     const isRps = chosenStrategy.startsWith("rps");
-    updateBetSizeLabels(isRps);
 
-    updateChipStrategy(document.querySelectorAll('.casino-chip'), chosenStrategy);
+    document.querySelectorAll('.casino-chip').forEach(chip => {
+        const chipStrategySelect = chip.querySelector('select.strategy-select');
+        if (chipStrategySelect) {
+            chipStrategySelect.value = chosenStrategy; // set to match top selector
+        }
+        updateBetSizeLabels(isRps, chip);
+        updateChipsStrategy([chip], chosenStrategy);
+    });
 });
-
-}
 
 const betSizeSelect = document.getElementById("betSizeSelect");
 
 betSizeSelect.addEventListener("change", () => {
-  const betSize = betSizeSelect.value;
-  console.log("Chosen betsize:", betSize);
-  updateChipBetSize(document.querySelectorAll('.casino-chip'), betSize)
-})
+    const chosenBetSize = betSizeSelect.value;
+
+    document.querySelectorAll('.casino-chip').forEach(chip => {
+        // Update each chip's bet size select
+        const chipBetSizeSelect = chip.querySelector('select.bet-size-select');
+        if (chipBetSizeSelect) {
+            chipBetSizeSelect.value = chosenBetSize;
+        }
+        // Optional: If you need a function to re-render chip bet visuals
+          updateChipsBetSize([chip], chosenBetSize)
+
+    });
+});
+
+
+}
+
+
 
 
 const today = new Date().toISOString().slice(0,10); // "YYYY-MM-DD" like "2025-08-05"
@@ -103,8 +113,6 @@ let chipCounter = 0;
 
 function createChip(result, chosenStrategy, loggedDealsMap, betSize) {
   const chipId = result.id;
-
-
   const chip = document.createElement('div');
   chip.classList.add('chip', 'casino-chip');
   chip.dataset.chipId = chipId;
@@ -113,147 +121,238 @@ function createChip(result, chosenStrategy, loggedDealsMap, betSize) {
   chip.dataset.chosenStrategy = chosenStrategy;
   chip.result = result;
 
-  chip.dataset.sd = result.strategy[betSize][chosenStrategy].stdDev;
-  chip.dataset.mean = result.strategy[betSize][chosenStrategy].mean;
+  // Destructure strategy once, with fallback
+  const strategy = result.strategy?.[betSize]?.[chosenStrategy] || {};
+  const fmt = num => typeof num === 'number' ? num.toFixed(2) : num ?? 'N/A';
+
+  chip.dataset.mean = strategy.mean ?? 'N/A';
+  chip.dataset.sd = strategy.stdDev ?? 'N/A';
 
   chip.innerHTML = `
     <div class="chip-left">
       <div class="chip-title">${result.casino}</div>
       <div class="chip-text">Deposit: $${result.deposit}</div>
       <div class="chip-text">Bonus: $${result.bonus}</div>
-      <div class="chip-text mean"> Average Profit: $${chip.dataset.mean}</div>
-      <div class="chip-text stdDev">Standard Deviation: &plusmn; $${chip.dataset.sd}</div>
-      <div class="chip-text riskOfRuin"> Risk of Ruin: ${result.strategy[betSize][chosenStrategy].riskOfRuin}</div>
-      <div class="chip-text meanExcludingFirstLoss"> Average Excluding First Loss: $${result.strategy[betSize][chosenStrategy].meanExcludingFirstLoss}</div>
-      <div class="chip-text stdDevExcludingFirstLoss">Standard Deviation Excluding First Loss: &plusmn;$${result.strategy[betSize][chosenStrategy].stdDevExcludingFirstLoss}</div>
-      <div class="chip-text chanceToProfit">Chance To Profit: ${result.strategy[betSize][chosenStrategy].chanceToProfit}</div>
-
+      <div class="chip-text mean">Average Profit: $${fmt(strategy.mean)}</div>
+      <div class="chip-text stdDev">Standard Deviation: &plusmn; $${fmt(strategy.stdDev)}</div>
+      <div class="chip-text riskOfRuin">Risk of Ruin: ${strategy.riskOfRuin ?? 'N/A'}</div>
+      <div class="chip-text meanExcludingFirstLoss">Average Excluding First Loss: $${fmt(strategy.meanExcludingFirstLoss)}</div>
+      <div class="chip-text stdDevExcludingFirstLoss">Standard Deviation Excluding First Loss: &plusmn; $${fmt(strategy.stdDevExcludingFirstLoss)}</div>
+      <div class="chip-text chanceToProfit">Chance To Profit: ${strategy.chanceToProfit ?? 'N/A'}</div>
     </div>
-    <div class="chip-right" style="position: relative;">
-      <button class="dropdown-button"> Mark as done ^</button>
+    <div class="chip-right">
+      <button class="dropdown-button">Mark as done ^</button>
+      
+      <div class="chip-selectors">
+            <label>Choose a strategy:
+            <select class="strategy-select">
+                <optgroup label="Blackjack">
+               <option value="normal">Flat Bets</option>
+               <option value="half2x">Half Bankroll (2x Target)</option>
+               <option value="half3x">Half Bankroll (3x Target)</option>
+               <option value="full2x">Full Bankroll (2x Target)</option>
+               <option value="full4x">Full Bankroll (4x Target)</option>
+              </optgroup>
+              <optgroup label="Rock Paper Scissors">
+               <option value="rpsFlat">Flat Bets</option>
+               <option value="rpsHalf2x">Half Bankroll (2x Target)</option>
+               <option value="rpsHalf3x">Half Bankroll (3x Target)</option>
+               <option value="rpsFull2x">Full Bankroll (2x Target)</option>
+               <option value="rpsFull4x">Full Bankroll (4x Target)</option>
+              </optgroup>
+              </select>
+            </label>
+            
+          <label">Choose a bet size:
+            <select class="bet-size-select">
+               <option value="5">$5</option>
+               <option value="10">$10</option>
+               <option value="15">$15</option>
+               <option value="20">$20</option>
+            </select>
+          </label>
+    </div>
+
 
     </div>
   `;
+const strategySelect = chip.querySelector('.strategy-select');
+const betSizeSelect = chip.querySelector('.bet-size-select');
+  strategySelect.addEventListener("change", e => {
+    const chosenStrategy = strategySelect.value;
+    console.log("Chosen strategy:", chosenStrategy);
 
-  
+    const isRps = chosenStrategy.startsWith("rps");
+    updateBetSizeLabels(isRps);
+
+    const chip = e.target.closest('.casino-chip');
+
+    updateChipsStrategy([chip], chosenStrategy);
+});
+
+betSizeSelect.addEventListener("change", e => {
+  const betSize = betSizeSelect.value;
+  console.log("Chosen betsize:", betSize);
+  const chip = e.target.closest('.casino-chip');
+
+  updateChipsBetSize([chip], betSize)
+})
+
 
   chip.querySelector('.chip-left').addEventListener('click', () => {
     window.open(result.link, '_blank');
   });
 
   const right = chip.querySelector('.chip-right');
-const button = right.querySelector('button');
+  const button = right.querySelector('button');
 
-if (loggedDealsMap && loggedDealsMap.has(chipId)) {
-  button.textContent = 'Add another deal';
-}
-
-button.addEventListener('click', e => {
-  console.log("clicked right");
-
-  if (DEV_MODE) {
-    logDeal({
-      chipId, 
-      mean: chip.dataset.mean,
-      sd: chip.dataset.sd,
-      profit: 0,
-      time: new Date().toISOString()
-    });
+  if (loggedDealsMap?.has(chipId)) {
     button.textContent = 'Add another deal';
-    return;
   }
 
-  const existing = right.querySelector('.profit-bubble');
-  if (existing) {
-    existing.remove();
-    return;
-  }
-
-  const bubble = document.createElement('div');
-  bubble.classList.add('profit-bubble');
-  bubble.innerHTML = `
-    <input type="number" placeholder="Enter Profit (&plusmn;${chip.dataset.mean})" />
-    <button>Submit</button>
-  `;
-
-  const input = bubble.querySelector('input');
-  const submitBtn = bubble.querySelector('button');
-
-  input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      submitBtn.click();
-    }
-  });
-
-  submitBtn.addEventListener('click', () => {
-    const profit = parseFloat(input.value);
-    if (!isNaN(profit)) {
+  button.addEventListener('click', () => {
+    // If DEV_MODE logic
+    if (DEV_MODE) {
       logDeal({
         chipId,
         mean: chip.dataset.mean,
         sd: chip.dataset.sd,
-        profit,
-        time: new Date().toISOString()
+        profit: 0,
+        time: new Date().toISOString(),
       });
       button.textContent = 'Add another deal';
-      bubble.remove();
-    } else {
-      alert('Please enter a valid number.');
+      return;
     }
+
+    const existing = right.querySelector('.profit-bubble');
+    if (existing) {
+      existing.remove();
+      return;
+    }
+
+    const bubble = document.createElement('div');
+    bubble.classList.add('profit-bubble');
+    bubble.innerHTML = `
+      <input type="number" placeholder="Enter Profit (&plusmn;${chip.dataset.mean})" />
+      <button>Submit</button>
+    `;
+
+    const input = bubble.querySelector('input');
+    const submitBtn = bubble.querySelector('button');
+
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        submitBtn.click();
+      }
+    });
+
+    submitBtn.addEventListener('click', () => {
+      const profit = parseFloat(input.value);
+      if (!isNaN(profit)) {
+        logDeal({
+          chipId,
+          mean: chip.dataset.mean,
+          sd: chip.dataset.sd,
+          profit,
+          time: new Date().toISOString(),
+        });
+        button.textContent = 'Add another deal';
+        bubble.remove();
+      } else {
+        alert('Please enter a valid number.');
+      }
+    });
+
+    right.appendChild(bubble);
+    input.focus();
   });
-
-  right.appendChild(bubble);
-  input.focus();
-});
-
 
   return chip;
 }
 
 
-function updateChipStrategy(chips, chosenStrategy) {
-  
+
+function updateChipsStrategy(chips, chosenStrategy) {
   chips.forEach(chip => {
-  const result = chip.result;
-  const betSize = chip.dataset.betSize;
-  chip.dataset.mean = result.strategy[betSize][chosenStrategy].mean;
-  chip.dataset.sd = result.strategy[betSize][chosenStrategy].stdDev;
-  chip.dataset.chosenStrategy = chosenStrategy;
-      chip.querySelector('.chip-left').innerHTML = `
+    const { result, dataset } = chip;
+    const betSize = dataset.betSize;
+
+    // Grab the relevant strategy object once
+    const strategy = result.strategy?.[betSize]?.[chosenStrategy];
+    if (!strategy) return; // defensive: skip if strategy not found
+
+    // Destructure needed values with defaults/fallbacks
+    const {
+      mean = 'N/A',
+      stdDev = 'N/A',
+      riskOfRuin = 'N/A',
+      meanExcludingFirstLoss = 'N/A',
+      stdDevExcludingFirstLoss = 'N/A',
+      chanceToProfit = 'N/A'
+    } = strategy;
+
+    // Update dataset attributes (strings only)
+    dataset.mean = mean;
+    dataset.sd = stdDev;
+    dataset.chosenStrategy = chosenStrategy;
+
+    // Format numbers with two decimals if they are numbers
+    const fmt = (num) => typeof num === 'number' ? num.toFixed(2) : num;
+
+    chip.querySelector('.chip-left').innerHTML = `
       <div class="chip-title">${result.casino}</div>
       <div class="chip-text">Deposit: $${result.deposit}</div>
       <div class="chip-text">Bonus: $${result.bonus}</div>
-      <div class="chip-text mean"> Average Profit: $${chip.dataset.mean}</div>
-      <div class="chip-text stdDev">Standard Deviation: &plusmn; $${chip.dataset.sd}</div>
-      <div class="chip-text riskOfRuin"> Risk of Ruin: ${result.strategy[betSize][chosenStrategy].riskOfRuin}</div>
-      <div class="chip-text meanExcludingFirstLoss"> Average Excluding First Loss: $${result.strategy[betSize][chosenStrategy].meanExcludingFirstLoss}</div>
-      <div class="chip-text stdDevExcludingFirstLoss">Standard Deviation Excluding First Loss: &plusmn;$${result.strategy[betSize][chosenStrategy].stdDevExcludingFirstLoss}</div>
-      <div class="chip-text chanceToProfit">Chance To Profit: ${result.strategy[betSize][chosenStrategy].chanceToProfit}</div>
-  `;
+      <div class="chip-text mean">Average Profit: $${fmt(mean)}</div>
+      <div class="chip-text stdDev">Standard Deviation: &plusmn; $${fmt(stdDev)}</div>
+      <div class="chip-text riskOfRuin">Risk of Ruin: ${riskOfRuin}</div>
+      <div class="chip-text meanExcludingFirstLoss">Average Excluding First Loss: $${fmt(meanExcludingFirstLoss)}</div>
+      <div class="chip-text stdDevExcludingFirstLoss">Standard Deviation Excluding First Loss: &plusmn; $${fmt(stdDevExcludingFirstLoss)}</div>
+      <div class="chip-text chanceToProfit">Chance To Profit: ${chanceToProfit}</div>
+    `;
   });
 }
 
-function updateChipBetSize(chips, betSize) {
-  
+
+function updateChipsBetSize(chips, betSize) {
   chips.forEach(chip => {
-  const result = chip.result;
-  const chosenStrategy = chip.dataset.chosenStrategy;
-  chip.dataset.betSize = betSize
-  chip.dataset.mean = result.strategy[betSize][chosenStrategy].mean;
-  chip.dataset.sd = result.strategy[betSize][chosenStrategy].stdDev;
-      chip.querySelector('.chip-left').innerHTML = `
+    const { result, dataset } = chip;
+    const chosenStrategy = dataset.chosenStrategy;
+
+    // Defensive check if chosenStrategy or strategy missing
+    const strategy = result.strategy?.[betSize]?.[chosenStrategy];
+    if (!strategy) return;
+
+    const {
+      mean = 'N/A',
+      stdDev = 'N/A',
+      riskOfRuin = 'N/A',
+      meanExcludingFirstLoss = 'N/A',
+      stdDevExcludingFirstLoss = 'N/A',
+      chanceToProfit = 'N/A'
+    } = strategy;
+
+    dataset.betSize = betSize;
+    dataset.mean = mean;
+    dataset.sd = stdDev;
+
+    const fmt = (num) => typeof num === 'number' ? num.toFixed(2) : num;
+
+    chip.querySelector('.chip-left').innerHTML = `
       <div class="chip-title">${result.casino}</div>
       <div class="chip-text">Deposit: $${result.deposit}</div>
       <div class="chip-text">Bonus: $${result.bonus}</div>
-      <div class="chip-text mean"> Average Profit: $${chip.dataset.mean}</div>
-      <div class="chip-text stdDev">Standard Deviation: &plusmn; $${chip.dataset.sd}</div>
-      <div class="chip-text riskOfRuin"> Risk of Ruin: ${result.strategy[betSize][chosenStrategy].riskOfRuin}</div>
-      <div class="chip-text meanExcludingFirstLoss"> Average Excluding First Loss: $${result.strategy[betSize][chosenStrategy].meanExcludingFirstLoss}</div>
-      <div class="chip-text stdDevExcludingFirstLoss">Standard Deviation Excluding First Loss: &plusmn;$${result.strategy[betSize][chosenStrategy].stdDevExcludingFirstLoss}</div>
-  `;
+      <div class="chip-text mean">Average Profit: $${fmt(mean)}</div>
+      <div class="chip-text stdDev">Standard Deviation: &plusmn; $${fmt(stdDev)}</div>
+      <div class="chip-text riskOfRuin">Risk of Ruin: ${riskOfRuin}</div>
+      <div class="chip-text meanExcludingFirstLoss">Average Excluding First Loss: $${fmt(meanExcludingFirstLoss)}</div>
+      <div class="chip-text stdDevExcludingFirstLoss">Standard Deviation Excluding First Loss: &plusmn; $${fmt(stdDevExcludingFirstLoss)}</div>
+      <div class="chip-text chanceToProfit">Chance To Profit: ${chanceToProfit}</div>
+    `;
   });
 }
+
 
 function logDeal(data) {
   console.log('Logging deal:', data);
@@ -303,4 +402,14 @@ async function loadLoggedDeals() {
     
     request.onerror = () => reject('Failed to load deals');
   });
+}
+
+function updateBetSizeLabels(isRps) {
+    const sizes = isRps ? rpsBetSizes : blackjackBetSizes;
+    // Update the label text only, keep the values intact
+    Array.from(betSizeSelect.options).forEach((option, index) => {
+        if (sizes[index]) {
+            option.textContent = sizes[index].label;
+        }
+    });
 }
