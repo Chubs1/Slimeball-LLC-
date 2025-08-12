@@ -39,7 +39,7 @@ body {
 
 .chip {
   
-  width: 95%;
+  width: 90%;
   background-color: #f2f2f2;
   border-radius: 4px;
   padding: 24px;
@@ -58,8 +58,8 @@ body {
 }
 
 .chip-left {
-  display: flex !important;
-  flex-direction: column !important;
+  display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   gap: 16px;
   align-items: flex-start;
@@ -298,6 +298,21 @@ body {
   min-width: fit-content;
 }
 
-select{
-  width: auto;
+#left-container, 
+#middle-container, 
+#right-container {
+  flex: 1;
+  margin-left: 5px;
+  margin-right: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chip-chip-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.inactive {
+  opacity: 0.5;
 }

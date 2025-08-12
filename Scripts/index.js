@@ -1,7 +1,6 @@
 const jsonUrl = './results.json?v=' + new Date().getTime();
 
 const DEV_MODE = false // this actually is gonna be if user wasnts to be putting in profits or not.
-
 fetch(jsonUrl)
   .then(response => response.json())
   .then(results => {
@@ -108,9 +107,6 @@ betSizeSelect.addEventListener("change", () => {
 
 
 
-const today = new Date().toISOString().slice(0,10); // "YYYY-MM-DD" like "2025-08-05"
-let chipCounter = 0;
-
 function createChip(result, chosenStrategy, loggedDealsMap, betSize) {
   const chipId = result.id;
   const chip = document.createElement('div');
@@ -130,9 +126,7 @@ function createChip(result, chosenStrategy, loggedDealsMap, betSize) {
 
   chip.innerHTML = `
     <div class="chip-left">
-      <div class="chip-title">${result.casino}</div>
-      <div class="chip-text">Deposit: $${result.deposit}</div>
-      <div class="chip-text">Bonus: $${result.bonus}</div>
+      <div class="chip-title">${result.casino}: $${result.deposit} ($${result.bonus})</div>
       <div class="chip-text mean">Average Profit: $${fmt(strategy.mean)}</div>
       <div class="chip-text stdDev">Standard Deviation: &plusmn; $${fmt(strategy.stdDev)}</div>
       <div class="chip-text riskOfRuin">Risk of Ruin: ${strategy.riskOfRuin ?? 'N/A'}</div>
@@ -154,11 +148,11 @@ function createChip(result, chosenStrategy, loggedDealsMap, betSize) {
                <option value="full4x">Full Bankroll (4x Target)</option>
               </optgroup>
               <optgroup label="Rock Paper Scissors">
-               <option value="rpsFlat">Flat Bets</option>
-               <option value="rpsHalf2x">Half Bankroll (2x Target)</option>
-               <option value="rpsHalf3x">Half Bankroll (3x Target)</option>
-               <option value="rpsFull2x">Full Bankroll (2x Target)</option>
-               <option value="rpsFull4x">Full Bankroll (4x Target)</option>
+               <option value="rpsFlat">RPS Flat Bets</option>
+               <option value="rpsHalf2x">RPS Half Bankroll (2x Target)</option>
+               <option value="rpsHalf3x">RPS Half Bankroll (3x Target)</option>
+               <option value="rpsFull2x"RPS Full Bankroll (2x Target)</option>
+               <option value="rpsFull4x">RPS Full Bankroll (4x Target)</option>
               </optgroup>
               </select>
             </label>
@@ -301,15 +295,15 @@ function updateChipsStrategy(chips, chosenStrategy) {
     const fmt = (num) => typeof num === 'number' ? num.toFixed(2) : num;
 
     chip.querySelector('.chip-left').innerHTML = `
-      <div class="chip-title">${result.casino}</div>
-      <div class="chip-text">Deposit: $${result.deposit}</div>
-      <div class="chip-text">Bonus: $${result.bonus}</div>
-      <div class="chip-text mean">Average Profit: $${fmt(mean)}</div>
-      <div class="chip-text stdDev">Standard Deviation: &plusmn; $${fmt(stdDev)}</div>
-      <div class="chip-text riskOfRuin">Risk of Ruin: ${riskOfRuin}</div>
-      <div class="chip-text meanExcludingFirstLoss">Average Excluding First Loss: $${fmt(meanExcludingFirstLoss)}</div>
-      <div class="chip-text stdDevExcludingFirstLoss">Standard Deviation Excluding First Loss: &plusmn; $${fmt(stdDevExcludingFirstLoss)}</div>
-      <div class="chip-text chanceToProfit">Chance To Profit: ${chanceToProfit}</div>
+
+      <div class="chip-title">${result.casino}: $${result.deposit} ($${result.bonus})</div>
+      <div class="chip-text mean">Average Profit: $${fmt(strategy.mean)}</div>
+      <div class="chip-text stdDev">Standard Deviation: &plusmn; $${fmt(strategy.stdDev)}</div>
+      <div class="chip-text riskOfRuin">Risk of Ruin: ${strategy.riskOfRuin ?? 'N/A'}</div>
+      <div class="chip-text meanExcludingFirstLoss">Average Excluding First Loss: $${fmt(strategy.meanExcludingFirstLoss)}</div>
+      <div class="chip-text stdDevExcludingFirstLoss">Standard Deviation Excluding First Loss: &plusmn; $${fmt(strategy.stdDevExcludingFirstLoss)}</div>
+      <div class="chip-text chanceToProfit">Chance To Profit: ${strategy.chanceToProfit ?? 'N/A'}</div>
+
     `;
   });
 }
@@ -340,15 +334,13 @@ function updateChipsBetSize(chips, betSize) {
     const fmt = (num) => typeof num === 'number' ? num.toFixed(2) : num;
 
     chip.querySelector('.chip-left').innerHTML = `
-      <div class="chip-title">${result.casino}</div>
-      <div class="chip-text">Deposit: $${result.deposit}</div>
-      <div class="chip-text">Bonus: $${result.bonus}</div>
-      <div class="chip-text mean">Average Profit: $${fmt(mean)}</div>
-      <div class="chip-text stdDev">Standard Deviation: &plusmn; $${fmt(stdDev)}</div>
-      <div class="chip-text riskOfRuin">Risk of Ruin: ${riskOfRuin}</div>
-      <div class="chip-text meanExcludingFirstLoss">Average Excluding First Loss: $${fmt(meanExcludingFirstLoss)}</div>
-      <div class="chip-text stdDevExcludingFirstLoss">Standard Deviation Excluding First Loss: &plusmn; $${fmt(stdDevExcludingFirstLoss)}</div>
-      <div class="chip-text chanceToProfit">Chance To Profit: ${chanceToProfit}</div>
+      <div class="chip-title">${result.casino}: $${result.deposit} ($${result.bonus})</div>
+      <div class="chip-text mean">Average Profit: $${fmt(strategy.mean)}</div>
+      <div class="chip-text stdDev">Standard Deviation: &plusmn; $${fmt(strategy.stdDev)}</div>
+      <div class="chip-text riskOfRuin">Risk of Ruin: ${strategy.riskOfRuin ?? 'N/A'}</div>
+      <div class="chip-text meanExcludingFirstLoss">Average Excluding First Loss: $${fmt(strategy.meanExcludingFirstLoss)}</div>
+      <div class="chip-text stdDevExcludingFirstLoss">Standard Deviation Excluding First Loss: &plusmn; $${fmt(strategy.stdDevExcludingFirstLoss)}</div>
+      <div class="chip-text chanceToProfit">Chance To Profit: ${strategy.chanceToProfit ?? 'N/A'}</div>
     `;
   });
 }

@@ -14,7 +14,7 @@
   <!-- panel content like menu or filters -->
   <a href="Strategies.html" class="side-button"> <img src="./Images/strategy.svg" width="20" alt="Strategy Icon"> Strategies</a>
   <a href="records.html" class="side-button"> <img src="./Images/records.webp" width="20" alt="Records Icon"> Your Records</a>
-  <a href="compare.html" class="side-button"> <img src="./Images/records.webp" width="20" alt="Compare Icon"> Compare</a>
+    <a href="compare.html" class="side-button"> <img src="./Images/records.webp" width="20" alt="Compare Icon"> Compare</a>
 </div>
 
 
@@ -31,12 +31,13 @@
 
 </div>
 
+<div class="chip-chip-container">
+<div class="chip-container" id="left-container">
 
-<div class="chip-container">
     <div class="chip strategy-chip">
         <div class="chip-left">
-            <label for="strategySelect">Choose a strategy:</label>
-            <select id="strategySelect">
+            <label for="strategySelectLeft">Choose a strategy:</label>
+            <select id="strategySelectLeft">
               <optgroup label="Blackjack">
                <option value="normal">Flat Bets</option>
                <option value="half2x">Half Bankroll (2x Target)</option>
@@ -54,8 +55,8 @@
 
             </select>
 
-          <label for="betSizeSelect">Choose a bet size:</label>
-            <select id="betSizeSelect">
+          <label for="betSelectLeft">Choose a bet size:</label>
+            <select id="betSelectLeft">
                <option value="5">$5</option>
                <option value="10">$10</option>
                <option value="15">$15</option>
@@ -63,12 +64,53 @@
             </select>
             
         </div>
-        <div class="chip-text">Selecting here will override all deals current strategy</div>
+    
+</div>
     
 </div>
 
-    <button id="quickOpenBtn" class="chip-button quick-open-button">Quick Open</button>
-    <!--  Dynamic stuff here  -->
+
+<div class="chip-container" id="middle-container"></div>
+
+<div class="chip-container" id="right-container">
+
+        <div class="chip strategy-chip">
+        <div class="chip-left">
+            <label for="strategySelectRight">Choose a strategy:</label>
+            <select id="strategySelectRight">
+              <optgroup label="Blackjack">
+               <option value="normal">Flat Bets</option>
+               <option value="half2x">Half Bankroll (2x Target)</option>
+               <option value="half3x">Half Bankroll (3x Target)</option>
+               <option value="full2x">Full Bankroll (2x Target)</option>
+               <option value="full4x">Full Bankroll (4x Target)</option>
+              </optgroup>
+              <optgroup label="Rock Paper Scissors">
+               <option value="rpsFlat">RPS Flat Bets</option>
+               <option value="rpsHalf2x">RPS Half Bankroll (2x Target)</option>
+               <option value="rpsHalf3x">RPS Half Bankroll (3x Target)</option>
+               <option value="rpsFull2x">RPS Full Bankroll (2x Target)</option>
+               <option value="rpsFull4x">RPS Full Bankroll (4x Target)</option>
+              </optgroup>
+
+            </select>
+
+          <label for="betSelectRight">Choose a bet size:</label>
+            <select id="betSelectRight">
+               <option value="5">$5</option>
+               <option value="10">$10</option>
+               <option value="15">$15</option>
+               <option value="20">$20</option>
+            </select>
+            
+        </div>
+    
+</div>
+
+</div>
+
+</div>
+
 
 </div>
 
@@ -83,7 +125,7 @@
   document.head.appendChild(css);
 
   const js = document.createElement('script');
-  js.src = './Scripts/index.js?v=' + timestamp;
+  js.src = './Scripts/compare.js?v=' + timestamp;
   document.head.appendChild(js);
 </script>
 
