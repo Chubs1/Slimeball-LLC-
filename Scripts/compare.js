@@ -79,8 +79,8 @@ function compareValues(leftVal, rightVal, comparisonRule = 'higher') {
       <div class="chip-title">Comparison</div>`;
 
  for (const metric of metrics) {
-  const leftVal = leftResults.strategy?.[5]?.normal?.[metric.key];
-  const rightVal = rightResults.strategy?.[5]?.normal?.[metric.key];
+  const leftVal = leftResults.strategy?.[leftTop.dataset.betSize]?.[leftTop.dataset.chosenStrategy]?.[metric.key];
+  const rightVal = rightResults.strategy?.[rightTop.dataset.betSize]?.[rightTop.dataset.chosenStrategy]?.[metric.key];
   const { arrow, side } = compareValues(leftVal, rightVal, metric.compare);
 
   let display = '';
