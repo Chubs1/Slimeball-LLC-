@@ -87,7 +87,7 @@ function compareValues(leftVal, rightVal, comparisonRule = 'higher') {
   if (side === 'left') {
     display = `${arrow} ${leftVal ?? 'N/A'}`;
   } else if (side === 'right') {
-    display = `${leftVal ?? 'N/A'} ${arrow}`;
+    display = `${rightVal ?? 'N/A'} ${arrow}`;
   } else if (side === 'equal') {
     display = `${arrow} ${leftVal ?? 'N/A'} ${arrow}`;
   } else {
