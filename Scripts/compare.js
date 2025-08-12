@@ -47,7 +47,7 @@ rightSelectBet.addEventListener('change', e => onBetChange(rightSide, e));
 function updateMiddle(leftTop, rightTop) {
     const leftResults = leftTop.result;
     const rightResults = rightTop.result;
-    if(!(leftResults && rightResults)) return
+    if(!(leftTop.classList.contains("active") && rightTop.classList.contains("active"))) return
       const chip = document.createElement('div');
       console.log(rightResults)
       chip.classList.add("chip")
