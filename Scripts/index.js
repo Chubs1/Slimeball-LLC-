@@ -151,7 +151,7 @@ function createChip(result, chosenStrategy, loggedDealsMap, betSize) {
                <option value="rpsFlat">RPS Flat Bets</option>
                <option value="rpsHalf2x">RPS Half Bankroll (2x Target)</option>
                <option value="rpsHalf3x">RPS Half Bankroll (3x Target)</option>
-               <option value="rpsFull2x"RPS Full Bankroll (2x Target)</option>
+               <option value="rpsFull2x">RPS Full Bankroll (2x Target)</option>
                <option value="rpsFull4x">RPS Full Bankroll (4x Target)</option>
               </optgroup>
               </select>
