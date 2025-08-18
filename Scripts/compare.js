@@ -45,59 +45,102 @@ rightSelectBet.addEventListener('change', e => onBetChange(rightSide, e));
 
 
 function updateMiddle(leftTop, rightTop) {
-    const leftResults = leftTop.result;
-    const rightResults = rightTop.result;
-      const chip = document.createElement('div');
-      console.log(rightResults)
-      chip.classList.add("chip")
-        chip.innerHTML = `
+  const leftResults = leftTop.result;
+  const rightResults = rightTop.result;
+  if (!(leftTop.classList.contains("active") && rightTop.classList.contains("active"))) return;
+
+  // Helper function: compare two numbers and return arrow string
+  // comparisonRule = 'higher' or 'lower' to indicate which side is better
+function compareValues(leftVal, rightVal, comparisonRule = 'higher') {
+  if (leftVal == null || rightVal == null) return {arrow: '', side: 'equal'};
+  if (leftVal === rightVal) return {arrow: '==', side: 'equal'};
+
+  if (comparisonRule === 'higher') {
+    return leftVal > rightVal ? {arrow: '<----', side: 'left'} : {arrow: '---->', side: 'right'};
+  } else if (comparisonRule === 'lower') {
+    return leftVal < rightVal ? {arrow: '<----', side: 'left'} : {arrow: '---->', side: 'right'};
+  }
+  return {arrow: '', side: 'equal'};
+}
+
+
+  // Extract values for metrics you want to compare (example assumes normal strategy exists)
+  const metrics = [
+    { key: 'mean', label: 'mean', compare: 'higher' },
+    { key: 'stdDev', label: 'stdDev', compare: 'lower' },
+    { key: 'riskOfRuin', label: 'riskOfRuin', compare: 'lower' },
+    { key: 'meanExcludingFirstLoss', label: 'meanExcludingFirstLoss', compare: 'higher' },
+    { key: 'stdDevExcludingFirstLoss', label: 'stdDevExcludingFirstLoss', compare: 'lower' },
+    { key: 'chanceToProfit', label: 'chanceToProfit', compare: 'higher' }
+  ];
+
+  // Build the left chip's innerHTML with comparisons
+  let chipLeftInnerHTML = `<div class="chip-left">
+      <div class="chip-title">Comparison</div>`;
+
+ for (const metric of metrics) {
+  const leftVal = leftResults.strategy?.[leftTop.dataset.betSize]?.[leftTop.dataset.chosenStrategy]?.[metric.key];
+  const rightVal = rightResults.strategy?.[rightTop.dataset.betSize]?.[rightTop.dataset.chosenStrategy]?.[metric.key];
+  const { arrow, side } = compareValues(leftVal, rightVal, metric.compare);
+
+  let display = '';
+  if (side === 'left') {
+    display = `${arrow} ${leftVal ?? 'N/A'}`;
+  } else if (side === 'right') {
+    display = `${rightVal ?? 'N/A'} ${arrow}`;
+  } else if (side === 'equal') {
+    display = `${arrow} ${leftVal ?? 'N/A'} ${arrow}`;
+  } else {
+    display = `${leftVal ?? 'N/A'}`;
+  }
+
+  chipLeftInnerHTML += `
+    <div class="chip-text ${metric.key}">
+      ${display}
+    </div>`;
+}
+
+  chipLeftInnerHTML += '</div>';
+
+  const chip = document.createElement('div');
+  chip.classList.add("chip");
+  chip.innerHTML = chipLeftInnerHTML;
+
+  const topThing = document.createElement('div');
+  topThing.classList.add('chip');
+  topThing.innerHTML = `
     <div class="chip-left">
-      <div class="chip-title">Comparison</div>
-      <div class="chip-text mean">${leftResults.strategy?.[5]?.normal?.mean}</div>
-      <div class="chip-text stdDev">w</div>
-      <div class="chip-text riskOfRuin">w</div>
-      <div class="chip-text meanExcludingFirstLoss">w</div>
-      <div class="chip-text stdDevExcludingFirstLoss">w</div>
-      <div class="chip-text chanceToProfit">Cw</div>
+      <label for="strategySelectRightw">Choose a strategy:</label>
+      <select id="strategySelectRightw">
+        <optgroup label="Blackjack">
+          <option value="normal">Flat Bets</option>
+          <option value="half2x">Half Bankroll (2x Target)</option>
+          <option value="half3x">Half Bankroll (3x Target)</option>
+          <option value="full2x">Full Bankroll (2x Target)</option>
+          <option value="full4x">Full Bankroll (4x Target)</option>
+        </optgroup>
+        <optgroup label="Rock Paper Scissors">
+          <option value="rpsFlat">RPS Flat Bets</option>
+          <option value="rpsHalf2x">RPS Half Bankroll (2x Target)</option>
+          <option value="rpsHalf3x">RPS Half Bankroll (3x Target)</option>
+          <option value="rpsFull2x">RPS Full Bankroll (2x Target)</option>
+          <option value="rpsFull4x">RPS Full Bankroll (4x Target)</option>
+        </optgroup>
+      </select>
+
+      <label for="betSelectRightw">Choose a bet size:</label>
+      <select id="betSelectRightw">
+        <option value="5">$5</option>
+        <option value="10">$10</option>
+        <option value="15">$15</option>
+        <option value="20">$20</option>
+      </select>
     </div>
   `;
-  const topThing = document.createElement('div');
-  topThing.classList.add('chip')
-  topThing.innerHTML = `
-        <div class="chip-left">
-            <label for="strategySelectRightw">Choose a strategy:</label>
-            <select id="strategySelectRightw">
-              <optgroup label="Blackjack">
-               <option value="normal">Flat Bets</option>
-               <option value="half2x">Half Bankroll (2x Target)</option>
-               <option value="half3x">Half Bankroll (3x Target)</option>
-               <option value="full2x">Full Bankroll (2x Target)</option>
-               <option value="full4x">Full Bankroll (4x Target)</option>
-              </optgroup>
-              <optgroup label="Rock Paper Scissors">
-               <option value="rpsFlat">RPS Flat Bets</option>
-               <option value="rpsHalf2x">RPS Half Bankroll (2x Target)</option>
-               <option value="rpsHalf3x">RPS Half Bankroll (3x Target)</option>
-               <option value="rpsFull2x">RPS Full Bankroll (2x Target)</option>
-               <option value="rpsFull4x">RPS Full Bankroll (4x Target)</option>
-              </optgroup>
 
-            </select>
-
-          <label for="betSelectRightw">Choose a bet size:</label>
-            <select id="betSelectRightw">
-               <option value="5">$5</option>
-               <option value="10">$10</option>
-               <option value="15">$15</option>
-               <option value="20">$20</option>
-            </select>
-            
-        </div>
-    
-`
-      middle.replaceChildren(topThing,chip);
-
+  middle.replaceChildren(topThing, chip);
 }
+
 
 function chipClickHandler(chip) {
   const parent = chip.parentElement;
