@@ -104,7 +104,10 @@ betSizeSelect.addEventListener("change", () => {
 
 }
 
-
+function getWagerX(casino, deposit, bonus, wagerReq){
+  if(casino == "Horseshoe") return wagerReq / (deposit + bonus)
+  if (casino == "Caesars") return (wagerReq / (deposit + bonus)) / 5
+}
 
 
 function createChip(result, chosenStrategy, loggedDealsMap, betSize) {
@@ -126,7 +129,7 @@ function createChip(result, chosenStrategy, loggedDealsMap, betSize) {
 
   chip.innerHTML = `
     <div class="chip-left">
-      <div class="chip-title">${result.casino}: $${result.deposit} ($${result.bonus})</div>
+      <div class="chip-title">${result.casino}: $${result.deposit} ($${result.bonus}) ${getWagerX(result.casino,result.deposit,result.bonus,result.wagerRequirement)}x</div>
       <div class="chip-text mean">Average Profit: $${fmt(strategy.mean)}</div>
       <div class="chip-text stdDev">Standard Deviation: &plusmn; $${fmt(strategy.stdDev)}</div>
       <div class="chip-text riskOfRuin">Risk of Ruin: ${strategy.riskOfRuin ?? 'N/A'}</div>
@@ -171,13 +174,46 @@ function createChip(result, chosenStrategy, loggedDealsMap, betSize) {
     </div>
   `;
 const strategySelect = chip.querySelector('.strategy-select');
+  const wagerReq = getWagerX(result.casino, result.deposit, result.bonus, result.wagerRequirement)
+console.log(wagerReq)
+if(result.casino == "Horseshoe"){
+  if(wagerReq == 2) strategySelect.value = getCookie("horseshoeS2") || strategySelect.value;
+  else if(wagerReq == 5) strategySelect.value = getCookie("horseshoeS5") || strategySelect.value;
+
+} 
+else if(result.casino == "Caesars"){
+  if(wagerReq == 2) strategySelect.value = getCookie("caesarsS2") || strategySelect.value;
+  else if(wagerReq == 5) strategySelect.value = getCookie("caesarsS5") || strategySelect.value;
+} 
+
 const betSizeSelect = chip.querySelector('.bet-size-select');
+if(result.casino == "Horseshoe") {
+  if(wagerReq == 2) betSizeSelect.value = getCookie("horseshoeB2") || betSizeSelect.value;
+  else if(wagerReq == 5) betSizeSelect.value = getCookie("horseshoeB5") || betSizeSelect.value;
+}
+else if(result.casino == "Caesars"){
+  if(wagerReq == 2) betSizeSelect.value = getCookie("caesarsB2") || betSizeSelect.value;
+  else if(wagerReq == 5) betSizeSelect.value = getCookie("caesarsB5") || betSizeSelect.value;
+}
+
+    updateOneBetSizeLabel(strategySelect.value.startsWith("rps"), betSizeSelect);
+
   strategySelect.addEventListener("change", e => {
+
     const chosenStrategy = strategySelect.value;
+    if(result.casino == "Horseshoe"){
+      if(wagerReq == 2) document.cookie = `horseshoeS2=${chosenStrategy};expires=Thu, 18 Dec 2033 12:00:00 UTC `
+      if(wagerReq == 5) document.cookie = `horseshoeS5=${chosenStrategy};expires=Thu, 18 Dec 2033 12:00:00 UTC `
+    }
+    else if(result.casino == "Caesars"){
+      if(wagerReq == 2) document.cookie = `caesarsS2=${chosenStrategy};expires=Thu, 18 Dec 2033 12:00:00 UTC `
+      if(wagerReq == 5) document.cookie = `caesarsS5=${chosenStrategy};expires=Thu, 18 Dec 2033 12:00:00 UTC `
+    }
+    
     console.log("Chosen strategy:", chosenStrategy);
 
     const isRps = chosenStrategy.startsWith("rps");
-    updateBetSizeLabels(isRps);
+    updateOneBetSizeLabel(isRps, betSizeSelect);
 
     const chip = e.target.closest('.casino-chip');
 
@@ -186,6 +222,15 @@ const betSizeSelect = chip.querySelector('.bet-size-select');
 
 betSizeSelect.addEventListener("change", e => {
   const betSize = betSizeSelect.value;
+    if(result.casino == "Horseshoe"){
+      if(wagerReq == 2) document.cookie = `horseshoeB2=${betSize};expires=Thu, 18 Dec 2033 12:00:00 UTC `
+      if(wagerReq == 5) document.cookie = `horseshoeB5=${betSize};expires=Thu, 18 Dec 2033 12:00:00 UTC `
+    }
+    else if(result.casino == "Caesars"){
+      if(wagerReq == 2) document.cookie = `caesarsB2=${betSize};expires=Thu, 18 Dec 2033 12:00:00 UTC `
+      if(wagerReq == 5) document.cookie = `caesarsB5=${betSize};expires=Thu, 18 Dec 2033 12:00:00 UTC `
+    }
+
   console.log("Chosen betsize:", betSize);
   const chip = e.target.closest('.casino-chip');
 
@@ -296,7 +341,7 @@ function updateChipsStrategy(chips, chosenStrategy) {
 
     chip.querySelector('.chip-left').innerHTML = `
 
-      <div class="chip-title">${result.casino}: $${result.deposit} ($${result.bonus})</div>
+      <div class="chip-title">${result.casino}: $${result.deposit} ($${result.bonus}) ${getWagerX(result.casino,result.deposit,result.bonus,result.wagerRequirement)}x</div>
       <div class="chip-text mean">Average Profit: $${fmt(strategy.mean)}</div>
       <div class="chip-text stdDev">Standard Deviation: &plusmn; $${fmt(strategy.stdDev)}</div>
       <div class="chip-text riskOfRuin">Risk of Ruin: ${strategy.riskOfRuin ?? 'N/A'}</div>
@@ -334,7 +379,7 @@ function updateChipsBetSize(chips, betSize) {
     const fmt = (num) => typeof num === 'number' ? num.toFixed(2) : num;
 
     chip.querySelector('.chip-left').innerHTML = `
-      <div class="chip-title">${result.casino}: $${result.deposit} ($${result.bonus})</div>
+      <div class="chip-title">${result.casino}: $${result.deposit} ($${result.bonus}) ${getWagerX(result.casino,result.deposit,result.bonus,result.wagerRequirement)}x</div>
       <div class="chip-text mean">Average Profit: $${fmt(strategy.mean)}</div>
       <div class="chip-text stdDev">Standard Deviation: &plusmn; $${fmt(strategy.stdDev)}</div>
       <div class="chip-text riskOfRuin">Risk of Ruin: ${strategy.riskOfRuin ?? 'N/A'}</div>
@@ -396,12 +441,47 @@ async function loadLoggedDeals() {
   });
 }
 
-function updateBetSizeLabels(isRps) {
+function updateBetSizeLabels(isRps, chip = null) {
+  const sizes = isRps ? rpsBetSizes : blackjackBetSizes;
+
+  // If called with a specific chip, only update that chip's bet-size-select
+  const selects = chip 
+    ? [chip.querySelector('.bet-size-select')].filter(Boolean)
+    : document.querySelectorAll('.bet-size-select, #betSizeSelect');
+
+  selects.forEach(select => {
+    Array.from(select.options).forEach((option, index) => {
+      if (sizes[index]) {
+        option.textContent = sizes[index].label;
+      }
+    });
+  });
+}
+
+function updateOneBetSizeLabel(isRps, select) {
     const sizes = isRps ? rpsBetSizes : blackjackBetSizes;
     // Update the label text only, keep the values intact
-    Array.from(betSizeSelect.options).forEach((option, index) => {
+    Array.from(select.options).forEach((option, index) => {
         if (sizes[index]) {
             option.textContent = sizes[index].label;
         }
     });
 }
+
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
