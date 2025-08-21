@@ -118,21 +118,11 @@ function createChip(result, chosenStrategy, loggedDealsMap, betSize) {
   chip.dataset.chosenStrategy = chosenStrategy;
   chip.result = result;
 
-  // Destructure strategy once, with fallback
   const strategy = result.strategy?.[betSize]?.[chosenStrategy] || {};
   const fmt = num => typeof num === 'number' ? num.toFixed(2) : num ?? 'N/A';
 
   chip.dataset.mean = strategy.mean ?? 'N/A';
   chip.dataset.sd = strategy.stdDev ?? 'N/A';
-
-document.cookie = "horseshoeS5=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
-document.cookie = "horseshoeB5=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
-document.cookie = "caesarsS5=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
-document.cookie = "caesarsB5=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
-document.cookie = "horseshoeS2=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
-document.cookie = "horseshoeB2=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
-document.cookie = "caesarsS2=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
-document.cookie = "caesarsB2=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
 
   chip.innerHTML = `
     <div class="chip-left">
@@ -146,109 +136,78 @@ document.cookie = "caesarsB2=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
     </div>
     <div class="chip-right">
       <button class="dropdown-button">Mark as done ^</button>
-      
       <div class="chip-selectors">
-            <label>Choose a strategy:
-            <select class="strategy-select">
-                <optgroup label="Blackjack">
-               <option value="normal">Flat Bets</option>
-               <option value="half2x">Half Bankroll (2x Target)</option>
-               <option value="half3x">Half Bankroll (3x Target)</option>
-               <option value="full2x">Full Bankroll (2x Target)</option>
-               <option value="full4x">Full Bankroll (4x Target)</option>
-              </optgroup>
-              <optgroup label="Rock Paper Scissors">
-               <option value="rpsFlat">RPS Flat Bets</option>
-               <option value="rpsHalf2x">RPS Half Bankroll (2x Target)</option>
-               <option value="rpsHalf3x">RPS Half Bankroll (3x Target)</option>
-               <option value="rpsFull2x">RPS Full Bankroll (2x Target)</option>
-               <option value="rpsFull4x">RPS Full Bankroll (4x Target)</option>
-              </optgroup>
-              </select>
-            </label>
-            
-          <label">Choose a bet size:
-            <select class="bet-size-select">
-               <option value="5">$5</option>
-               <option value="10">$10</option>
-               <option value="15">$15</option>
-               <option value="20">$20</option>
-            </select>
-          </label>
-    </div>
-
-
+        <label>Choose a strategy:
+          <select class="strategy-select">
+            <optgroup label="Blackjack">
+              <option value="normal">Flat Bets</option>
+              <option value="half2x">Half Bankroll (2x Target)</option>
+              <option value="half3x">Half Bankroll (3x Target)</option>
+              <option value="full2x">Full Bankroll (2x Target)</option>
+              <option value="full4x">Full Bankroll (4x Target)</option>
+            </optgroup>
+            <optgroup label="Rock Paper Scissors">
+              <option value="rpsFlat">RPS Flat Bets</option>
+              <option value="rpsHalf2x">RPS Half Bankroll (2x Target)</option>
+              <option value="rpsHalf3x">RPS Half Bankroll (3x Target)</option>
+              <option value="rpsFull2x">RPS Full Bankroll (2x Target)</option>
+              <option value="rpsFull4x">RPS Full Bankroll (4x Target)</option>
+            </optgroup>
+          </select>
+        </label>
+        <label>Choose a bet size:
+          <select class="bet-size-select">
+            <option value="5">$5</option>
+            <option value="10">$10</option>
+            <option value="15">$15</option>
+            <option value="20">$20</option>
+          </select>
+        </label>
+      </div>
     </div>
   `;
-const strategySelect = chip.querySelector('.strategy-select');
-  const wagerReq = getWagerX(result.casino, result.deposit, result.bonus, result.wagerRequirement)
-console.log(wagerReq)
-if(result.casino == "Horseshoe"){
-  if(wagerReq == 2) strategySelect.value = getCookie("horseshoeS2") || strategySelect.value;
-  else if(wagerReq == 5) strategySelect.value = getCookie("horseshoeS5") || strategySelect.value;
 
-} 
-else if(result.casino == "Caesars"){
-  if(wagerReq == 2) strategySelect.value = getCookie("caesarsS2") || strategySelect.value;
-  else if(wagerReq == 5) strategySelect.value = getCookie("caesarsS5") || strategySelect.value;
-} 
+  const strategySelect = chip.querySelector('.strategy-select');
+  const betSizeSelect = chip.querySelector('.bet-size-select');
+  const wagerReq = getWagerX(result.casino, result.deposit, result.bonus, result.wagerRequirement);
 
-const betSizeSelect = chip.querySelector('.bet-size-select');
-if(result.casino == "Horseshoe") {
-  if(wagerReq == 2) betSizeSelect.value = getCookie("horseshoeB2") || betSizeSelect.value;
-  else if(wagerReq == 5) betSizeSelect.value = getCookie("horseshoeB5") || betSizeSelect.value;
-}
-else if(result.casino == "Caesars"){
-  if(wagerReq == 2) betSizeSelect.value = getCookie("caesarsB2") || betSizeSelect.value;
-  else if(wagerReq == 5) betSizeSelect.value = getCookie("caesarsB5") || betSizeSelect.value;
-}
+  // --- Load stored strategy & bet size from localStorage ---
+  const storagePrefix = `${result.casino}_S${wagerReq}`;
+  const storageBetPrefix = `${result.casino}_B${wagerReq}`;
 
-    updateOneBetSizeLabel(strategySelect.value.startsWith("rps"), betSizeSelect);
-    updateChipsStrategy([chip], chosenStrategy);
+  strategySelect.value = localStorage.getItem(storagePrefix) || strategySelect.value;
+  betSizeSelect.value = localStorage.getItem(storageBetPrefix) || betSizeSelect.value;
+
+  updateOneBetSizeLabel(strategySelect.value.startsWith("rps"), betSizeSelect);
+  updateChipsStrategy([chip], chosenStrategy);
+
+  // --- Save strategy on change ---
   strategySelect.addEventListener("change", e => {
-
     const chosenStrategy = strategySelect.value;
-    if(result.casino == "Horseshoe"){ 
-      if(wagerReq == 2) document.cookie = `horseshoeS2=${chosenStrategy};expires=Thu, 18 Dec 2033 12:00:00 UTC;path=/`;
-      if(wagerReq == 5) document.cookie = `horseshoeS5=${chosenStrategy};expires=Thu, 18 Dec 2033 12:00:00 UTC;path=/`;
-    }
-    else if(result.casino == "Caesars"){
-      if(wagerReq == 2) document.cookie = `caesarsS2=${chosenStrategy};expires=Thu, 18 Dec 2033 12:00:00 UTC;path=/`;
-      if(wagerReq == 5) document.cookie = `caesarsS5=${chosenStrategy};expires=Thu, 18 Dec 2033 12:00:00 UTC;path=/`;
-    }
-    console.log(document.cookie);
-    console.log("Chosen strategy:", chosenStrategy);
+    localStorage.setItem(storagePrefix, chosenStrategy);
 
     const isRps = chosenStrategy.startsWith("rps");
     updateOneBetSizeLabel(isRps, betSizeSelect);
 
     const chip = e.target.closest('.casino-chip');
-
     updateChipsStrategy([chip], chosenStrategy);
-});
+  });
 
-betSizeSelect.addEventListener("change", e => {
-  const betSize = betSizeSelect.value;
-    if(result.casino == "Horseshoe"){
-      if(wagerReq == 2) document.cookie = `horseshoeB2=${betSize};expires=Thu, 18 Dec 2033 12:00:00 UTC;path=/`;
-      if(wagerReq == 5) document.cookie = `horseshoeB5=${betSize};expires=Thu, 18 Dec 2033 12:00:00 UTC;path=/`;
-    }
-    else if(result.casino == "Caesars"){
-      if(wagerReq == 2) document.cookie = `caesarsB2=${betSize};expires=Thu, 18 Dec 2033 12:00:00 UTC;path=/`;
-      if(wagerReq == 5) document.cookie = `caesarsB5=${betSize};expires=Thu, 18 Dec 2033 12:00:00 UTC;path=/`;
-    }
-    console.log(document.cookie);
-  console.log("Chosen betsize:", betSize);
-  const chip = e.target.closest('.casino-chip');
+  // --- Save bet size on change ---
+  betSizeSelect.addEventListener("change", e => {
+    const betSize = betSizeSelect.value;
+    localStorage.setItem(storageBetPrefix, betSize);
 
-  updateChipsBetSize([chip], betSize)
-})
+    const chip = e.target.closest('.casino-chip');
+    updateChipsBetSize([chip], betSize);
+  });
 
-
+  // --- Handle clicking chip-left to open link ---
   chip.querySelector('.chip-left').addEventListener('click', () => {
     window.open(result.link, '_blank');
   });
 
+  // --- Handle logging deals ---
   const right = chip.querySelector('.chip-right');
   const button = right.querySelector('button');
 
@@ -257,7 +216,6 @@ betSizeSelect.addEventListener("change", e => {
   }
 
   button.addEventListener('click', () => {
-    // If DEV_MODE logic
     if (DEV_MODE) {
       logDeal({
         chipId,
@@ -316,6 +274,7 @@ betSizeSelect.addEventListener("change", e => {
 
   return chip;
 }
+
 
 
 
