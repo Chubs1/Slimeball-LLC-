@@ -125,6 +125,15 @@ function createChip(result, chosenStrategy, loggedDealsMap, betSize) {
   chip.dataset.mean = strategy.mean ?? 'N/A';
   chip.dataset.sd = strategy.stdDev ?? 'N/A';
 
+document.cookie = "horseshoeS5=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+document.cookie = "horseshoeB5=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+document.cookie = "caesarsS5=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+document.cookie = "caesarsB5=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+document.cookie = "horseshoeS2=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+document.cookie = "horseshoeB2=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+document.cookie = "caesarsS2=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+document.cookie = "caesarsB2=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+
   chip.innerHTML = `
     <div class="chip-left">
       <div class="chip-title">${result.casino}: $${result.deposit} ($${result.bonus}) ${getWagerX(result.casino,result.deposit,result.bonus,result.wagerRequirement)}x</div>
