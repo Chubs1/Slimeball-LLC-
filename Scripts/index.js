@@ -41,8 +41,6 @@ async function startSite(results) {
 const chipContainer = document.querySelector('.chip-container');
 
 results.forEach(result => {
-  // on creation get user strategy from top drop down, but if user saved other as default you can get from cookie of same name as casino? TK
-  // and when they switch it themselves update cookie if applicable and just update the chip there. TK
 
 const chosenStrategy = "normal";
 const betSize = 5
@@ -209,7 +207,7 @@ else if(result.casino == "Caesars"){
       if(wagerReq == 2) document.cookie = `caesarsS2=${chosenStrategy};expires=Thu, 18 Dec 2033 12:00:00 UTC `
       if(wagerReq == 5) document.cookie = `caesarsS5=${chosenStrategy};expires=Thu, 18 Dec 2033 12:00:00 UTC `
     }
-    
+    console.log(document.cookie);
     console.log("Chosen strategy:", chosenStrategy);
 
     const isRps = chosenStrategy.startsWith("rps");
@@ -230,7 +228,7 @@ betSizeSelect.addEventListener("change", e => {
       if(wagerReq == 2) document.cookie = `caesarsB2=${betSize};expires=Thu, 18 Dec 2033 12:00:00 UTC `
       if(wagerReq == 5) document.cookie = `caesarsB5=${betSize};expires=Thu, 18 Dec 2033 12:00:00 UTC `
     }
-
+    console.log(document.cookie);
   console.log("Chosen betsize:", betSize);
   const chip = e.target.closest('.casino-chip');
 
