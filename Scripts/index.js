@@ -199,13 +199,14 @@ else if(result.casino == "Caesars"){
   strategySelect.addEventListener("change", e => {
 
     const chosenStrategy = strategySelect.value;
-    if(result.casino == "Horseshoe"){
-      if(wagerReq == 2) document.cookie = `horseshoeS2=${chosenStrategy};expires=Thu, 18 Dec 2033 12:00:00 UTC `
-      if(wagerReq == 5) document.cookie = `horseshoeS5=${chosenStrategy};expires=Thu, 18 Dec 2033 12:00:00 UTC `
+    if(result.casino == "Horseshoe"){ 
+      if(wagerReq == 2) ddocument.cookie = "horseshoeS2=normal; expires=Thu, 18 Dec 2033 12:00:00 UTC; path=/";
+      if(wagerReq == 5) document.cookie = "horseshoeS5=normal; expires=Thu, 18 Dec 2033 12:00:00 UTC; path=/";
+
     }
     else if(result.casino == "Caesars"){
-      if(wagerReq == 2) document.cookie = `caesarsS2=${chosenStrategy};expires=Thu, 18 Dec 2033 12:00:00 UTC `
-      if(wagerReq == 5) document.cookie = `caesarsS5=${chosenStrategy};expires=Thu, 18 Dec 2033 12:00:00 UTC `
+      if(wagerReq == 2) document.cookie = `caesarsS2=${chosenStrategy};expires=Thu, 18 Dec 2033 12:00:00 UTC; path=/ `
+      if(wagerReq == 5) document.cookie = `caesarsS5=${chosenStrategy};expires=Thu, 18 Dec 2033 12:00:00 UTC; path=/ `
     }
     console.log(document.cookie);
     console.log("Chosen strategy:", chosenStrategy);
@@ -221,12 +222,12 @@ else if(result.casino == "Caesars"){
 betSizeSelect.addEventListener("change", e => {
   const betSize = betSizeSelect.value;
     if(result.casino == "Horseshoe"){
-      if(wagerReq == 2) document.cookie = `horseshoeB2=${betSize};expires=Thu, 18 Dec 2033 12:00:00 UTC `
-      if(wagerReq == 5) document.cookie = `horseshoeB5=${betSize};expires=Thu, 18 Dec 2033 12:00:00 UTC `
+      if(wagerReq == 2) document.cookie = `horseshoeB2=${betSize};expires=Thu, 18 Dec 2033 12:00:00 UTC; path=/ `
+      if(wagerReq == 5) document.cookie = `horseshoeB5=${betSize};expires=Thu, 18 Dec 2033 12:00:00 UTC; path=/ `
     }
     else if(result.casino == "Caesars"){
-      if(wagerReq == 2) document.cookie = `caesarsB2=${betSize};expires=Thu, 18 Dec 2033 12:00:00 UTC `
-      if(wagerReq == 5) document.cookie = `caesarsB5=${betSize};expires=Thu, 18 Dec 2033 12:00:00 UTC `
+      if(wagerReq == 2) document.cookie = `caesarsB2=${betSize};expires=Thu, 18 Dec 2033 12:00:00 UTC; path=/ `
+      if(wagerReq == 5) document.cookie = `caesarsB5=${betSize};expires=Thu, 18 Dec 2033 12:00:00 UTC; path=/ `
     }
     console.log(document.cookie);
   console.log("Chosen betsize:", betSize);
