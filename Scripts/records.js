@@ -58,6 +58,8 @@ function renderChart(data) {
         window.recordChartInstance.data.datasets[3].data = meanMinusSD;
         window.recordChartInstance.data.datasets[4].data = meanPlus2SD;
         window.recordChartInstance.data.datasets[5].data = meanMinus2SD;
+        window.recordChartInstance.data.datasets[6].data = meanPlus3SD;
+        window.recordChartInstance.data.datasets[7].data = meanMinus3SD;
         window.recordChartInstance.update();
     } else {
         const ctx = canvas.getContext('2d');
