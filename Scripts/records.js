@@ -45,6 +45,8 @@ function renderChart(data) {
      const meanMinusSD = summedMean.map((m, i) => m - summedSD[i]);
     const meanPlus2SD = summedMean.map((m, i) => m + (2 * summedSD[i]));
      const meanMinus2SD = summedMean.map((m, i) => m - (2* summedSD[i]));
+     const meanPlus3SD = summedMean.map((m, i) => m + (3 * summedSD[i]));
+     const meanMinus3SD = summedMean.map((m, i) => m - (3 * summedSD[i]));
     const canvas = document.getElementById('recordChart');
     canvas.style.display = 'block';
 
@@ -131,6 +133,28 @@ function renderChart(data) {
                             display: false
                         }
                     },
+                    {
+                        label: '3 SD',
+                        data: meanPlus3SD,
+                        borderColor: 'rgba(0, 0, 255, 0.1)',
+                        borderDash: [5, 5],  // dashed line
+                        fill: false,
+                        tension: 0.1,
+                        pointRadius: 0
+
+                    },
+                    {
+                        label: '', // minus - 3 SD
+                        data: meanMinus3SD,
+                        borderColor: 'rgba(0, 0, 255, 0.1)',
+                        borderDash: [5, 5],  // dashed line
+                        fill: false,
+                        tension: 0.1,
+                        pointRadius: 0,
+                        datalabels: {
+                            display: false
+                        }
+                    }
                     
                 ]
             },
@@ -157,6 +181,12 @@ function renderChart(data) {
             const minus2SDIndex = index + 1;
             const minus2Meta = ci.getDatasetMeta(minus2SDIndex);
             minus2Meta.hidden = meta.hidden;
+                  }
+
+                                          if (label === '3 SD') {
+            const minus3SDIndex = index + 1;
+            const minus3Meta = ci.getDatasetMeta(minus3SDIndex);
+            minus3Meta.hidden = meta.hidden;
                   }
 
                 
