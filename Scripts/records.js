@@ -251,7 +251,26 @@ canvas.addEventListener('click', function (event) {
 
 }
 
+function exportData() {
+  document.getElementById("dataBox").value = JSON.stringify(data, null, 2);
+}
 
+// Import → read from textarea
+function importData() {
+  try {
+    const txt = document.getElementById("dataBox").value;
+    const imported = JSON.parse(txt);
+    if (Array.isArray(imported)) {
+      data = imported;
+      console.log("Imported:", data);
+      alert("Data imported successfully!");
+    } else {
+      alert("Invalid format: must be an array");
+    }
+  } catch (e) {
+    alert("Invalid JSON");
+  }
+}
 
 let chartDataRaw = []; // global array to keep records with keys
 
@@ -271,7 +290,10 @@ function showChart() {
       chartDataRaw = values.map((value, i) => {
         return { ...value, _id: keys[i] };
       });
-      
+    chartDataBox.value = JSON.stringify(chartDataRaw, null, 2);
+      exportButton.addEventListener('click', () => {
+        chartDataBox.style.display = chartDataBox.style.display === 'none' ? 'block' : 'none'
+      });
       renderChart(chartDataRaw);
     }
   }
