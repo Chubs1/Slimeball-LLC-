@@ -41,10 +41,15 @@ async function startSite(results) {
 const chipContainer = document.querySelector('.chip-container');
 
 results.forEach(result => {
+  const wagerReq = getWagerX(result.casino, result.deposit, result.bonus, result.wagerRequirement);
 
-const chosenStrategy = "normal";
-const betSize = 5
-  const chip = createChip(result, chosenStrategy,loggedDealsMap,betSize);
+  const storagePrefix = `${result.casino}_S${wagerReq}`;
+  const storageBetPrefix = `${result.casino}_B${wagerReq}`;
+
+  chosenStrategy = localStorage.getItem(storagePrefix) || "normal";
+  betSize = localStorage.getItem(storageBetPrefix) || 5;
+
+  const chip = createChip(result, chosenStrategy, loggedDealsMap, betSize);
   chipContainer.appendChild(chip);
 });
 
@@ -179,7 +184,6 @@ function createChip(result, chosenStrategy, loggedDealsMap, betSize) {
   betSizeSelect.value = localStorage.getItem(storageBetPrefix) || betSizeSelect.value;
 
   updateOneBetSizeLabel(strategySelect.value.startsWith("rps"), betSizeSelect);
-  updateChipsStrategy([chip], chosenStrategy);
 
   // --- Save strategy on change ---
   strategySelect.addEventListener("change", e => {
