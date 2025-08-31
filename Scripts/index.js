@@ -54,7 +54,7 @@ async function startSite(results) {
 
 const chipContainer = document.querySelector('.chip-container');
     const d = new Date(now);
-    d.setDate(now.getDate() - i);
+    d.setDate(now.getDate());
     const date = formatDate(d);
 
 results.forEach(result => {
