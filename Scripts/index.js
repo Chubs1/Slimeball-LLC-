@@ -36,7 +36,7 @@ for (let i = 0; i < 7; i++) {
 }
 
 last7.forEach((date, i) => {
-  const opt = new Option(date, i);
+  const opt = new Option(date, date);
   daySelector.add(opt);
 });
 
@@ -64,7 +64,7 @@ results.forEach(result => {
 daySelector.addEventListener('change', () => {
   const date = daySelector.value;
   console.log("changing deals")
-  chipContainer.querySelectorAll(".chip-strat-chip").forEach(el => el.remove());
+  chipContainer.querySelectorAll(".chip.casino-chip").forEach(el => el.remove());
   results.forEach(result => {
   fullyCreateChips(result, loggedDealsMap, chipContainer, date);
 });
@@ -484,8 +484,11 @@ function formatDate(d) {
 }
 
 function fullyCreateChips(result, loggedDealsMap, chipContainer, date){
-
-  if(result.date != date) return
+  console.log(date)
+  if(result.date != date) {
+    console.log(result.date)
+    return
+  }
   const wagerReq = getWagerX(result.casino, result.deposit, result.bonus, result.wagerRequirement);
 
   const storagePrefix = `${result.casino}_S${wagerReq}`;
