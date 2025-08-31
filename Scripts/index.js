@@ -24,7 +24,21 @@ const rpsBetSizes = [
 ];
 
 
+const now = new Date(); 
+const month = String(now.getMonth() + 1).padStart(2, '0'); const day = String(now.getDate()).padStart(2, '0');
+const daySelector = document.querySelector('#days-deal-select')
 
+const last7 = [];
+for (let i = 0; i < 7; i++) {
+    const d = new Date(now);
+    d.setDate(now.getDate() - i);
+    last7.push(formatDate(d));
+}
+
+last7.forEach((date, i) => {
+  const opt = new Option(date, i);
+  daySelector.add(opt);
+});
 
 async function startSite(results) {
 
@@ -39,19 +53,27 @@ async function startSite(results) {
   const loggedDealsMap = await loadLoggedDeals();
 
 const chipContainer = document.querySelector('.chip-container');
+    const d = new Date(now);
+    d.setDate(now.getDate() - i);
+    const date = formatDate(d);
 
 results.forEach(result => {
-  const wagerReq = getWagerX(result.casino, result.deposit, result.bonus, result.wagerRequirement);
-
-  const storagePrefix = `${result.casino}_S${wagerReq}`;
-  const storageBetPrefix = `${result.casino}_B${wagerReq}`;
-
-  chosenStrategy = localStorage.getItem(storagePrefix) || "normal";
-  betSize = localStorage.getItem(storageBetPrefix) || 5;
-
-  const chip = createChip(result, chosenStrategy, loggedDealsMap, betSize);
-  chipContainer.appendChild(chip);
+  fullyCreateChips(result, loggedDealsMap, chipContainer, date);
 });
+
+daySelector.addEventListener('change', () => {
+  const date = daySelector.value;
+  console.log("changing deals")
+  chipContainer.querySelectorAll(".chip-strat-chip").forEach(el => el.remove());
+  results.forEach(result => {
+  fullyCreateChips(result, loggedDealsMap, chipContainer, date);
+});
+});
+
+
+
+
+
 
 document.getElementById('quickOpenBtn').addEventListener('click', () => {
   const chips = document.querySelectorAll('.chip[data-link]');
@@ -455,3 +477,23 @@ function getCookie(cname) {
     return "";
   }
 
+function formatDate(d) {
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${month}/${day}`;
+}
+
+function fullyCreateChips(result, loggedDealsMap, chipContainer, date){
+
+  if(result.date != date) return
+  const wagerReq = getWagerX(result.casino, result.deposit, result.bonus, result.wagerRequirement);
+
+  const storagePrefix = `${result.casino}_S${wagerReq}`;
+  const storageBetPrefix = `${result.casino}_B${wagerReq}`;
+
+  chosenStrategy = localStorage.getItem(storagePrefix) || "normal";
+  betSize = localStorage.getItem(storageBetPrefix) || 5;
+
+  const chip = createChip(result, chosenStrategy, loggedDealsMap, betSize);
+  chipContainer.appendChild(chip);
+}

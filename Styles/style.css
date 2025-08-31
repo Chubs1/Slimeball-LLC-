@@ -316,3 +316,10 @@ body {
 .inactive {
   opacity: 0.5;
 }
+
+.past-deals {
+ position: relative;
+ width: 20%;
+ right: 50%;
+ transform: translateX(50%);
+}
