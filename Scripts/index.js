@@ -130,8 +130,8 @@ betSizeSelect.addEventListener("change", () => {
 }
 
 function getWagerX(casino, deposit, bonus, wagerReq){
-  if(casino == "Horseshoe") return wagerReq / (deposit + bonus)
-  if (casino == "Caesars") return (wagerReq / (deposit + bonus)) / 5
+  if(casino == "Horseshoe") return wagerReq / (bonus)
+  if (casino == "Caesars") return (wagerReq / (bonus)) / 5
 }
 
 
