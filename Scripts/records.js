@@ -292,6 +292,8 @@ function showChart() {
       });
       const exportButton = document.getElementById('exportChartDataButton');
       const statsButton = document.getElementById('statsButton');
+      const chartDataBox = document.getElementById('chartDataBox');
+      const statsBox = document.getElementById('statsBox');
       const totalDeals = chartDataRaw.length;
       const totalProfit = chartDataRaw.reduce((sum, record) => sum + parseFloat(record.profit || 0), 0);
       const averageProfit = (totalDeals > 0) ? (totalProfit / totalDeals).toFixed(2) : 0;
