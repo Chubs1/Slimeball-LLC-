@@ -289,6 +289,7 @@ function createChip(result, chosenStrategy, loggedDealsMap, betSize) {
         });
         button.textContent = 'Add another deal';
         bubble.remove();
+        updateMoneyMadeToday();
       } else {
         alert('Please enter a valid number.');
       }
@@ -303,6 +304,25 @@ function createChip(result, chosenStrategy, loggedDealsMap, betSize) {
 
 
 
+function updateMoneyMadeToday(){
+    const today = formatDate(new Date());
+    const tx = db.transaction('transactions', 'readonly');
+    const store = tx.objectStore('transactions');
+    const request = store.getAll();
+    request.onsuccess = () => {
+        let totalProfit = 0;
+        request.result.forEach(deal => {
+            const dealDate = new Date(deal.time);
+            if (formatDate(dealDate) === today) {
+                totalProfit += deal.profit;
+            }
+        });
+        document.querySelector('.chip-text b').textContent = `$${totalProfit.toFixed(2)}`;
+    };
+    request.onerror = () => {
+        console.error('Failed to retrieve deals for profit calculation.');
+    };
+}
 
 function updateChipsStrategy(chips, chosenStrategy) {
   chips.forEach(chip => {

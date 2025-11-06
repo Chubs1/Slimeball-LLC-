@@ -290,9 +290,38 @@ function showChart() {
       chartDataRaw = values.map((value, i) => {
         return { ...value, _id: keys[i] };
       });
+      const exportButton = document.getElementById('exportChartDataButton');
+      const statsButton = document.getElementById('statsButton');
+      const totalDeals = chartDataRaw.length;
+      const totalProfit = chartDataRaw.reduce((sum, record) => sum + parseFloat(record.profit || 0), 0);
+      const averageProfit = (totalDeals > 0) ? (totalProfit / totalDeals).toFixed(2) : 0;
+      const bestDay = chartDataRaw.reduce((max, record) => {
+        const profit = parseFloat(record.profit || 0);
+        return (profit > max.profit) ? { date: record.time, profit } : max;
+      }, { date: null, profit: -Infinity });
+      const worstDay = chartDataRaw.reduce((min, record) => {
+        const profit = parseFloat(record.profit || 0);
+        return (profit < min.profit) ? { date: record.time, profit } : min;
+      }, { date: null, profit: Infinity });
+
+      const totalDealsp = document.getElementById('totalDeals');
+      const totalProfitp = document.getElementById('totalProfit');
+      const averageProfitp = document.getElementById('averageProfit');
+      const bestDayp = document.getElementById('bestDay');
+      const worstDayp = document.getElementById('worstDay');
+
+      totalDealsp.textContent = `You've done: ${totalDeals}`;
+      totalProfitp.textContent = `Total profit: $${totalProfit.toFixed(2)}`;
+      averageProfitp.textContent = `Average profit per deal: $${averageProfit}`;
+      bestDayp.textContent = bestDay.date ? `Best day: ${new Date(bestDay.date).toLocaleDateString()} ($${bestDay.profit.toFixed(2)})` : 'Best day: N/A';
+      worstDayp.textContent = worstDay.date ? `Worst day: ${new Date(worstDay.date).toLocaleDateString()} ($${worstDay.profit.toFixed(2)})` : 'Worst day: N/A';
+
     chartDataBox.value = JSON.stringify(chartDataRaw, null, 2);
       exportButton.addEventListener('click', () => {
         chartDataBox.style.display = chartDataBox.style.display === 'none' ? 'block' : 'none'
+      });
+            statsButton.addEventListener('click', () => {
+        statsBox.style.display = statsBox.style.display === 'none' ? 'block' : 'none'
       });
       renderChart(chartDataRaw);
     }
