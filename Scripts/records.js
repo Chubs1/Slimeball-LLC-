@@ -290,7 +290,7 @@ function showChart() {
       chartDataRaw = values.map((value, i) => {
         return { ...value, _id: keys[i] };
       });
-      const exportButton = document.getElementById('exportChartDataButton');
+      const exportButton = document.getElementById('exportButton');
       const statsButton = document.getElementById('statsButton');
       const chartDataBox = document.getElementById('chartDataBox');
       const statsBox = document.getElementById('statsBox');
