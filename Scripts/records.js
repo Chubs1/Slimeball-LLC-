@@ -296,24 +296,64 @@ function showChart() {
       const totalDeals = chartDataRaw.length;
       const totalProfit = chartDataRaw.reduce((sum, record) => sum + parseFloat(record.profit || 0), 0);
       const averageProfit = (totalDeals > 0) ? (totalProfit / totalDeals).toFixed(2) : 0;
-      const bestDay = chartDataRaw.reduce((max, record) => {
-        const profit = parseFloat(record.profit || 0);
-        return (profit > max.profit) ? { date: record.time, profit } : max;
-      }, { date: null, profit: -Infinity });
-      const worstDay = chartDataRaw.reduce((min, record) => {
-        const profit = parseFloat(record.profit || 0);
-        return (profit < min.profit) ? { date: record.time, profit } : min;
-      }, { date: null, profit: Infinity });
+const bestDay = Object.entries(
+  chartDataRaw.reduce((groups, record) => {
+    // Extract just the date (YYYY-MM-DD)
+    const date = new Date(record.chipId).toISOString().split(" ")[0];
+    const profit = parseFloat(record.profit || 0);
+
+    // Add profit to that day's total
+    groups[date] = (groups[date] || 0) + profit;
+    return groups;
+  }, {})
+).reduce(
+  (max, [date, totalProfit]) =>
+  totalProfit > max.profit ? {
+    chipId: date,
+    profit: totalProfit
+  } : max, {
+    chipId: null,
+    profit: -Infinity
+  }
+);
+
+const worstDay = Object.entries(
+  chartDataRaw.reduce((groups, record) => {
+    // Extract date only (e.g., "2025-08-08")
+    const date = new Date(record.chipId).toISOString().split(" ")[0];
+    const profit = parseFloat(record.profit || 0);
+
+    // Add to that day's total
+    groups[date] = (groups[date] || 0) + profit;
+    return groups;
+  }, {})
+).reduce(
+  (min, [date, totalProfit]) =>
+  totalProfit < min.profit ? {
+    chipId: date,
+    profit: totalProfit
+  } : min, {
+    chipId: null,
+    profit: Infinity
+  }
+);
+
 
       const totalDealsp = document.getElementById('totalDeals');
       const totalProfitp = document.getElementById('totalProfit');
       const averageProfitp = document.getElementById('averageProfit');
       const bestDayp = document.getElementById('bestDay');
       const worstDayp = document.getElementById('worstDay');
+      const maxProfitp = document.getElementById('maxProfit');
+      const minProfitp = document.getElementById('minProfit');
+      const maxProfit = chartDataRaw.length ? Math.max(...chartDataRaw.map(r => parseFloat(r.profit || 0))) : null;
+      const minProfit = chartDataRaw.length ? Math.min(...chartDataRaw.map(r => parseFloat(r.profit || 0))) : null;
 
-      totalDealsp.textContent = `You've done: ${totalDeals}`;
+      totalDealsp.textContent = `You've done: ${totalDeals} deals`;
       totalProfitp.textContent = `Total profit: $${totalProfit.toFixed(2)}`;
       averageProfitp.textContent = `Average profit per deal: $${averageProfit}`;
+      maxProfitp.textContent = maxProfit ? `Maximum profit: $${maxProfit.toFixed(2)}` : 'Maximum profit: N/A';
+      minProfitp.textContent = minProfit ? `Minimum profit: $${minProfit.toFixed(2)}` : 'Minimum profit: N/A';
       bestDayp.textContent = bestDay.date ? `Best day: ${new Date(bestDay.date).toLocaleDateString()} ($${bestDay.profit.toFixed(2)})` : 'Best day: N/A';
       worstDayp.textContent = worstDay.date ? `Worst day: ${new Date(worstDay.date).toLocaleDateString()} ($${worstDay.profit.toFixed(2)})` : 'Worst day: N/A';
 
