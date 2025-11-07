@@ -298,45 +298,41 @@ function showChart() {
       const averageProfit = (totalDeals > 0) ? (totalProfit / totalDeals).toFixed(2) : 0;
 const bestDay = Object.entries(
   chartDataRaw.reduce((groups, record) => {
-    // Extract just the date (YYYY-MM-DD)
-    const date = new Date(record.chipId).toISOString().split(" ")[0];
+    // Convert "2025-08-08 19:36:12" → "2025-08-08"
+    const date = record.chipId.split(" ")[0];
     const profit = parseFloat(record.profit || 0);
 
-    // Add profit to that day's total
-    groups[date] = (groups[date] || 0) + profit;
-    return groups;
-  }, {})
-).reduce(
-  (max, [date, totalProfit]) =>
-  totalProfit > max.profit ? {
-    chipId: date,
-    profit: totalProfit
-  } : max, {
-    chipId: null,
-    profit: -Infinity
-  }
-);
-
-const worstDay = Object.entries(
-  chartDataRaw.reduce((groups, record) => {
-    // Extract date only (e.g., "2025-08-08")
-    const date = new Date(record.chipId).toISOString().split(" ")[0];
-    const profit = parseFloat(record.profit || 0);
-
-    // Add to that day's total
+    // Add this record’s profit to that day’s total
     groups[date] = (groups[date] || 0) + profit;
     return groups;
   }, {})
 ).reduce(
   (min, [date, totalProfit]) =>
-  totalProfit < min.profit ? {
-    chipId: date,
-    profit: totalProfit
-  } : min, {
-    chipId: null,
-    profit: Infinity
-  }
+    totalProfit > min.profit
+      ? { chipId: date, profit: totalProfit }
+      : min,
+  { chipId: null, profit: Infinity }
 );
+
+
+const worstDay = Object.entries(
+  chartDataRaw.reduce((groups, record) => {
+    // Convert "2025-08-08 19:36:12" → "2025-08-08"
+    const date = record.chipId.split(" ")[0];
+    const profit = parseFloat(record.profit || 0);
+
+    // Add this record’s profit to that day’s total
+    groups[date] = (groups[date] || 0) + profit;
+    return groups;
+  }, {})
+).reduce(
+  (min, [date, totalProfit]) =>
+    totalProfit < min.profit
+      ? { chipId: date, profit: totalProfit }
+      : min,
+  { chipId: null, profit: Infinity }
+);
+
 
 
       const totalDealsp = document.getElementById('totalDeals');
