@@ -293,7 +293,6 @@ function showChart() {
       const exportButton = document.getElementById('exportButton');
       const statsButton = document.getElementById('statsButton');
       const chartDataBox = document.getElementById('chartDataBox');
-      const statsDiv = document.getElementById('statsDiv');
       const totalDeals = chartDataRaw.length;
       const totalProfit = chartDataRaw.reduce((sum, record) => sum + parseFloat(record.profit || 0), 0);
       const averageProfit = (totalDeals > 0) ? (totalProfit / totalDeals).toFixed(2) : 0;
@@ -322,6 +321,8 @@ function showChart() {
       exportButton.addEventListener('click', () => {
         chartDataBox.style.display = chartDataBox.style.display === 'none' ? 'block' : 'none'
       });
+                  const statsDiv = document.getElementById('statsDiv');
+
             statsButton.addEventListener('click', () => {
         statsDiv.style.display = statsDiv.style.display === 'none' ? 'block' : 'none'
       });
