@@ -28,11 +28,11 @@ function renderChart(data) {
     }
 
     // Sort by time ascending
-    data.sort((a, b) => new Date(a.time) - new Date(b.time));
+    data.sort((a, b) => new Date(a.chipId) - new Date(b.chipId));
 
     // Extract labels (just day)
     const labels = data.map(d => {
-        const dt = new Date(d.time);
+        const dt = new Date(d.chipId);
         return dt.toLocaleDateString(undefined, { month: 'numeric', day: 'numeric' });
     });
     const realProfit = data.map(d => parseFloat(d.profit))
