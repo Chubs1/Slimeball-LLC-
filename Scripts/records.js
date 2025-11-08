@@ -49,7 +49,16 @@ function renderChart(data) {
      const meanMinus3SD = summedMean.map((m, i) => m - (3 * summedSD[i]));
     const canvas = document.getElementById('recordChart');
     canvas.style.display = 'block';
-
+const whiteBackgroundPlugin = {
+  id: 'whiteBackground',
+  beforeDraw: (chart) => {
+    const { ctx, width, height } = chart;
+    ctx.save();
+    ctx.fillStyle = 'white'; // Background color
+    ctx.fillRect(0, 0, width, height);
+    ctx.restore();
+  }
+};
     if (window.recordChartInstance) {
         window.recordChartInstance.data.labels = labels;
         window.recordChartInstance.data.datasets[0].data = summedProfit;
@@ -213,7 +222,8 @@ function renderChart(data) {
                 },
                 responsive: true,
                 maintainAspectRatio: false,
-            }
+            },
+            plugins: [whiteBackgroundPlugin]
         });
     }
 
