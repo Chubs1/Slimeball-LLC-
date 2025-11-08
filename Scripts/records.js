@@ -213,36 +213,17 @@ options: {
         }
          
     },
-// Locate this block in your options:
-onHover: (event, chartElement) => {
-    const canvas = event.native.target;
-    const chart = window.recordChartInstance;
-    const chartArea = chart.chartArea;
+    onHover: (event, chartElement) => {
+        const canvas = event.native.target;
 
-    // A. Check if hovering over a specific data point
-    if (chartElement.length) {
-        canvas.style.cursor = 'pointer';
-        return;
-    }
-
-    const { x, y } = event.native;
-
-    // B. Check if hovering over axis areas (X-axis labels are below chartArea)
-    const isAboveChartArea = y < chartArea.top;
-    const isBelowChartArea = y > chartArea.bottom;
-    const isLeftOfChartArea = x < chartArea.left;
-    const isRightOfChartArea = x > chartArea.right;
-
-    // If outside the main plotting area (labels, axes)
-    if (isAboveChartArea || isBelowChartArea || isLeftOfChartArea || isRightOfChartArea) {
-        canvas.style.cursor = 'pointer'; // Use 'pointer' for axis/label areas
-    } else {
-        // C. Inside the main plotting area, but not over a point.
-        // Let the zoom plugin handle the cursor (it will be 'crosshair'/'grab').
-        // If zoom is disabled, this will default to 'default'.
-        canvas.style.cursor = 'default'; 
-    }
-},
+        if (chartElement.length) {
+            // Hovering over a point
+            canvas.style.cursor = 'pointer';
+        } else {
+            // Hovering empty space, labels, axes, etc.
+            canvas.style.cursor = 'default';
+        }
+    },
     onClick: (event, chartElement) => {
         if (chartElement.length) {
             // Clicked a point → open context menu
