@@ -71,160 +71,152 @@ const whiteBackgroundPlugin = {
         window.recordChartInstance.data.datasets[7].data = meanMinus3SD;
         window.recordChartInstance.update();
     } else {
-        const ctx = canvas.getContext('2d');
-        window.recordChartInstance = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [
-                    {
-                        label: 'Real Profit',
-                        data: summedProfit,
-                        borderColor: 'green',
-                        backgroundColor: 'rgba(0, 0, 112, 0.1)',
-                        fill: false,
-                        tension: 0.1,
-                        pointRadius: 2
-
-                    },
-
-                    {
-                        label: 'Expected Value',
-                        data: summedMean,
-                        borderColor: 'blue',
-                        backgroundColor: 'rgba(0, 0, 112, 0.1)',
-                        fill: false,
-                        tension: 0.1,
-                        pointRadius: 2
-
-                    },
-                    
-                    {
-                        label: '1 SD',
-                        data: meanPlusSD,
-                        borderColor: 'rgba(0, 0, 255, 0.1)',
-                        borderDash: [5, 5],  // dashed line
-                        fill: false,
-                        tension: 0.1,
-                        pointRadius: 0
-
-                    },
-                    {
-                        label: '', // minus - 1 SD
-                        data: meanMinusSD,
-                        borderColor: 'rgba(0, 0, 255, 0.1)',
-                        borderDash: [5, 5],  // dashed line
-                        fill: false,
-                        tension: 0.1,
-                        pointRadius: 0,
-                        datalabels: {
-                            display: false
-                        }
-                    },
-
-                                        {
-                        label: '2 SD',
-                        data: meanPlus2SD,
-                        borderColor: 'rgba(0, 0, 255, 0.1)',
-                        borderDash: [5, 5],  // dashed line
-                        fill: false,
-                        tension: 0.1,
-                        pointRadius: 0
-
-                    },
-                    {
-                        label: '', // minus - 2 SD
-                        data: meanMinus2SD,
-                        borderColor: 'rgba(0, 0, 255, 0.1)',
-                        borderDash: [5, 5],  // dashed line
-                        fill: false,
-                        tension: 0.1,
-                        pointRadius: 0,
-                        datalabels: {
-                            display: false
-                        }
-                    },
-                    {
-                        label: '3 SD',
-                        data: meanPlus3SD,
-                        borderColor: 'rgba(0, 0, 255, 0.1)',
-                        borderDash: [5, 5],  // dashed line
-                        fill: false,
-                        tension: 0.1,
-                        pointRadius: 0
-
-                    },
-                    {
-                        label: '', // minus - 3 SD
-                        data: meanMinus3SD,
-                        borderColor: 'rgba(0, 0, 255, 0.1)',
-                        borderDash: [5, 5],  // dashed line
-                        fill: false,
-                        tension: 0.1,
-                        pointRadius: 0,
-                        datalabels: {
-                            display: false
-                        }
-                    }
-                    
-                ]
+const ctx = canvas.getContext('2d');
+window.recordChartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [
+            {
+                label: 'Real Profit',
+                data: summedProfit,
+                borderColor: 'green',
+                backgroundColor: 'rgba(0, 0, 112, 0.1)',
+                fill: false,
+                tension: 0.1,
+                pointRadius: 2
             },
-            options: {
-                plugins: {
-                    legend: {
-                        onClick: function (e, legendItem, legend) {
-                const index = legendItem.datasetIndex;
-                const ci = legend.chart;
-
-                // Toggle +SD
-                const meta = ci.getDatasetMeta(index);
-                meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
-
-                // Also toggle -SD (assuming it's the next dataset)
-                const label = legendItem.text
-                if (label === '1 SD') {
-                    const minusSDIndex = index + 1;
-                    const minusMeta = ci.getDatasetMeta(minusSDIndex);
-                    minusMeta.hidden = meta.hidden;
-                }
-
-                        if (label === '2 SD') {
-            const minus2SDIndex = index + 1;
-            const minus2Meta = ci.getDatasetMeta(minus2SDIndex);
-            minus2Meta.hidden = meta.hidden;
-                  }
-
-                                          if (label === '3 SD') {
-            const minus3SDIndex = index + 1;
-            const minus3Meta = ci.getDatasetMeta(minus3SDIndex);
-            minus3Meta.hidden = meta.hidden;
-                  }
-
-                
-
-                ci.update();
-                       },
-                    labels: {
-                        filter: function (legendItem, data) {
-                            return legendItem.text !== '';
-                        }
-                   }
-                }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: { display: true, text: 'Expected Value ($)' }
-                    },
-                    x: {
-                        title: { display: true, text: 'Day' }
-                    }
-                },
-                responsive: true,
-                maintainAspectRatio: false,
+            {
+                label: 'Expected Value',
+                data: summedMean,
+                borderColor: 'blue',
+                backgroundColor: 'rgba(0, 0, 112, 0.1)',
+                fill: false,
+                tension: 0.1,
+                pointRadius: 2
             },
-            plugins: [whiteBackgroundPlugin]
-        });
+            {
+                label: '1 SD',
+                data: meanPlusSD,
+                borderColor: 'rgba(0, 0, 255, 0.1)',
+                borderDash: [5, 5],
+                fill: false,
+                tension: 0.1,
+                pointRadius: 0
+            },
+            {
+                label: '',
+                data: meanMinusSD,
+                borderColor: 'rgba(0, 0, 255, 0.1)',
+                borderDash: [5, 5],
+                fill: false,
+                tension: 0.1,
+                pointRadius: 0,
+                datalabels: { display: false }
+            },
+            {
+                label: '2 SD',
+                data: meanPlus2SD,
+                borderColor: 'rgba(0, 0, 255, 0.1)',
+                borderDash: [5, 5],
+                fill: false,
+                tension: 0.1,
+                pointRadius: 0
+            },
+            {
+                label: '',
+                data: meanMinus2SD,
+                borderColor: 'rgba(0, 0, 255, 0.1)',
+                borderDash: [5, 5],
+                fill: false,
+                tension: 0.1,
+                pointRadius: 0,
+                datalabels: { display: false }
+            },
+            {
+                label: '3 SD',
+                data: meanPlus3SD,
+                borderColor: 'rgba(0, 0, 255, 0.1)',
+                borderDash: [5, 5],
+                fill: false,
+                tension: 0.1,
+                pointRadius: 0
+            },
+            {
+                label: '',
+                data: meanMinus3SD,
+                borderColor: 'rgba(0, 0, 255, 0.1)',
+                borderDash: [5, 5],
+                fill: false,
+                tension: 0.1,
+                pointRadius: 0,
+                datalabels: { display: false }
+            }
+        ]
+    },
+    options: {
+        plugins: {
+            legend: {
+                onClick: function (e, legendItem, legend) {
+                    const index = legendItem.datasetIndex;
+                    const ci = legend.chart;
+                    const meta = ci.getDatasetMeta(index);
+                    meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
+
+                    const label = legendItem.text;
+                    if (label === '1 SD' || label === '2 SD' || label === '3 SD') {
+                        const minusMeta = ci.getDatasetMeta(index + 1);
+                        minusMeta.hidden = meta.hidden;
+                    }
+
+                    ci.update();
+                },
+                labels: {
+                    filter: (legendItem) => legendItem.text !== ''
+                }
+            },
+            // ✅ NEW: Zoom plugin configuration
+            zoom: {
+                limits: {
+                    x: { min: 'original', max: 'original' },
+                    y: { min: 'original', max: 'original' }
+                },
+                zoom: {
+                    drag: {
+                        enabled: true,
+                        backgroundColor: 'rgba(0, 123, 255, 0.15)',
+                        borderColor: 'rgba(0, 123, 255, 0.4)',
+                        borderWidth: 1
+                    },
+                    mode: 'xy'
+                },
+                pan: {
+                    enabled: false
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: { display: true, text: 'Expected Value ($)' }
+            },
+            x: {
+                title: { display: true, text: 'Day' }
+            }
+        },
+        responsive: true,
+        maintainAspectRatio: false
+    },
+    plugins: [whiteBackgroundPlugin] // ✅ FIXED
+});
+
+// ✅ Right-click to reset zoom
+canvas.addEventListener('contextmenu', function (event) {
+    event.preventDefault();
+    const chart = window.recordChartInstance;
+    chart.resetZoom();
+});
+
     }
 
 canvas.addEventListener('click', function (event) {
