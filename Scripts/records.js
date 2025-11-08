@@ -167,6 +167,7 @@ options: {
                     backgroundColor: 'rgba(0, 123, 255, 0.15)',
                     borderColor: 'rgba(0, 123, 255, 0.4)',
                     borderWidth: 1,
+                    threshold: 50 // Example value: 50 pixels
                 },
                 mode: 'xy'
             },
