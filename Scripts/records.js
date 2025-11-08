@@ -218,10 +218,10 @@ options: {
 
         if (chartElement.length) {
             // Hovering over a point
-            canvas.style.cursor = 'pointer';
+            canvas.style.cursor = 'default';
         } else {
             // Hovering empty space, labels, axes, etc.
-            canvas.style.cursor = 'default';
+            canvas.style.cursor = 'crosshair';
         }
     },
     onClick: (event, chartElement) => {
