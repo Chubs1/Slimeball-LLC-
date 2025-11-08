@@ -171,7 +171,20 @@ options: {
                 },
                 mode: 'xy'
             },
-            pan: { enabled: false }
+            pan: { enabled: false },
+            onZoomStart: function({ chart, event }) {
+                // Check if the event is over any data point
+                const points = chart.getElementsAtEventForMode(event.native, 'nearest', { intersect: true }, false);
+                
+                // If the user is starting the drag over a point (i.e., they might intend to click it)
+                if (points.length) {
+                    // Prevent the drag-to-zoom operation
+                    return false;
+                }
+                
+                // Allow drag-to-zoom otherwise
+                return true; 
+            },
         },
        legend: {
         labels: {
