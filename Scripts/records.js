@@ -157,31 +157,62 @@ window.recordChartInstance = new Chart(ctx, {
 options: {
     plugins: {
         zoom: {
+            limits: {
+                x: { min: 0, max: labels.length - 1 }, // min/max for x-axis
+                y: { min: 0, max: Math.max(...summedProfit) * 2 } // adjust as needed
+            },
             zoom: {
                 drag: {
                     enabled: true,
                     backgroundColor: 'rgba(0, 123, 255, 0.15)',
                     borderColor: 'rgba(0, 123, 255, 0.4)',
                     borderWidth: 1,
-                    // Only allow zoom if NOT clicking on a point
-                    // We'll handle this in the events
                 },
                 mode: 'xy'
             },
             pan: { enabled: false }
+        },
+       legend: {
+        labels: {
+            filter: (legendItem, chart) => {
+                // Only show datasets with a non-empty label
+                return legendItem.text !== '';
+            }
+        },
+        onClick: function (e, legendItem, legend) {
+            const index = legendItem.datasetIndex;
+            const ci = legend.chart;
+            const meta = ci.getDatasetMeta(index);
+
+            // Toggle +SD
+            meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
+
+            // Automatically toggle corresponding -SD (next dataset)
+            const label = legendItem.text;
+            if (label === '1 SD' || label === '2 SD' || label === '3 SD') {
+                const minusMeta = ci.getDatasetMeta(index + 1);
+                minusMeta.hidden = meta.hidden;
+            }
+
+            ci.update();
+          }
         }
+         
     },
     onHover: (event, chartElement) => {
         const canvas = event.native.target;
+
         if (chartElement.length) {
-            canvas.style.cursor = 'default'; // hovering a point
+            // Hovering over a point
+            canvas.style.cursor = 'pointer';
         } else {
-            canvas.style.cursor = 'crosshair'; // empty space
+            // Hovering empty space, labels, axes, etc.
+            canvas.style.cursor = 'default';
         }
     },
     onClick: (event, chartElement) => {
         if (chartElement.length) {
-            // If clicked a point → open menu
+            // Clicked a point → open context menu
             const chart = window.recordChartInstance;
             const firstPoint = chartElement[0];
             const index = firstPoint.index;
@@ -197,11 +228,11 @@ options: {
                 columnIndex: index,
                 values
             });
-        } else {
-            // Clicking empty space → allow zoom (Chart.js Zoom plugin will handle drag zoom)
         }
-    },
+        // Clicking empty space → zoom works automatically via drag
+    }
 },
+
 
     plugins: [whiteBackgroundPlugin] // ✅ FIXED
 });
