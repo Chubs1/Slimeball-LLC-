@@ -174,9 +174,9 @@ options: {
     onHover: (event, chartElement) => {
         const canvas = event.native.target;
         if (chartElement.length) {
-            canvas.style.cursor = 'pointer'; // hovering a point
+            canvas.style.cursor = 'default'; // hovering a point
         } else {
-            canvas.style.cursor = 'default'; // empty space
+            canvas.style.cursor = 'crosshair'; // empty space
         }
     },
     onClick: (event, chartElement) => {
