@@ -154,59 +154,55 @@ window.recordChartInstance = new Chart(ctx, {
             }
         ]
     },
-    options: {
-        plugins: {
-            legend: {
-                onClick: function (e, legendItem, legend) {
-                    const index = legendItem.datasetIndex;
-                    const ci = legend.chart;
-                    const meta = ci.getDatasetMeta(index);
-                    meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
-
-                    const label = legendItem.text;
-                    if (label === '1 SD' || label === '2 SD' || label === '3 SD') {
-                        const minusMeta = ci.getDatasetMeta(index + 1);
-                        minusMeta.hidden = meta.hidden;
-                    }
-
-                    ci.update();
-                },
-                labels: {
-                    filter: (legendItem) => legendItem.text !== ''
-                }
-            },
-            // ✅ NEW: Zoom plugin configuration
+options: {
+    plugins: {
+        zoom: {
             zoom: {
-                limits: {
-                    x: { min: 'original', max: 'original' },
-                    y: { min: 'original', max: 'original' }
+                drag: {
+                    enabled: true,
+                    backgroundColor: 'rgba(0, 123, 255, 0.15)',
+                    borderColor: 'rgba(0, 123, 255, 0.4)',
+                    borderWidth: 1,
+                    // Only allow zoom if NOT clicking on a point
+                    // We'll handle this in the events
                 },
-                zoom: {
-                    drag: {
-                        enabled: true,
-                        backgroundColor: 'rgba(0, 123, 255, 0.15)',
-                        borderColor: 'rgba(0, 123, 255, 0.4)',
-                        borderWidth: 1
-                    },
-                    mode: 'xy'
-                },
-                pan: {
-                    enabled: false
-                }
-            }
-        },
-        scales: {
-            y: {
-                beginAtZero: true,
-                title: { display: true, text: 'Expected Value ($)' }
+                mode: 'xy'
             },
-            x: {
-                title: { display: true, text: 'Day' }
-            }
-        },
-        responsive: true,
-        maintainAspectRatio: false
+            pan: { enabled: false }
+        }
     },
+    onHover: (event, chartElement) => {
+        const canvas = event.native.target;
+        if (chartElement.length) {
+            canvas.style.cursor = 'pointer'; // hovering a point
+        } else {
+            canvas.style.cursor = 'default'; // empty space
+        }
+    },
+    onClick: (event, chartElement) => {
+        if (chartElement.length) {
+            // If clicked a point → open menu
+            const chart = window.recordChartInstance;
+            const firstPoint = chartElement[0];
+            const index = firstPoint.index;
+
+            const values = chart.data.datasets.map((dataset, datasetIndex) => ({
+                datasetIndex,
+                label: dataset.label,
+                value: dataset.data[index]
+            }));
+
+            showContextMenu(event.clientX, event.clientY, {
+                columnLabel: chart.data.labels[index],
+                columnIndex: index,
+                values
+            });
+        } else {
+            // Clicking empty space → allow zoom (Chart.js Zoom plugin will handle drag zoom)
+        }
+    },
+},
+
     plugins: [whiteBackgroundPlugin] // ✅ FIXED
 });
 
