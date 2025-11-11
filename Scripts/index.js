@@ -263,11 +263,14 @@ function createChip(result, chosenStrategy, loggedDealsMap, betSize) {
     const bubble = document.createElement('div');
     bubble.classList.add('profit-bubble');
     bubble.innerHTML = `
-      <input type="number" placeholder="Enter Profit (&plusmn;${chip.dataset.mean})" />
+      <input type="number" value="${-chip.dataset.deposit}" placeholder="Enter Profit (&plusmn;${chip.dataset.mean})" />
       <button>Submit</button>
     `;
 
     const input = bubble.querySelector('input');
+    input.focus();
+    input.select();
+
     const submitBtn = bubble.querySelector('button');
 
     input.addEventListener('keydown', e => {
