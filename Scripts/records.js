@@ -339,50 +339,17 @@ function showChart() {
       const totalDeals = chartDataRaw.length;
       const totalProfit = chartDataRaw.reduce((sum, record) => sum + parseFloat(record.profit || 0), 0);
       const averageProfit = (totalDeals > 0) ? (totalProfit / totalDeals).toFixed(2) : 0;
-const bestDay = Object.entries(
-  chartDataRaw.reduce((groups, record) => {
-    // Convert "2025-08-08 19:36:12" → "2025-08-08"
-    const date = record.chipId.split(" ")[0];
-    const profit = parseFloat(record.profit || 0);
-
-    // Add this record’s profit to that day’s total
-    groups[date] = (groups[date] || 0) + profit;
-    return groups;
-  }, {})
-).reduce(
-  (min, [date, totalProfit]) =>
-    totalProfit > min.profit
-      ? { chipId: date, profit: totalProfit }
-      : min,
-  { chipId: null, profit: Infinity }
-);
 
 
-const worstDay = Object.entries(
-  chartDataRaw.reduce((groups, record) => {
-    // Convert "2025-08-08 19:36:12" → "2025-08-08"
-    const date = record.chipId.split(" ")[0];
-    const profit = parseFloat(record.profit || 0);
 
-    // Add this record’s profit to that day’s total
-    groups[date] = (groups[date] || 0) + profit;
-    return groups;
-  }, {})
-).reduce(
-  (min, [date, totalProfit]) =>
-    totalProfit < min.profit
-      ? { chipId: date, profit: totalProfit }
-      : min,
-  { chipId: null, profit: Infinity }
-);
-
-
+const wins = chartDataRaw.length ? chartDataRaw.reduce((count, record) => count + (parseFloat(record.profit || 0) > 0 ? record.profit : 0), 0) : null;
+const loses = chartDataRaw.length ? chartDataRaw.reduce((count, record) => count + (parseFloat(record.profit || 0) < 0 ? record.profit : 0), 0) : null;
 
       const totalDealsp = document.getElementById('totalDeals');
       const totalProfitp = document.getElementById('totalProfit');
       const averageProfitp = document.getElementById('averageProfit');
-      const bestDayp = document.getElementById('bestDay');
-      const worstDayp = document.getElementById('worstDay');
+      const winsp = document.getElementById('wins');
+      const losep = document.getElementById('loses');
       const maxProfitp = document.getElementById('maxProfit');
       const minProfitp = document.getElementById('minProfit');
       const maxProfit = chartDataRaw.length ? Math.max(...chartDataRaw.map(r => parseFloat(r.profit || 0))) : null;
@@ -393,8 +360,8 @@ const worstDay = Object.entries(
       averageProfitp.textContent = `Average profit per deal: $${averageProfit}`;
       maxProfitp.textContent = maxProfit ? `Maximum profit: $${maxProfit.toFixed(2)}` : 'Maximum profit: N/A';
       minProfitp.textContent = minProfit ? `Minimum profit: $${minProfit.toFixed(2)}` : 'Minimum profit: N/A';
-      bestDayp.textContent = bestDay.date ? `Best day: ${new Date(bestDay.date).toLocaleDateString()} ($${bestDay.profit.toFixed(2)})` : 'Best day: N/A';
-      worstDayp.textContent = worstDay.date ? `Worst day: ${new Date(worstDay.date).toLocaleDateString()} ($${worstDay.profit.toFixed(2)})` : 'Worst day: N/A';
+      winsp.textContent = wins ? `Total $ Winnings ($${wins.profit.toFixed(2)})` : 'N/A';
+      losep.textContent = loses ? `Total $ Loses ($${loses.profit.toFixed(2)})` : 'N/A';
 
     chartDataBox.value = JSON.stringify(chartDataRaw, null, 2);
       exportButton.addEventListener('click', () => {
