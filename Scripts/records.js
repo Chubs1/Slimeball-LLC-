@@ -360,8 +360,8 @@ const loses = chartDataRaw.length ? chartDataRaw.reduce((count, record) => count
       averageProfitp.textContent = `Average profit per deal: $${averageProfit}`;
       maxProfitp.textContent = maxProfit ? `Maximum profit: $${maxProfit.toFixed(2)}` : 'Maximum profit: N/A';
       minProfitp.textContent = minProfit ? `Minimum profit: $${minProfit.toFixed(2)}` : 'Minimum profit: N/A';
-      winsp.textContent = wins ? `Total $ Winnings ($${wins.toFixed(2)})` : 'N/A';
-      losep.textContent = loses ? `Total $ Loses ($${loses.toFixed(2)})` : 'N/A';
+      winsp.textContent = wins ? `Total $ Winnings $${wins.toFixed(2)}` : 'N/A';
+      losep.textContent = loses ? `Total $ Loses $${loses.toFixed(2)}` : 'N/A';
 
     chartDataBox.value = JSON.stringify(chartDataRaw, null, 2);
       exportButton.addEventListener('click', () => {
