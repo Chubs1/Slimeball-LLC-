@@ -1,683 +1,5 @@
 [
   {
-    "id": "2026-05-22 04:02:59",
-    "wagerRequirement": 1020,
-    "casino": "Horseshoe",
-    "date": "05/22",
-    "link": "https://horseshoeonlinecasino.com/us/mi/mypromos",
-    "deposit": 300,
-    "bonus": 51,
-    "strategy": {
-      "5": {
-        "normal": {
-          "mean": "47.52",
-          "riskOfRuin": "0.00%",
-          "stdDev": "75.60",
-          "meanExcludingFirstLoss": "47.52",
-          "stdDevExcludingFirstLoss": "75.60",
-          "chanceToProfit": "73.57%"
-        },
-        "half2x": {
-          "mean": "46.40",
-          "riskOfRuin": "35.19%",
-          "stdDev": "382.97",
-          "meanExcludingFirstLoss": "573.79",
-          "stdDevExcludingFirstLoss": "128.99",
-          "chanceToProfit": "42.71%"
-        },
-        "half3x": {
-          "mean": "47.11",
-          "riskOfRuin": "35.05%",
-          "stdDev": "429.89",
-          "meanExcludingFirstLoss": "938.69",
-          "stdDevExcludingFirstLoss": "109.92",
-          "chanceToProfit": "40.32%"
-        },
-        "full2x": {
-          "mean": "48.64",
-          "riskOfRuin": "51.73%",
-          "stdDev": "422.18",
-          "meanExcludingFirstLoss": "472.42",
-          "stdDevExcludingFirstLoss": "149.28",
-          "chanceToProfit": "47.54%"
-        },
-        "full4x": {
-          "mean": "47.18",
-          "riskOfRuin": "51.66%",
-          "stdDev": "652.07",
-          "meanExcludingFirstLoss": "NaN",
-          "stdDevExcludingFirstLoss": "NaN",
-          "chanceToProfit": "28.63%"
-        },
-        "rpsFlat": {
-          "mean": "16.99",
-          "riskOfRuin": "0.00%",
-          "stdDev": "24.77",
-          "meanExcludingFirstLoss": "16.99",
-          "stdDevExcludingFirstLoss": "24.77",
-          "chanceToProfit": "75.34%"
-        },
-        "rpsHalf2x": {
-          "mean": "43.85",
-          "riskOfRuin": "35.09%",
-          "stdDev": "378.45",
-          "meanExcludingFirstLoss": "560.95",
-          "stdDevExcludingFirstLoss": "122.47",
-          "chanceToProfit": "42.73%"
-        },
-        "rpsHalf3x": {
-          "mean": "46.15",
-          "riskOfRuin": "35.12%",
-          "stdDev": "428.75",
-          "meanExcludingFirstLoss": "932.93",
-          "stdDevExcludingFirstLoss": "106.23",
-          "chanceToProfit": "40.28%"
-        },
-        "rpsFull2x": {
-          "mean": "39.65",
-          "riskOfRuin": "51.70%",
-          "stdDev": "411.31",
-          "meanExcludingFirstLoss": "453.01",
-          "stdDevExcludingFirstLoss": "138.05",
-          "chanceToProfit": "47.56%"
-        },
-        "rpsFull4x": {
-          "mean": "45.86",
-          "riskOfRuin": "51.80%",
-          "stdDev": "651.42",
-          "meanExcludingFirstLoss": "NaN",
-          "stdDevExcludingFirstLoss": "NaN",
-          "chanceToProfit": "28.51%"
-        }
-      },
-      "10": {
-        "normal": {
-          "mean": "47.71",
-          "riskOfRuin": "0.08%",
-          "stdDev": "107.02",
-          "meanExcludingFirstLoss": "47.71",
-          "stdDevExcludingFirstLoss": "107.02",
-          "chanceToProfit": "67.61%"
-        },
-        "half2x": {
-          "mean": "46.76",
-          "riskOfRuin": "35.12%",
-          "stdDev": "383.83",
-          "meanExcludingFirstLoss": "573.70",
-          "stdDevExcludingFirstLoss": "137.52",
-          "chanceToProfit": "42.73%"
-        },
-        "half3x": {
-          "mean": "46.21",
-          "riskOfRuin": "35.06%",
-          "stdDev": "429.31",
-          "meanExcludingFirstLoss": "938.74",
-          "stdDevExcludingFirstLoss": "114.06",
-          "chanceToProfit": "40.24%"
-        },
-        "full2x": {
-          "mean": "49.48",
-          "riskOfRuin": "51.61%",
-          "stdDev": "423.94",
-          "meanExcludingFirstLoss": "472.18",
-          "stdDevExcludingFirstLoss": "160.69",
-          "chanceToProfit": "47.65%"
-        },
-        "full4x": {
-          "mean": "46.40",
-          "riskOfRuin": "51.76%",
-          "stdDev": "651.18",
-          "meanExcludingFirstLoss": "NaN",
-          "stdDevExcludingFirstLoss": "NaN",
-          "chanceToProfit": "28.52%"
-        },
-        "rpsFlat": {
-          "mean": "16.96",
-          "riskOfRuin": "0.00%",
-          "stdDev": "35.05",
-          "meanExcludingFirstLoss": "16.96",
-          "stdDevExcludingFirstLoss": "35.05",
-          "chanceToProfit": "68.69%"
-        },
-        "rpsHalf2x": {
-          "mean": "43.72",
-          "riskOfRuin": "35.10%",
-          "stdDev": "378.38",
-          "meanExcludingFirstLoss": "561.08",
-          "stdDevExcludingFirstLoss": "123.42",
-          "chanceToProfit": "42.72%"
-        },
-        "rpsHalf3x": {
-          "mean": "46.05",
-          "riskOfRuin": "35.07%",
-          "stdDev": "428.66",
-          "meanExcludingFirstLoss": "933.51",
-          "stdDevExcludingFirstLoss": "107.52",
-          "chanceToProfit": "40.29%"
-        },
-        "rpsFull2x": {
-          "mean": "39.10",
-          "riskOfRuin": "51.79%",
-          "stdDev": "411.41",
-          "meanExcludingFirstLoss": "452.95",
-          "stdDevExcludingFirstLoss": "139.45",
-          "chanceToProfit": "47.48%"
-        },
-        "rpsFull4x": {
-          "mean": "46.90",
-          "riskOfRuin": "51.70%",
-          "stdDev": "651.25",
-          "meanExcludingFirstLoss": "NaN",
-          "stdDevExcludingFirstLoss": "NaN",
-          "chanceToProfit": "28.59%"
-        }
-      },
-      "15": {
-        "normal": {
-          "mean": "47.54",
-          "riskOfRuin": "0.62%",
-          "stdDev": "131.03",
-          "meanExcludingFirstLoss": "47.54",
-          "stdDevExcludingFirstLoss": "131.03",
-          "chanceToProfit": "63.39%"
-        },
-        "half2x": {
-          "mean": "46.87",
-          "riskOfRuin": "35.07%",
-          "stdDev": "384.64",
-          "meanExcludingFirstLoss": "573.46",
-          "stdDevExcludingFirstLoss": "146.05",
-          "chanceToProfit": "42.71%"
-        },
-        "half3x": {
-          "mean": "46.82",
-          "riskOfRuin": "35.11%",
-          "stdDev": "429.83",
-          "meanExcludingFirstLoss": "938.48",
-          "stdDevExcludingFirstLoss": "118.80",
-          "chanceToProfit": "40.30%"
-        },
-        "full2x": {
-          "mean": "48.51",
-          "riskOfRuin": "51.74%",
-          "stdDev": "425.95",
-          "meanExcludingFirstLoss": "472.30",
-          "stdDevExcludingFirstLoss": "171.54",
-          "chanceToProfit": "47.52%"
-        },
-        "full4x": {
-          "mean": "47.33",
-          "riskOfRuin": "51.66%",
-          "stdDev": "652.07",
-          "meanExcludingFirstLoss": "NaN",
-          "stdDevExcludingFirstLoss": "NaN",
-          "chanceToProfit": "28.60%"
-        },
-        "rpsFlat": {
-          "mean": "16.97",
-          "riskOfRuin": "0.00%",
-          "stdDev": "42.91",
-          "meanExcludingFirstLoss": "16.97",
-          "stdDevExcludingFirstLoss": "42.91",
-          "chanceToProfit": "65.24%"
-        },
-        "rpsHalf2x": {
-          "mean": "44.02",
-          "riskOfRuin": "35.05%",
-          "stdDev": "378.56",
-          "meanExcludingFirstLoss": "560.87",
-          "stdDevExcludingFirstLoss": "124.65",
-          "chanceToProfit": "42.76%"
-        },
-        "rpsHalf3x": {
-          "mean": "46.12",
-          "riskOfRuin": "35.18%",
-          "stdDev": "429.04",
-          "meanExcludingFirstLoss": "932.44",
-          "stdDevExcludingFirstLoss": "107.53",
-          "chanceToProfit": "40.29%"
-        },
-        "rpsFull2x": {
-          "mean": "39.11",
-          "riskOfRuin": "51.77%",
-          "stdDev": "411.45",
-          "meanExcludingFirstLoss": "452.90",
-          "stdDevExcludingFirstLoss": "140.31",
-          "chanceToProfit": "47.49%"
-        },
-        "rpsFull4x": {
-          "mean": "46.45",
-          "riskOfRuin": "51.74%",
-          "stdDev": "652.08",
-          "meanExcludingFirstLoss": "NaN",
-          "stdDevExcludingFirstLoss": "NaN",
-          "chanceToProfit": "28.53%"
-        }
-      },
-      "20": {
-        "normal": {
-          "mean": "47.53",
-          "riskOfRuin": "1.55%",
-          "stdDev": "151.08",
-          "meanExcludingFirstLoss": "47.53",
-          "stdDevExcludingFirstLoss": "151.08",
-          "chanceToProfit": "63.17%"
-        },
-        "half2x": {
-          "mean": "46.93",
-          "riskOfRuin": "35.11%",
-          "stdDev": "385.58",
-          "meanExcludingFirstLoss": "574.04",
-          "stdDevExcludingFirstLoss": "153.94",
-          "chanceToProfit": "42.73%"
-        },
-        "half3x": {
-          "mean": "46.14",
-          "riskOfRuin": "35.08%",
-          "stdDev": "429.43",
-          "meanExcludingFirstLoss": "938.78",
-          "stdDevExcludingFirstLoss": "122.67",
-          "chanceToProfit": "40.23%"
-        },
-        "full2x": {
-          "mean": "48.32",
-          "riskOfRuin": "51.74%",
-          "stdDev": "427.73",
-          "meanExcludingFirstLoss": "471.92",
-          "stdDevExcludingFirstLoss": "181.29",
-          "chanceToProfit": "47.50%"
-        },
-        "full4x": {
-          "mean": "47.74",
-          "riskOfRuin": "51.72%",
-          "stdDev": "652.24",
-          "meanExcludingFirstLoss": "NaN",
-          "stdDevExcludingFirstLoss": "NaN",
-          "chanceToProfit": "28.64%"
-        },
-        "rpsFlat": {
-          "mean": "16.94",
-          "riskOfRuin": "0.00%",
-          "stdDev": "49.58",
-          "meanExcludingFirstLoss": "16.94",
-          "stdDevExcludingFirstLoss": "49.58",
-          "chanceToProfit": "63.40%"
-        },
-        "rpsHalf2x": {
-          "mean": "43.30",
-          "riskOfRuin": "35.08%",
-          "stdDev": "378.13",
-          "meanExcludingFirstLoss": "560.75",
-          "stdDevExcludingFirstLoss": "125.46",
-          "chanceToProfit": "42.71%"
-        },
-        "rpsHalf3x": {
-          "mean": "46.19",
-          "riskOfRuin": "35.19%",
-          "stdDev": "429.35",
-          "meanExcludingFirstLoss": "932.71",
-          "stdDevExcludingFirstLoss": "107.92",
-          "chanceToProfit": "40.27%"
-        },
-        "rpsFull2x": {
-          "mean": "39.76",
-          "riskOfRuin": "51.72%",
-          "stdDev": "412.18",
-          "meanExcludingFirstLoss": "453.44",
-          "stdDevExcludingFirstLoss": "142.10",
-          "chanceToProfit": "47.54%"
-        },
-        "rpsFull4x": {
-          "mean": "45.64",
-          "riskOfRuin": "51.75%",
-          "stdDev": "651.01",
-          "meanExcludingFirstLoss": "NaN",
-          "stdDevExcludingFirstLoss": "NaN",
-          "chanceToProfit": "28.49%"
-        }
-      }
-    }
-  },
-  {
-    "id": "2026-05-22 04:10:04",
-    "wagerRequirement": 5100,
-    "casino": "Caesars",
-    "date": "05/22",
-    "link": "https://caesarspalaceonline.com/us/mi/mypromos",
-    "deposit": 300,
-    "bonus": 51,
-    "strategy": {
-      "5": {
-        "normal": {
-          "mean": "33.86",
-          "riskOfRuin": "4.53%",
-          "stdDev": "167.75",
-          "meanExcludingFirstLoss": "33.86",
-          "stdDevExcludingFirstLoss": "167.75",
-          "chanceToProfit": "57.88%"
-        },
-        "half2x": {
-          "mean": "40.05",
-          "riskOfRuin": "61.41%",
-          "stdDev": "449.33",
-          "meanExcludingFirstLoss": "584.56",
-          "stdDevExcludingFirstLoss": "208.22",
-          "chanceToProfit": "38.46%"
-        },
-        "half3x": {
-          "mean": "41.64",
-          "riskOfRuin": "73.62%",
-          "stdDev": "598.14",
-          "meanExcludingFirstLoss": "1050.21",
-          "stdDevExcludingFirstLoss": "260.60",
-          "chanceToProfit": "25.71%"
-        },
-        "full2x": {
-          "mean": "42.11",
-          "riskOfRuin": "52.54%",
-          "stdDev": "429.98",
-          "meanExcludingFirstLoss": "458.95",
-          "stdDevExcludingFirstLoss": "212.40",
-          "chanceToProfit": "47.09%"
-        },
-        "full4x": {
-          "mean": "45.56",
-          "riskOfRuin": "77.44%",
-          "stdDev": "731.35",
-          "meanExcludingFirstLoss": "1331.58",
-          "stdDevExcludingFirstLoss": "359.69",
-          "chanceToProfit": "22.56%"
-        },
-        "rpsFlat": {
-          "mean": "17.00",
-          "riskOfRuin": "0.00%",
-          "stdDev": "24.79",
-          "meanExcludingFirstLoss": "17.00",
-          "stdDevExcludingFirstLoss": "24.79",
-          "chanceToProfit": "75.30%"
-        },
-        "rpsHalf2x": {
-          "mean": "34.76",
-          "riskOfRuin": "61.41%",
-          "stdDev": "433.13",
-          "meanExcludingFirstLoss": "570.73",
-          "stdDevExcludingFirstLoss": "145.17",
-          "chanceToProfit": "38.49%"
-        },
-        "rpsHalf3x": {
-          "mean": "37.50",
-          "riskOfRuin": "73.71%",
-          "stdDev": "588.71",
-          "meanExcludingFirstLoss": "1038.62",
-          "stdDevExcludingFirstLoss": "222.97",
-          "chanceToProfit": "25.62%"
-        },
-        "rpsFull2x": {
-          "mean": "33.68",
-          "riskOfRuin": "52.65%",
-          "stdDev": "407.69",
-          "meanExcludingFirstLoss": "443.00",
-          "stdDevExcludingFirstLoss": "138.67",
-          "chanceToProfit": "47.35%"
-        },
-        "rpsFull4x": {
-          "mean": "42.81",
-          "riskOfRuin": "77.42%",
-          "stdDev": "722.91",
-          "meanExcludingFirstLoss": "1317.91",
-          "stdDevExcludingFirstLoss": "328.57",
-          "chanceToProfit": "22.58%"
-        }
-      },
-      "10": {
-        "normal": {
-          "mean": "34.89",
-          "riskOfRuin": "15.20%",
-          "stdDev": "231.49",
-          "meanExcludingFirstLoss": "34.89",
-          "stdDevExcludingFirstLoss": "231.49",
-          "chanceToProfit": "55.58%"
-        },
-        "half2x": {
-          "mean": "40.72",
-          "riskOfRuin": "61.36%",
-          "stdDev": "459.24",
-          "meanExcludingFirstLoss": "584.89",
-          "stdDevExcludingFirstLoss": "256.99",
-          "chanceToProfit": "38.23%"
-        },
-        "half3x": {
-          "mean": "40.73",
-          "riskOfRuin": "73.67%",
-          "stdDev": "601.11",
-          "meanExcludingFirstLoss": "1048.91",
-          "stdDevExcludingFirstLoss": "294.35",
-          "chanceToProfit": "25.68%"
-        },
-        "full2x": {
-          "mean": "42.24",
-          "riskOfRuin": "52.65%",
-          "stdDev": "444.13",
-          "meanExcludingFirstLoss": "459.10",
-          "stdDevExcludingFirstLoss": "267.23",
-          "chanceToProfit": "45.46%"
-        },
-        "full4x": {
-          "mean": "45.15",
-          "riskOfRuin": "77.46%",
-          "stdDev": "734.20",
-          "meanExcludingFirstLoss": "1330.98",
-          "stdDevExcludingFirstLoss": "387.81",
-          "chanceToProfit": "22.54%"
-        },
-        "rpsFlat": {
-          "mean": "16.99",
-          "riskOfRuin": "0.00%",
-          "stdDev": "35.04",
-          "meanExcludingFirstLoss": "16.99",
-          "stdDevExcludingFirstLoss": "35.04",
-          "chanceToProfit": "68.74%"
-        },
-        "rpsHalf2x": {
-          "mean": "34.93",
-          "riskOfRuin": "61.41%",
-          "stdDev": "433.60",
-          "meanExcludingFirstLoss": "571.21",
-          "stdDevExcludingFirstLoss": "147.09",
-          "chanceToProfit": "38.49%"
-        },
-        "rpsHalf3x": {
-          "mean": "37.66",
-          "riskOfRuin": "73.69%",
-          "stdDev": "588.70",
-          "meanExcludingFirstLoss": "1037.93",
-          "stdDevExcludingFirstLoss": "223.82",
-          "chanceToProfit": "25.65%"
-        },
-        "rpsFull2x": {
-          "mean": "34.65",
-          "riskOfRuin": "52.51%",
-          "stdDev": "408.09",
-          "meanExcludingFirstLoss": "442.79",
-          "stdDevExcludingFirstLoss": "140.91",
-          "chanceToProfit": "47.49%"
-        },
-        "rpsFull4x": {
-          "mean": "41.25",
-          "riskOfRuin": "77.53%",
-          "stdDev": "721.45",
-          "meanExcludingFirstLoss": "1317.81",
-          "stdDevExcludingFirstLoss": "328.70",
-          "chanceToProfit": "22.47%"
-        }
-      },
-      "15": {
-        "normal": {
-          "mean": "35.72",
-          "riskOfRuin": "24.19%",
-          "stdDev": "275.75",
-          "meanExcludingFirstLoss": "35.72",
-          "stdDevExcludingFirstLoss": "275.75",
-          "chanceToProfit": "53.09%"
-        },
-        "half2x": {
-          "mean": "40.23",
-          "riskOfRuin": "61.48%",
-          "stdDev": "468.65",
-          "meanExcludingFirstLoss": "584.78",
-          "stdDevExcludingFirstLoss": "298.63",
-          "chanceToProfit": "37.63%"
-        },
-        "half3x": {
-          "mean": "40.22",
-          "riskOfRuin": "73.69%",
-          "stdDev": "604.54",
-          "meanExcludingFirstLoss": "1049.07",
-          "stdDevExcludingFirstLoss": "323.87",
-          "chanceToProfit": "25.63%"
-        },
-        "full2x": {
-          "mean": "42.21",
-          "riskOfRuin": "53.08%",
-          "stdDev": "457.65",
-          "meanExcludingFirstLoss": "458.46",
-          "stdDevExcludingFirstLoss": "312.22",
-          "chanceToProfit": "43.78%"
-        },
-        "full4x": {
-          "mean": "44.76",
-          "riskOfRuin": "77.47%",
-          "stdDev": "737.28",
-          "meanExcludingFirstLoss": "1330.44",
-          "stdDevExcludingFirstLoss": "415.74",
-          "chanceToProfit": "22.53%"
-        },
-        "rpsFlat": {
-          "mean": "17.01",
-          "riskOfRuin": "0.00%",
-          "stdDev": "42.91",
-          "meanExcludingFirstLoss": "17.01",
-          "stdDevExcludingFirstLoss": "42.91",
-          "chanceToProfit": "65.28%"
-        },
-        "rpsHalf2x": {
-          "mean": "35.25",
-          "riskOfRuin": "61.37%",
-          "stdDev": "433.86",
-          "meanExcludingFirstLoss": "571.09",
-          "stdDevExcludingFirstLoss": "148.71",
-          "chanceToProfit": "38.53%"
-        },
-        "rpsHalf3x": {
-          "mean": "38.35",
-          "riskOfRuin": "73.64%",
-          "stdDev": "589.44",
-          "meanExcludingFirstLoss": "1038.81",
-          "stdDevExcludingFirstLoss": "224.93",
-          "chanceToProfit": "25.68%"
-        },
-        "rpsFull2x": {
-          "mean": "34.83",
-          "riskOfRuin": "52.50%",
-          "stdDev": "408.47",
-          "meanExcludingFirstLoss": "442.99",
-          "stdDevExcludingFirstLoss": "142.48",
-          "chanceToProfit": "47.50%"
-        },
-        "rpsFull4x": {
-          "mean": "41.27",
-          "riskOfRuin": "77.53%",
-          "stdDev": "722.29",
-          "meanExcludingFirstLoss": "1319.30",
-          "stdDevExcludingFirstLoss": "331.11",
-          "chanceToProfit": "22.47%"
-        }
-      },
-      "20": {
-        "normal": {
-          "mean": "36.60",
-          "riskOfRuin": "30.20%",
-          "stdDev": "312.12",
-          "meanExcludingFirstLoss": "36.60",
-          "stdDevExcludingFirstLoss": "312.12",
-          "chanceToProfit": "52.01%"
-        },
-        "half2x": {
-          "mean": "40.12",
-          "riskOfRuin": "61.69%",
-          "stdDev": "477.69",
-          "meanExcludingFirstLoss": "585.03",
-          "stdDevExcludingFirstLoss": "333.74",
-          "chanceToProfit": "37.00%"
-        },
-        "half3x": {
-          "mean": "40.95",
-          "riskOfRuin": "73.68%",
-          "stdDev": "608.91",
-          "meanExcludingFirstLoss": "1050.58",
-          "stdDevExcludingFirstLoss": "349.97",
-          "chanceToProfit": "25.65%"
-        },
-        "full2x": {
-          "mean": "41.82",
-          "riskOfRuin": "53.94%",
-          "stdDev": "470.80",
-          "meanExcludingFirstLoss": "458.53",
-          "stdDevExcludingFirstLoss": "351.38",
-          "chanceToProfit": "42.28%"
-        },
-        "full4x": {
-          "mean": "43.70",
-          "riskOfRuin": "77.56%",
-          "stdDev": "740.61",
-          "meanExcludingFirstLoss": "1332.37",
-          "stdDevExcludingFirstLoss": "442.63",
-          "chanceToProfit": "22.44%"
-        },
-        "rpsFlat": {
-          "mean": "17.05",
-          "riskOfRuin": "0.00%",
-          "stdDev": "49.60",
-          "meanExcludingFirstLoss": "17.05",
-          "stdDevExcludingFirstLoss": "49.60",
-          "chanceToProfit": "63.44%"
-        },
-        "rpsHalf2x": {
-          "mean": "35.61",
-          "riskOfRuin": "61.32%",
-          "stdDev": "434.12",
-          "meanExcludingFirstLoss": "571.02",
-          "stdDevExcludingFirstLoss": "150.25",
-          "chanceToProfit": "38.58%"
-        },
-        "rpsHalf3x": {
-          "mean": "37.80",
-          "riskOfRuin": "73.69%",
-          "stdDev": "589.28",
-          "meanExcludingFirstLoss": "1038.82",
-          "stdDevExcludingFirstLoss": "226.02",
-          "chanceToProfit": "25.63%"
-        },
-        "rpsFull2x": {
-          "mean": "34.67",
-          "riskOfRuin": "52.54%",
-          "stdDev": "408.88",
-          "meanExcludingFirstLoss": "443.26",
-          "stdDevExcludingFirstLoss": "144.97",
-          "chanceToProfit": "47.46%"
-        },
-        "rpsFull4x": {
-          "mean": "43.36",
-          "riskOfRuin": "77.41%",
-          "stdDev": "723.25",
-          "meanExcludingFirstLoss": "1318.80",
-          "stdDevExcludingFirstLoss": "330.26",
-          "chanceToProfit": "22.58%"
-        }
-      }
-    }
-  },
-  {
     "id": "2026-05-27 02:00:29",
     "wagerRequirement": 200,
     "casino": "Horseshoe",
@@ -1350,6 +672,684 @@
           "stdDev": "81.85",
           "meanExcludingFirstLoss": "151.70",
           "stdDevExcludingFirstLoss": "42.68",
+          "chanceToProfit": "22.55%"
+        }
+      }
+    }
+  },
+  {
+    "id": "2026-05-29 04:01:32",
+    "wagerRequirement": 200,
+    "casino": "Horseshoe",
+    "date": "05/29",
+    "link": "https://horseshoeonlinecasino.com/us/mi/mypromos",
+    "deposit": 30,
+    "bonus": 10,
+    "strategy": {
+      "5": {
+        "normal": {
+          "mean": "9.40",
+          "riskOfRuin": "22.55%",
+          "stdDev": "31.99",
+          "meanExcludingFirstLoss": "9.40",
+          "stdDevExcludingFirstLoss": "31.99",
+          "chanceToProfit": "57.76%"
+        },
+        "half2x": {
+          "mean": "9.36",
+          "riskOfRuin": "50.75%",
+          "stdDev": "49.22",
+          "meanExcludingFirstLoss": "65.04",
+          "stdDevExcludingFirstLoss": "29.54",
+          "chanceToProfit": "42.72%"
+        },
+        "half3x": {
+          "mean": "9.25",
+          "riskOfRuin": "54.68%",
+          "stdDev": "59.10",
+          "meanExcludingFirstLoss": "108.93",
+          "stdDevExcludingFirstLoss": "28.98",
+          "chanceToProfit": "35.21%"
+        },
+        "full2x": {
+          "mean": "9.61",
+          "riskOfRuin": "52.71%",
+          "stdDev": "52.03",
+          "meanExcludingFirstLoss": "57.79",
+          "stdDevExcludingFirstLoss": "33.31",
+          "chanceToProfit": "45.28%"
+        },
+        "full4x": {
+          "mean": "9.63",
+          "riskOfRuin": "74.06%",
+          "stdDev": "82.58",
+          "meanExcludingFirstLoss": "156.72",
+          "stdDevExcludingFirstLoss": "42.43",
+          "chanceToProfit": "23.85%"
+        },
+        "rpsFlat": {
+          "mean": "3.33",
+          "riskOfRuin": "0.20%",
+          "stdDev": "10.97",
+          "meanExcludingFirstLoss": "3.33",
+          "stdDevExcludingFirstLoss": "10.97",
+          "chanceToProfit": "61.80%"
+        },
+        "rpsHalf2x": {
+          "mean": "8.02",
+          "riskOfRuin": "50.77%",
+          "stdDev": "45.49",
+          "meanExcludingFirstLoss": "61.54",
+          "stdDevExcludingFirstLoss": "17.12",
+          "chanceToProfit": "43.26%"
+        },
+        "rpsHalf3x": {
+          "mean": "8.94",
+          "riskOfRuin": "54.60%",
+          "stdDev": "57.80",
+          "meanExcludingFirstLoss": "106.37",
+          "stdDevExcludingFirstLoss": "21.17",
+          "chanceToProfit": "35.34%"
+        },
+        "rpsFull2x": {
+          "mean": "7.33",
+          "riskOfRuin": "52.55%",
+          "stdDev": "46.15",
+          "meanExcludingFirstLoss": "53.07",
+          "stdDevExcludingFirstLoss": "18.31",
+          "chanceToProfit": "47.42%"
+        },
+        "rpsFull4x": {
+          "mean": "9.19",
+          "riskOfRuin": "74.10%",
+          "stdDev": "81.40",
+          "meanExcludingFirstLoss": "154.54",
+          "stdDevExcludingFirstLoss": "37.75",
+          "chanceToProfit": "23.82%"
+        }
+      },
+      "10": {
+        "normal": {
+          "mean": "9.49",
+          "riskOfRuin": "38.22%",
+          "stdDev": "42.70",
+          "meanExcludingFirstLoss": "9.49",
+          "stdDevExcludingFirstLoss": "42.70",
+          "chanceToProfit": "49.17%"
+        },
+        "half2x": {
+          "mean": "9.33",
+          "riskOfRuin": "51.25%",
+          "stdDev": "51.66",
+          "meanExcludingFirstLoss": "65.07",
+          "stdDevExcludingFirstLoss": "39.35",
+          "chanceToProfit": "41.03%"
+        },
+        "half3x": {
+          "mean": "9.29",
+          "riskOfRuin": "54.65%",
+          "stdDev": "59.75",
+          "meanExcludingFirstLoss": "108.88",
+          "stdDevExcludingFirstLoss": "35.99",
+          "chanceToProfit": "35.25%"
+        },
+        "full2x": {
+          "mean": "9.55",
+          "riskOfRuin": "54.38%",
+          "stdDev": "55.80",
+          "meanExcludingFirstLoss": "57.78",
+          "stdDevExcludingFirstLoss": "44.35",
+          "chanceToProfit": "41.31%"
+        },
+        "full4x": {
+          "mean": "9.39",
+          "riskOfRuin": "74.21%",
+          "stdDev": "82.84",
+          "meanExcludingFirstLoss": "156.58",
+          "stdDevExcludingFirstLoss": "46.98",
+          "chanceToProfit": "23.72%"
+        },
+        "rpsFlat": {
+          "mean": "3.36",
+          "riskOfRuin": "2.76%",
+          "stdDev": "15.39",
+          "meanExcludingFirstLoss": "3.36",
+          "stdDevExcludingFirstLoss": "15.39",
+          "chanceToProfit": "57.90%"
+        },
+        "rpsHalf2x": {
+          "mean": "8.03",
+          "riskOfRuin": "50.71%",
+          "stdDev": "45.77",
+          "meanExcludingFirstLoss": "61.52",
+          "stdDevExcludingFirstLoss": "19.14",
+          "chanceToProfit": "43.27%"
+        },
+        "rpsHalf3x": {
+          "mean": "8.84",
+          "riskOfRuin": "54.64%",
+          "stdDev": "57.86",
+          "meanExcludingFirstLoss": "106.49",
+          "stdDevExcludingFirstLoss": "22.30",
+          "chanceToProfit": "35.23%"
+        },
+        "rpsFull2x": {
+          "mean": "7.38",
+          "riskOfRuin": "52.52%",
+          "stdDev": "46.64",
+          "meanExcludingFirstLoss": "53.08",
+          "stdDevExcludingFirstLoss": "20.77",
+          "chanceToProfit": "47.44%"
+        },
+        "rpsFull4x": {
+          "mean": "9.17",
+          "riskOfRuin": "74.12%",
+          "stdDev": "81.40",
+          "meanExcludingFirstLoss": "154.47",
+          "stdDevExcludingFirstLoss": "38.25",
+          "chanceToProfit": "23.82%"
+        }
+      },
+      "15": {
+        "normal": {
+          "mean": "9.43",
+          "riskOfRuin": "43.50%",
+          "stdDev": "51.32",
+          "meanExcludingFirstLoss": "9.43",
+          "stdDevExcludingFirstLoss": "51.32",
+          "chanceToProfit": "46.30%"
+        },
+        "half2x": {
+          "mean": "9.34",
+          "riskOfRuin": "51.95%",
+          "stdDev": "53.94",
+          "meanExcludingFirstLoss": "65.05",
+          "stdDevExcludingFirstLoss": "47.01",
+          "chanceToProfit": "39.59%"
+        },
+        "half3x": {
+          "mean": "9.29",
+          "riskOfRuin": "54.64%",
+          "stdDev": "60.45",
+          "meanExcludingFirstLoss": "108.85",
+          "stdDevExcludingFirstLoss": "42.14",
+          "chanceToProfit": "35.13%"
+        },
+        "full2x": {
+          "mean": "9.53",
+          "riskOfRuin": "56.16%",
+          "stdDev": "59.16",
+          "meanExcludingFirstLoss": "57.75",
+          "stdDevExcludingFirstLoss": "52.79",
+          "chanceToProfit": "38.99%"
+        },
+        "full4x": {
+          "mean": "9.49",
+          "riskOfRuin": "74.19%",
+          "stdDev": "83.41",
+          "meanExcludingFirstLoss": "156.74",
+          "stdDevExcludingFirstLoss": "50.87",
+          "chanceToProfit": "23.76%"
+        },
+        "rpsFlat": {
+          "mean": "3.43",
+          "riskOfRuin": "6.95%",
+          "stdDev": "18.59",
+          "meanExcludingFirstLoss": "3.43",
+          "stdDevExcludingFirstLoss": "18.59",
+          "chanceToProfit": "57.03%"
+        },
+        "rpsHalf2x": {
+          "mean": "8.06",
+          "riskOfRuin": "50.68%",
+          "stdDev": "46.05",
+          "meanExcludingFirstLoss": "61.48",
+          "stdDevExcludingFirstLoss": "20.88",
+          "chanceToProfit": "43.29%"
+        },
+        "rpsHalf3x": {
+          "mean": "8.85",
+          "riskOfRuin": "54.64%",
+          "stdDev": "57.91",
+          "meanExcludingFirstLoss": "106.33",
+          "stdDevExcludingFirstLoss": "23.34",
+          "chanceToProfit": "35.24%"
+        },
+        "rpsFull2x": {
+          "mean": "7.27",
+          "riskOfRuin": "52.60%",
+          "stdDev": "47.12",
+          "meanExcludingFirstLoss": "53.08",
+          "stdDevExcludingFirstLoss": "22.80",
+          "chanceToProfit": "47.22%"
+        },
+        "rpsFull4x": {
+          "mean": "9.07",
+          "riskOfRuin": "74.14%",
+          "stdDev": "81.38",
+          "meanExcludingFirstLoss": "154.47",
+          "stdDevExcludingFirstLoss": "38.88",
+          "chanceToProfit": "23.79%"
+        }
+      },
+      "20": {
+        "normal": {
+          "mean": "9.50",
+          "riskOfRuin": "52.76%",
+          "stdDev": "56.00",
+          "meanExcludingFirstLoss": "9.50",
+          "stdDevExcludingFirstLoss": "56.00",
+          "chanceToProfit": "39.41%"
+        },
+        "half2x": {
+          "mean": "9.33",
+          "riskOfRuin": "52.83%",
+          "stdDev": "56.05",
+          "meanExcludingFirstLoss": "65.20",
+          "stdDevExcludingFirstLoss": "53.27",
+          "chanceToProfit": "38.39%"
+        },
+        "half3x": {
+          "mean": "9.36",
+          "riskOfRuin": "54.59%",
+          "stdDev": "61.20",
+          "meanExcludingFirstLoss": "108.86",
+          "stdDevExcludingFirstLoss": "47.31",
+          "chanceToProfit": "35.08%"
+        },
+        "full2x": {
+          "mean": "9.72",
+          "riskOfRuin": "58.58%",
+          "stdDev": "62.51",
+          "meanExcludingFirstLoss": "57.91",
+          "stdDevExcludingFirstLoss": "60.22",
+          "chanceToProfit": "36.33%"
+        },
+        "full4x": {
+          "mean": "9.51",
+          "riskOfRuin": "74.16%",
+          "stdDev": "84.04",
+          "meanExcludingFirstLoss": "156.75",
+          "stdDevExcludingFirstLoss": "55.57",
+          "chanceToProfit": "23.77%"
+        },
+        "rpsFlat": {
+          "mean": "3.53",
+          "riskOfRuin": "11.44%",
+          "stdDev": "21.25",
+          "meanExcludingFirstLoss": "3.53",
+          "stdDevExcludingFirstLoss": "21.25",
+          "chanceToProfit": "55.72%"
+        },
+        "rpsHalf2x": {
+          "mean": "8.07",
+          "riskOfRuin": "50.73%",
+          "stdDev": "46.34",
+          "meanExcludingFirstLoss": "61.52",
+          "stdDevExcludingFirstLoss": "22.50",
+          "chanceToProfit": "43.21%"
+        },
+        "rpsHalf3x": {
+          "mean": "8.90",
+          "riskOfRuin": "54.65%",
+          "stdDev": "58.02",
+          "meanExcludingFirstLoss": "106.38",
+          "stdDevExcludingFirstLoss": "24.47",
+          "chanceToProfit": "35.30%"
+        },
+        "rpsFull2x": {
+          "mean": "7.42",
+          "riskOfRuin": "52.50%",
+          "stdDev": "47.57",
+          "meanExcludingFirstLoss": "53.13",
+          "stdDevExcludingFirstLoss": "24.76",
+          "chanceToProfit": "47.01%"
+        },
+        "rpsFull4x": {
+          "mean": "9.26",
+          "riskOfRuin": "74.06%",
+          "stdDev": "81.52",
+          "meanExcludingFirstLoss": "154.42",
+          "stdDevExcludingFirstLoss": "39.39",
+          "chanceToProfit": "23.88%"
+        }
+      }
+    }
+  },
+  {
+    "id": "2026-05-29 04:02:48",
+    "wagerRequirement": 1000,
+    "casino": "Caesars",
+    "date": "05/29",
+    "link": "https://caesarspalaceonline.com/us/mi/mypromos",
+    "deposit": 30,
+    "bonus": 10,
+    "strategy": {
+      "5": {
+        "normal": {
+          "mean": "7.98",
+          "riskOfRuin": "60.19%",
+          "stdDev": "57.42",
+          "meanExcludingFirstLoss": "7.98",
+          "stdDevExcludingFirstLoss": "57.42",
+          "chanceToProfit": "36.38%"
+        },
+        "half2x": {
+          "mean": "8.30",
+          "riskOfRuin": "66.44%",
+          "stdDev": "64.38",
+          "meanExcludingFirstLoss": "63.56",
+          "stdDevExcludingFirstLoss": "69.40",
+          "chanceToProfit": "31.72%"
+        },
+        "half3x": {
+          "mean": "8.45",
+          "riskOfRuin": "73.77%",
+          "stdDev": "73.56",
+          "meanExcludingFirstLoss": "111.89",
+          "stdDevExcludingFirstLoss": "70.64",
+          "chanceToProfit": "25.60%"
+        },
+        "full2x": {
+          "mean": "8.48",
+          "riskOfRuin": "65.40%",
+          "stdDev": "66.34",
+          "meanExcludingFirstLoss": "55.42",
+          "stdDevExcludingFirstLoss": "70.01",
+          "chanceToProfit": "32.35%"
+        },
+        "full4x": {
+          "mean": "8.93",
+          "riskOfRuin": "77.91%",
+          "stdDev": "88.59",
+          "meanExcludingFirstLoss": "154.41",
+          "stdDevExcludingFirstLoss": "78.51",
+          "chanceToProfit": "21.80%"
+        },
+        "rpsFlat": {
+          "mean": "3.33",
+          "riskOfRuin": "0.21%",
+          "stdDev": "10.97",
+          "meanExcludingFirstLoss": "3.33",
+          "stdDevExcludingFirstLoss": "10.97",
+          "chanceToProfit": "61.86%"
+        },
+        "rpsHalf2x": {
+          "mean": "7.16",
+          "riskOfRuin": "58.47%",
+          "stdDev": "46.41",
+          "meanExcludingFirstLoss": "60.39",
+          "stdDevExcludingFirstLoss": "18.29",
+          "chanceToProfit": "41.53%"
+        },
+        "rpsHalf3x": {
+          "mean": "7.68",
+          "riskOfRuin": "72.57%",
+          "stdDev": "63.79",
+          "meanExcludingFirstLoss": "109.22",
+          "stdDevExcludingFirstLoss": "25.39",
+          "chanceToProfit": "27.41%"
+        },
+        "rpsFull2x": {
+          "mean": "6.80",
+          "riskOfRuin": "52.57%",
+          "stdDev": "45.76",
+          "meanExcludingFirstLoss": "51.95",
+          "stdDevExcludingFirstLoss": "18.94",
+          "chanceToProfit": "47.43%"
+        },
+        "rpsFull4x": {
+          "mean": "8.28",
+          "riskOfRuin": "77.53%",
+          "stdDev": "81.32",
+          "meanExcludingFirstLoss": "151.73",
+          "stdDevExcludingFirstLoss": "38.86",
+          "chanceToProfit": "22.47%"
+        }
+      },
+      "10": {
+        "normal": {
+          "mean": "8.30",
+          "riskOfRuin": "70.79%",
+          "stdDev": "72.51",
+          "meanExcludingFirstLoss": "8.30",
+          "stdDevExcludingFirstLoss": "72.51",
+          "chanceToProfit": "27.58%"
+        },
+        "half2x": {
+          "mean": "8.40",
+          "riskOfRuin": "72.69%",
+          "stdDev": "75.30",
+          "meanExcludingFirstLoss": "63.71",
+          "stdDevExcludingFirstLoss": "92.07",
+          "chanceToProfit": "26.03%"
+        },
+        "half3x": {
+          "mean": "8.49",
+          "riskOfRuin": "76.37%",
+          "stdDev": "80.90",
+          "meanExcludingFirstLoss": "112.21",
+          "stdDevExcludingFirstLoss": "95.30",
+          "chanceToProfit": "22.90%"
+        },
+        "full2x": {
+          "mean": "8.63",
+          "riskOfRuin": "72.98%",
+          "stdDev": "77.81",
+          "meanExcludingFirstLoss": "55.75",
+          "stdDevExcludingFirstLoss": "91.44",
+          "chanceToProfit": "25.67%"
+        },
+        "full4x": {
+          "mean": "9.02",
+          "riskOfRuin": "79.51%",
+          "stdDev": "94.35",
+          "meanExcludingFirstLoss": "154.59",
+          "stdDevExcludingFirstLoss": "103.86",
+          "chanceToProfit": "19.99%"
+        },
+        "rpsFlat": {
+          "mean": "3.37",
+          "riskOfRuin": "2.76%",
+          "stdDev": "15.39",
+          "meanExcludingFirstLoss": "3.37",
+          "stdDevExcludingFirstLoss": "15.39",
+          "chanceToProfit": "57.94%"
+        },
+        "rpsHalf2x": {
+          "mean": "6.99",
+          "riskOfRuin": "58.64%",
+          "stdDev": "46.84",
+          "meanExcludingFirstLoss": "60.36",
+          "stdDevExcludingFirstLoss": "21.00",
+          "chanceToProfit": "41.34%"
+        },
+        "rpsHalf3x": {
+          "mean": "7.68",
+          "riskOfRuin": "72.58%",
+          "stdDev": "64.03",
+          "meanExcludingFirstLoss": "109.28",
+          "stdDevExcludingFirstLoss": "27.30",
+          "chanceToProfit": "27.40%"
+        },
+        "rpsFull2x": {
+          "mean": "6.82",
+          "riskOfRuin": "52.52%",
+          "stdDev": "46.35",
+          "meanExcludingFirstLoss": "51.93",
+          "stdDevExcludingFirstLoss": "21.74",
+          "chanceToProfit": "47.40%"
+        },
+        "rpsFull4x": {
+          "mean": "8.32",
+          "riskOfRuin": "77.50%",
+          "stdDev": "81.54",
+          "meanExcludingFirstLoss": "151.74",
+          "stdDevExcludingFirstLoss": "40.20",
+          "chanceToProfit": "22.50%"
+        }
+      },
+      "15": {
+        "normal": {
+          "mean": "8.43",
+          "riskOfRuin": "73.69%",
+          "stdDev": "85.96",
+          "meanExcludingFirstLoss": "8.43",
+          "stdDevExcludingFirstLoss": "85.96",
+          "chanceToProfit": "25.01%"
+        },
+        "half2x": {
+          "mean": "8.54",
+          "riskOfRuin": "76.29%",
+          "stdDev": "83.65",
+          "meanExcludingFirstLoss": "64.20",
+          "stdDevExcludingFirstLoss": "107.95",
+          "chanceToProfit": "22.79%"
+        },
+        "half3x": {
+          "mean": "8.52",
+          "riskOfRuin": "78.53%",
+          "stdDev": "87.01",
+          "meanExcludingFirstLoss": "112.47",
+          "stdDevExcludingFirstLoss": "113.14",
+          "chanceToProfit": "20.81%"
+        },
+        "full2x": {
+          "mean": "8.91",
+          "riskOfRuin": "76.36%",
+          "stdDev": "87.13",
+          "meanExcludingFirstLoss": "56.26",
+          "stdDevExcludingFirstLoss": "107.42",
+          "chanceToProfit": "22.61%"
+        },
+        "full4x": {
+          "mean": "9.05",
+          "riskOfRuin": "80.94%",
+          "stdDev": "99.34",
+          "meanExcludingFirstLoss": "154.48",
+          "stdDevExcludingFirstLoss": "122.91",
+          "chanceToProfit": "18.52%"
+        },
+        "rpsFlat": {
+          "mean": "3.43",
+          "riskOfRuin": "6.98%",
+          "stdDev": "18.60",
+          "meanExcludingFirstLoss": "3.43",
+          "stdDevExcludingFirstLoss": "18.60",
+          "chanceToProfit": "57.08%"
+        },
+        "rpsHalf2x": {
+          "mean": "7.01",
+          "riskOfRuin": "58.64%",
+          "stdDev": "47.32",
+          "meanExcludingFirstLoss": "60.38",
+          "stdDevExcludingFirstLoss": "23.42",
+          "chanceToProfit": "41.27%"
+        },
+        "rpsHalf3x": {
+          "mean": "7.73",
+          "riskOfRuin": "72.55%",
+          "stdDev": "64.25",
+          "meanExcludingFirstLoss": "109.27",
+          "stdDevExcludingFirstLoss": "29.02",
+          "chanceToProfit": "27.43%"
+        },
+        "rpsFull2x": {
+          "mean": "6.84",
+          "riskOfRuin": "52.53%",
+          "stdDev": "46.91",
+          "meanExcludingFirstLoss": "51.94",
+          "stdDevExcludingFirstLoss": "24.26",
+          "chanceToProfit": "47.09%"
+        },
+        "rpsFull4x": {
+          "mean": "8.50",
+          "riskOfRuin": "77.41%",
+          "stdDev": "81.72",
+          "meanExcludingFirstLoss": "151.68",
+          "stdDevExcludingFirstLoss": "41.29",
+          "chanceToProfit": "22.59%"
+        }
+      },
+      "20": {
+        "normal": {
+          "mean": "8.76",
+          "riskOfRuin": "78.70%",
+          "stdDev": "90.88",
+          "meanExcludingFirstLoss": "8.76",
+          "stdDevExcludingFirstLoss": "90.88",
+          "chanceToProfit": "20.36%"
+        },
+        "half2x": {
+          "mean": "8.70",
+          "riskOfRuin": "78.70%",
+          "stdDev": "90.65",
+          "meanExcludingFirstLoss": "64.33",
+          "stdDevExcludingFirstLoss": "120.61",
+          "chanceToProfit": "20.45%"
+        },
+        "half3x": {
+          "mean": "8.51",
+          "riskOfRuin": "80.08%",
+          "stdDev": "92.37",
+          "meanExcludingFirstLoss": "112.69",
+          "stdDevExcludingFirstLoss": "127.76",
+          "chanceToProfit": "19.22%"
+        },
+        "full2x": {
+          "mean": "8.70",
+          "riskOfRuin": "79.69%",
+          "stdDev": "92.88",
+          "meanExcludingFirstLoss": "55.96",
+          "stdDevExcludingFirstLoss": "117.37",
+          "chanceToProfit": "19.45%"
+        },
+        "full4x": {
+          "mean": "8.98",
+          "riskOfRuin": "82.47%",
+          "stdDev": "103.68",
+          "meanExcludingFirstLoss": "154.73",
+          "stdDevExcludingFirstLoss": "137.74",
+          "chanceToProfit": "16.96%"
+        },
+        "rpsFlat": {
+          "mean": "3.57",
+          "riskOfRuin": "11.38%",
+          "stdDev": "21.24",
+          "meanExcludingFirstLoss": "3.57",
+          "stdDevExcludingFirstLoss": "21.24",
+          "chanceToProfit": "55.79%"
+        },
+        "rpsHalf2x": {
+          "mean": "7.02",
+          "riskOfRuin": "58.64%",
+          "stdDev": "47.79",
+          "meanExcludingFirstLoss": "60.39",
+          "stdDevExcludingFirstLoss": "25.61",
+          "chanceToProfit": "41.12%"
+        },
+        "rpsHalf3x": {
+          "mean": "7.73",
+          "riskOfRuin": "72.54%",
+          "stdDev": "64.44",
+          "meanExcludingFirstLoss": "109.25",
+          "stdDevExcludingFirstLoss": "30.59",
+          "chanceToProfit": "27.44%"
+        },
+        "rpsFull2x": {
+          "mean": "6.84",
+          "riskOfRuin": "52.56%",
+          "stdDev": "47.49",
+          "meanExcludingFirstLoss": "51.94",
+          "stdDevExcludingFirstLoss": "26.56",
+          "chanceToProfit": "46.59%"
+        },
+        "rpsFull4x": {
+          "mean": "8.41",
+          "riskOfRuin": "77.45%",
+          "stdDev": "81.81",
+          "meanExcludingFirstLoss": "151.65",
+          "stdDevExcludingFirstLoss": "42.51",
           "chanceToProfit": "22.55%"
         }
       }
